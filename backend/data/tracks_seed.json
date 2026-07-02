@@ -1,0 +1,48 @@
+[
+  {
+    "track_id": "pkm-001",
+    "title": "Pallet Town",
+    "artist": "Game Freak",
+    "album": "Pokémon Red/Blue",
+    "environment_tags": ["residential", "calm", "nostalgic"],
+    "feature_vector": [0.25, 0.85, 0.65, 0.2],
+    "source": "seed"
+  },
+  {
+    "track_id": "pkm-002",
+    "title": "Viridian Forest",
+    "artist": "Game Freak",
+    "album": "Pokémon Red/Blue",
+    "environment_tags": ["forest", "adventure", "serene"],
+    "feature_vector": [0.3, 0.9, 0.8, 0.18],
+    "source": "seed"
+  },
+  {
+    "track_id": "pkm-003",
+    "title": "Surfing Theme",
+    "artist": "Game Freak",
+    "album": "Pokémon Red/Blue",
+    "environment_tags": ["beach", "waterfront", "light"],
+    "feature_vector": [0.42, 0.72, 0.55, 0.35],
+    "source": "seed"
+  },
+  {
+    "track_id": "pkm-004",
+    "title": "Pokémon Center",
+    "artist": "Game Freak",
+    "album": "Pokémon Red/Blue",
+    "environment_tags": ["urban", "safe", "restful"],
+    "feature_vector": [0.45, 0.78, 0.5, 0.32],
+    "source": "seed"
+  },
+  {
+    "track_id": "pkm-005",
+    "title": "Route 1",
+    "artist": "Game Freak",
+    "album": "Pokémon Red/Blue",
+    "environment_tags": ["travel", "outdoors", "balanced"],
+    "feature_vector": [0.55, 0.55, 0.45, 0.55],
+    "source": "seed"
+  }
+]
+

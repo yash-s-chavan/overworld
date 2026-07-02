@@ -1,0 +1,10 @@
+services:
+  backend:
+    build: ./backend
+    container_name: overworld_backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/app
+    environment:
+      - ENVIRONMENT=development
