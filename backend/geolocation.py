@@ -1,4 +1,4 @@
-"""Reverse-geocoding helpers for turning coordinates into simple environment tags."""
+"""Revlocation=Noneg helpers for turning coordinates into simple environment tags."""
 
 from __future__ import annotations
 
@@ -31,6 +31,19 @@ def _environment_from_address(address: Dict[str, Any], place_type: str) -> str:
 		return "urban"
 
 	return "unknown"
+def get_environment_vector(location: Dict[str, Any]) -> Dict[str, list[float]]:
+    environment = location
+    vector_map = {
+        "beach": [0.6, 0.8, 0.9, 0.5],
+        "park": [0.4, 0.7, 0.7, 0.4],
+        "forest": [0.3, 0.9, 1.0, 0.2],
+        "mountain": [0.7, 0.8, 0.9, 0.6],
+        "waterfront": [0.5, 0.6, 0.5, 0.5],
+        "urban": [0.9, 0.1, 0.1, 0.9],
+        "unknown": [0.5, 0.5, 0.5, 0.5],
+    }
+    return vector_map.get(environment, vector_map["unknown"])
+
 
 
 def reverse_geocode_environment(latitude: float, longitude: float, timeout: int = 5) -> Dict[str, Any]:

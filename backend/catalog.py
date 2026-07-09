@@ -98,26 +98,55 @@ class TrackCatalog:
         ranked = np.argsort(scores)[::-1]
 
         items = []
-        for rank_position, index in enumerate(ranked[:top_k], start=1):
-            track_index = int(index)
-            track = self.state.tracks[track_index]
-            if environment and environment not in track.get("environment_tags", []):
-                continue
-            items.append(
-                RecommendationItem(
-                    rank=rank_position,
-                    track_id=track["track_id"],
-                    title=track["title"],
-                    artist=track["artist"],
-                    album=track.get("album"),
-                    score=float(scores[track_index]),
-                    environment_tags=track.get("environment_tags", []),
-                    feature_vector=track.get("feature_vector", []),
-                )
-            )
-            if len(items) >= top_k:
-                break
+        seen_track_ids = set()
+        if environment:
+            for index in ranked:
+                track = self.state.tracks[index]
+                track_id = track["track_id"]
+                if(track_id not in seen_track_ids):
+                    if environment in track.get("environment_tags", []):
+                        items.append(
+                            RecommendationItem(
+                                rank=0,
+                                track_id=track["track_id"],
+                                title=track["title"],
+                                artist=track["artist"],
+                                album=track.get("album"),
+                                score=float(scores[index]),
+                                environment_tags=track.get("environment_tags", []),
+                                feature_vector=track.get("feature_vector", []),
+                            )
+                        )
+                        seen_track_ids.add(track_id)
+                        if len(items) >= top_k:
+                            break
+        while(len(items) <top_k):
+            added = False
+            for index in ranked:
+                track = self.state.tracks[index]
+                track_id = track["track_id"]
+                if(track_id not in seen_track_ids):
+                    items.append(
+                        RecommendationItem(
+                            rank=0,
+                            track_id=track["track_id"],
+                            title=track["title"],
+                            artist=track["artist"],
+                            album=track.get("album"),
+                            score=float(scores[index]),
+                            environment_tags=track.get("environment_tags", []),
+                            feature_vector=track.get("feature_vector", []),
+                        )
 
+                    )
+                    added = True
+                    seen_track_ids.add(track_id)
+                if(len(items) == top_k):
+                    break
+            if not added:
+                break
+        for i, item in enumerate(items, start=1):
+            item.rank = i
         return items
 
     def upsert_seed_file(self) -> None:

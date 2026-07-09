@@ -2,7 +2,7 @@ from fastapi import BackgroundTasks, FastAPI
 
 from background import BackgroundTaskManager
 from catalog import TrackCatalog
-from geolocation import reverse_geocode_environment
+from geolocation import reverse_geocode_environment, get_environment_vector
 from pipeline import MLPrepPipeline
 from schemas import Coordinates, LocationRecommendationRequest, RecommendationRequest, TrackCreate
 
@@ -82,9 +82,7 @@ async def tasks_status():
 @app.post("/recommend")
 async def get_spatial_recommendations(coords: Coordinates):
     location = reverse_geocode_environment(coords.latitude, coords.longitude)
-    target_vector = [0.5, 0.5, 0.5, 0.5]
-    if catalog.state.index_matrix is not None and len(catalog.state.index_matrix) > 0:
-        target_vector = catalog.state.index_matrix[0].tolist()
+    target_vector = get_environment_vector(location["environment"])
     return {
         "input_coordinates": {"lat": coords.latitude, "lon": coords.longitude},
         "resolved_environment": location["environment"],
@@ -105,7 +103,7 @@ async def recommend_by_vector(request: RecommendationRequest):
 @app.post("/recommend/location")
 async def recommend_by_location(request: LocationRecommendationRequest):
     location = reverse_geocode_environment(request.latitude, request.longitude)
-    recommendations = catalog.recommend([0.5, 0.5, 0.5, 0.5], top_k=request.top_k, environment=location["environment"])
+    recommendations = catalog.recommend(get_environment_vector(location["environment"]), top_k=request.top_k, environment=location["environment"])
     return {
         "input_coordinates": {"lat": request.latitude, "lon": request.longitude},
         "resolved_environment": location["environment"],
