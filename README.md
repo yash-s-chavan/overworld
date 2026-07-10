@@ -8,14 +8,22 @@ Overworld is a contextual audio recommendation engine.
 - `backend/geolocation.py` — reverse-geocoding helper
 - `backend/catalog.py` — track catalog and cosine-similarity ranking
 - `backend/pipeline.py` — data preparation helpers
+- `backend/embedding_model.py` — simple metadata-to-vector generator
 - `backend/background.py` — small background task manager
 - `backend/schemas.py` — request/response models
-- `backend/data/tracks_seed.json` — starter track data
+- `backend/data/tracks_seed.json` — expanded seed track data
 
-## Good next ML steps
+## Added API utilities
 
-1. Replace the seed vectors with your own embeddings.
-2. Add a script that generates vectors from metadata.
-3. Train or tune a model that maps environments to feature vectors.
-4. Expand the dataset beyond the starter Pokémon tracks.
+- `GET /catalog/validate` — validates vectors and reports schema/data issues
+- `POST /pipeline/generate-embeddings` — regenerates vectors from metadata tags
+
+## Quick checks
+
+```bash
+cd /Users/yashchavan/PycharmProjects/overworld/backend
+python3 test_scaffold.py
+python3 -m pytest -q test_catalog.py
+python3 regenerate_embeddings.py
+```
 

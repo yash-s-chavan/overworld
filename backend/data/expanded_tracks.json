@@ -1,0 +1,93 @@
+[
+  {
+    "track_id": "ow-006",
+    "title": "Neon Crosswalk",
+    "artist": "City Drift",
+    "album": "Night Transit",
+    "environment_tags": ["urban", "energetic", "pulse"],
+    "feature_vector": [0.88, 0.2, 0.15, 0.86],
+    "source": "expanded_seed"
+  },
+  {
+    "track_id": "ow-007",
+    "title": "Rain on Glass",
+    "artist": "Lumen Quiet",
+    "album": "Windowseat",
+    "environment_tags": ["calm", "ambient", "rain"],
+    "feature_vector": [0.2, 0.92, 0.76, 0.15],
+    "source": "expanded_seed"
+  },
+  {
+    "track_id": "ow-008",
+    "title": "Boardwalk Breeze",
+    "artist": "Saltline",
+    "album": "Coastal Loop",
+    "environment_tags": ["beach", "waterfront", "light"],
+    "feature_vector": [0.5, 0.78, 0.7, 0.42],
+    "source": "expanded_seed"
+  },
+  {
+    "track_id": "ow-009",
+    "title": "Sunrise Trail",
+    "artist": "Pine Echo",
+    "album": "Elevation",
+    "environment_tags": ["mountain", "adventure", "outdoors"],
+    "feature_vector": [0.68, 0.66, 0.5, 0.58],
+    "source": "expanded_seed"
+  },
+  {
+    "track_id": "ow-010",
+    "title": "Cedar Campfire",
+    "artist": "North Hollow",
+    "album": "Trail Stories",
+    "environment_tags": ["forest", "acoustic", "serene"],
+    "feature_vector": [0.34, 0.89, 0.9, 0.25],
+    "source": "expanded_seed"
+  },
+  {
+    "track_id": "ow-011",
+    "title": "Subway Momentum",
+    "artist": "Signal Unit",
+    "album": "Rush Hour",
+    "environment_tags": ["urban", "fast", "travel"],
+    "feature_vector": [0.9, 0.18, 0.12, 0.92],
+    "source": "expanded_seed"
+  },
+  {
+    "track_id": "ow-012",
+    "title": "Lakeside Sketch",
+    "artist": "Juniper Lane",
+    "album": "Watercolor",
+    "environment_tags": ["waterfront", "calm", "natural"],
+    "feature_vector": [0.32, 0.88, 0.8, 0.24],
+    "source": "expanded_seed"
+  },
+  {
+    "track_id": "ow-013",
+    "title": "Quiet Avenue",
+    "artist": "Evening Static",
+    "album": "Afterglow",
+    "environment_tags": ["residential", "restful", "nostalgic"],
+    "feature_vector": [0.3, 0.84, 0.62, 0.22],
+    "source": "expanded_seed"
+  },
+  {
+    "track_id": "ow-014",
+    "title": "Garden Steps",
+    "artist": "Mosslight",
+    "album": "Green Hour",
+    "environment_tags": ["park", "peaceful", "organic"],
+    "feature_vector": [0.28, 0.9, 0.88, 0.2],
+    "source": "expanded_seed"
+  },
+  {
+    "track_id": "ow-015",
+    "title": "Open Highway",
+    "artist": "Vector Miles",
+    "album": "Long Drive",
+    "environment_tags": ["travel", "upbeat", "driving"],
+    "feature_vector": [0.82, 0.35, 0.25, 0.85],
+    "source": "expanded_seed"
+  }
+]
+

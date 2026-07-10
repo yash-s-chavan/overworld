@@ -4,7 +4,7 @@ import csv
 import json
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Any, Dict, List, Optional, Sequence
+from typing import Any, Callable, Dict, List, Optional, Sequence
 
 import numpy as np
 from sklearn.metrics.pairwise import cosine_similarity
@@ -20,7 +20,7 @@ DEFAULT_INDEX_FILE = Path(__file__).with_name("data").joinpath("tracks_index.jso
 @dataclass
 class CatalogState:
     tracks: List[Dict[str, Any]] = field(default_factory=list)
-    index_matrix: Optional[object] = None
+    index_matrix: Optional[np.ndarray] = None
     track_ids: List[str] = field(default_factory=list)
     loaded_from: Optional[str] = None
 
@@ -76,6 +76,40 @@ class TrackCatalog:
         self._persist()
         self._refresh_index()
         return record
+
+    def validate_tracks(self) -> List[str]:
+        """Return validation errors for loaded tracks; empty list means valid."""
+        errors: List[str] = []
+        for index, track in enumerate(self.state.tracks):
+            track_id = track.get("track_id", "<missing>")
+            vector = track.get("feature_vector", [])
+            if not isinstance(vector, list) or len(vector) != 4:
+                errors.append(f"Track {index} ({track_id}): feature_vector must have exactly 4 values")
+                continue
+            for dimension, value in enumerate(vector):
+                if not isinstance(value, (int, float)):
+                    errors.append(f"Track {index} ({track_id}): feature_vector[{dimension}] is not numeric")
+                elif value < 0 or value > 1:
+                    errors.append(f"Track {index} ({track_id}): feature_vector[{dimension}] out of [0,1] range")
+        return errors
+
+    def regenerate_feature_vectors(self, vector_fn: Callable[[Dict[str, Any]], Sequence[float]]) -> Dict[str, Any]:
+        """Regenerate all track vectors in place and persist index updates."""
+        if not self.state.tracks:
+            self.load()
+        updated = 0
+        for index, track in enumerate(self.state.tracks):
+            vector = list(vector_fn(track))
+            if len(vector) != 4:
+                raise ValueError(f"Generated vector for track {track.get('track_id', index)} is not 4-dimensional")
+            if not all(0 <= float(v) <= 1 for v in vector):
+                raise ValueError(f"Generated vector for track {track.get('track_id', index)} contains out-of-range values")
+            track["feature_vector"] = [float(v) for v in vector]
+            updated += 1
+
+        self._persist()
+        self._refresh_index()
+        return {"updated": updated, "track_count": len(self.state.tracks)}
 
     def recommend(
         self,

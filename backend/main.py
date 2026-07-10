@@ -1,4 +1,7 @@
-from fastapi import BackgroundTasks, FastAPI
+import logging
+
+import requests
+from fastapi import BackgroundTasks, FastAPI, HTTPException
 
 from background import BackgroundTaskManager
 from catalog import TrackCatalog
@@ -12,6 +15,9 @@ app = FastAPI(
     version="1.0.0",
 )
 
+logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(name)s - %(message)s")
+logger = logging.getLogger(__name__)
+
 catalog = TrackCatalog()
 pipeline = MLPrepPipeline(catalog=catalog)
 task_manager = BackgroundTaskManager()
@@ -20,8 +26,10 @@ task_manager = BackgroundTaskManager()
 @app.on_event("startup")
 async def startup_bootstrap_catalog():
     def _bootstrap() -> None:
+        logger.info("Bootstrapping catalog on startup")
         pipeline.ensure_seed_data()
         catalog.load()
+        logger.info("Catalog bootstrap complete: %s", catalog.summary())
 
     task_manager.run_async("bootstrap_catalog", _bootstrap)
 
@@ -52,6 +60,12 @@ async def list_tracks():
     return {"tracks": catalog.list_tracks()}
 
 
+@app.get("/catalog/validate")
+async def validate_catalog():
+    errors = catalog.validate_tracks()
+    return {"valid": len(errors) == 0, "errors": errors}
+
+
 @app.post("/catalog/tracks")
 async def add_track(track: TrackCreate):
     return {"track": catalog.add_track(track)}
@@ -75,38 +89,83 @@ async def export_pipeline_snapshot():
     return {"status": "exported", "path": str(export_path)}
 
 
+@app.post("/pipeline/generate-embeddings")
+async def regenerate_embeddings():
+    try:
+        return pipeline.generate_embeddings()
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+    except Exception as exc:
+        logger.exception("Embedding regeneration failed")
+        raise HTTPException(status_code=500, detail="Embedding regeneration failed") from exc
+
+
 @app.get("/tasks/status")
 async def tasks_status():
     return task_manager.status()
 
 @app.post("/recommend")
 async def get_spatial_recommendations(coords: Coordinates):
-    location = reverse_geocode_environment(coords.latitude, coords.longitude)
-    target_vector = get_environment_vector(location["environment"])
+    try:
+        location = reverse_geocode_environment(coords.latitude, coords.longitude)
+    except requests.RequestException as exc:
+        raise HTTPException(status_code=503, detail="Geolocation provider unavailable") from exc
+    except Exception as exc:
+        logger.exception("Failed to resolve location for coordinates")
+        raise HTTPException(status_code=500, detail="Failed to resolve environment") from exc
+
+    try:
+        environment = location["environment"]
+        target_vector = get_environment_vector(environment)
+        recommendations = catalog.recommend(target_vector, top_k=10, environment=environment)
+    except Exception as exc:
+        logger.exception("Recommendation generation failed")
+        raise HTTPException(status_code=500, detail="Recommendation generation failed") from exc
+
     return {
         "input_coordinates": {"lat": coords.latitude, "lon": coords.longitude},
-        "resolved_environment": location["environment"],
+        "resolved_environment": environment,
         "resolved_location": location["display_name"],
-        "recommendations": catalog.recommend(target_vector, top_k=10, environment=location["environment"]),
+        "recommendations": recommendations,
     }
 
 
 @app.post("/recommend/vector")
 async def recommend_by_vector(request: RecommendationRequest):
+    try:
+        recommendations = catalog.recommend(request.target_vector, top_k=request.top_k, environment=request.environment)
+    except Exception as exc:
+        logger.exception("Vector recommendation failed")
+        raise HTTPException(status_code=500, detail="Vector recommendation failed") from exc
+
     return {
         "target_vector": request.target_vector,
         "environment": request.environment,
-        "recommendations": catalog.recommend(request.target_vector, top_k=request.top_k, environment=request.environment),
+        "recommendations": recommendations,
     }
 
 
 @app.post("/recommend/location")
 async def recommend_by_location(request: LocationRecommendationRequest):
-    location = reverse_geocode_environment(request.latitude, request.longitude)
-    recommendations = catalog.recommend(get_environment_vector(location["environment"]), top_k=request.top_k, environment=location["environment"])
+    try:
+        location = reverse_geocode_environment(request.latitude, request.longitude)
+    except requests.RequestException as exc:
+        raise HTTPException(status_code=503, detail="Geolocation provider unavailable") from exc
+    except Exception as exc:
+        logger.exception("Location recommendation failed before ranking")
+        raise HTTPException(status_code=500, detail="Failed to resolve environment") from exc
+
+    try:
+        environment = location["environment"]
+        target_vector = get_environment_vector(environment)
+        recommendations = catalog.recommend(target_vector, top_k=request.top_k, environment=environment)
+    except Exception as exc:
+        logger.exception("Location recommendation ranking failed")
+        raise HTTPException(status_code=500, detail="Location recommendation failed") from exc
+
     return {
         "input_coordinates": {"lat": request.latitude, "lon": request.longitude},
-        "resolved_environment": location["environment"],
+        "resolved_environment": environment,
         "resolved_location": location["display_name"],
         "recommendations": recommendations,
     }

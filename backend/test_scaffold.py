@@ -10,7 +10,7 @@ def test_imports():
     from catalog import TrackCatalog
     from pipeline import MLPrepPipeline
     from background import BackgroundTaskManager
-    from geolocation import reverse_geocode_environment, _environment_from_address
+    from geolocation import reverse_geocode_environment, _environment_from_address, get_environment_vector
     from schemas import Coordinates, TrackCreate, RecommendationRequest
     print("✓ All imports successful")
 
@@ -50,11 +50,13 @@ def test_pipeline():
 
 def test_geolocation():
     """Test environment classification."""
-    from geolocation import _environment_from_address
+    from geolocation import _environment_from_address, get_environment_vector
     
     assert _environment_from_address({"name": "Central Park"}, "park") == "park"
     assert _environment_from_address({"city": "New York"}, "city") == "urban"
     assert _environment_from_address({"name": "Waikiki Beach"}, "place") == "beach"
+    assert get_environment_vector("forest") == [0.3, 0.9, 1.0, 0.2]
+    assert len(get_environment_vector("unknown")) == 4
     print("✓ Geolocation classification works")
 
 
@@ -91,10 +93,12 @@ def test_app_structure():
         "/health",
         "/catalog/summary",
         "/catalog/tracks",
+        "/catalog/validate",
         "/recommend",
         "/recommend/vector",
         "/recommend/location",
         "/pipeline/prepare",
+        "/pipeline/generate-embeddings",
     ]
     
     for route in required_routes:

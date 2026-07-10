@@ -6,6 +6,7 @@ from pathlib import Path
 from typing import Dict, List, Optional
 
 from catalog import TrackCatalog
+from embedding_model import SimpleEmbeddingModel
 
 
 class MLPrepPipeline:
@@ -34,5 +35,14 @@ class MLPrepPipeline:
     def list_feature_vectors(self) -> List[List[float]]:
         state = self.catalog.load()
         return [track["feature_vector"] for track in state.tracks]
+
+    def generate_embeddings(self) -> Dict[str, object]:
+        """Regenerate vectors from metadata tags and return a small summary."""
+        model = SimpleEmbeddingModel()
+        result = self.catalog.regenerate_feature_vectors(model.generate_vector)
+        return {
+            "status": "embeddings_regenerated",
+            **result,
+        }
 
 
