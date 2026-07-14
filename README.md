@@ -24,6 +24,7 @@ Overworld is a contextual audio recommendation engine.
 cd /Users/yashchavan/PycharmProjects/overworld/backend
 python3 test_scaffold.py
 python3 -m pytest -q test_catalog.py
+python3 -m pytest -q test_api.py
 python3 regenerate_embeddings.py
 ```
 
