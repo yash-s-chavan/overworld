@@ -25,6 +25,7 @@ def test_health_returns_expected_shape():
     assert "catalog" in payload
     assert "background" in payload
     assert "track_count" in payload["catalog"]
+    assert response.headers.get("X-Request-ID")
 
 
 def test_catalog_validate_returns_contract():
@@ -111,4 +112,62 @@ def test_recommend_location_internal_error(monkeypatch):
     )
     assert response.status_code == 500
     assert response.json()["detail"] == "Failed to resolve environment"
+
+
+def test_recommend_coordinates_success(monkeypatch):
+    _ensure_catalog_loaded()
+
+    monkeypatch.setattr(
+        main,
+        "reverse_geocode_environment",
+        lambda _lat, _lon: {"environment": "urban", "display_name": "Mock City", "raw": {}},
+    )
+
+    response = client.post("/recommend", json={"latitude": 37.0, "longitude": -122.0})
+    assert response.status_code == 200
+    assert response.json()["resolved_environment"] == "urban"
+    assert len(response.json()["recommendations"]) <= main.settings.default_top_k
+
+
+def test_validate_track_dry_run():
+    response = client.post(
+        "/catalog/validate-track",
+        json={
+            "track_id": "dry-run",
+            "title": "Dry Run",
+            "artist": "Tester",
+            "feature_vector": [1.5, 0.0, 0.0, 0.0],
+        },
+    )
+    assert response.status_code == 200
+    assert response.json()["valid"] is False
+
+
+def test_add_duplicate_track_returns_conflict():
+    _ensure_catalog_loaded()
+    existing = main.catalog.state.tracks[0]
+    response = client.post(
+        "/catalog/tracks",
+        json={
+            "track_id": existing["track_id"],
+            "title": "Duplicate",
+            "artist": "Tester",
+            "feature_vector": [0.5, 0.5, 0.5, 0.5],
+        },
+    )
+    assert response.status_code == 409
+
+
+def test_coordinate_bounds_are_validated():
+    response = client.post("/recommend", json={"latitude": 91, "longitude": 0})
+    assert response.status_code == 422
+
+
+def test_vector_values_are_validated():
+    response = client.post(
+        "/recommend/vector",
+        json={"target_vector": [1.2, 0.0, 0.0, 0.0], "top_k": 1},
+    )
+    assert response.status_code == 422
+
 

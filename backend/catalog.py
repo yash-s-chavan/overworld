@@ -2,6 +2,7 @@
 
 import csv
 import json
+from datetime import datetime, timezone
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any, Callable, Dict, List, Optional, Sequence
@@ -10,6 +11,7 @@ import numpy as np
 from sklearn.metrics.pairwise import cosine_similarity
 
 from schemas import RecommendationItem, TrackBase
+from config import settings
 
 
 DEFAULT_CATALOG_FILE = Path(__file__).with_name("data").joinpath("tracks.json")
@@ -72,10 +74,29 @@ class TrackCatalog:
 
     def add_track(self, track: TrackBase) -> Dict[str, Any]:
         record = track.model_dump()
+        errors = self.validate_track_record(record)
+        if errors:
+            raise ValueError("Invalid track: " + "; ".join(errors))
+        if any(existing.get("track_id") == record["track_id"] for existing in self.state.tracks):
+            raise ValueError(f"Track ID already exists: {record['track_id']}")
         self.state.tracks.append(record)
         self._persist()
         self._refresh_index()
         return record
+
+    @staticmethod
+    def validate_track_record(track: Dict[str, Any]) -> List[str]:
+        """Validate one track payload without changing catalog state."""
+        errors: List[str] = []
+        for field_name in ("track_id", "title", "artist"):
+            if not str(track.get(field_name, "")).strip():
+                errors.append(f"missing {field_name}")
+        vector = track.get("feature_vector", [])
+        if not isinstance(vector, list) or len(vector) != 4:
+            errors.append("feature_vector must have exactly 4 values")
+        elif any(not isinstance(value, (int, float)) or not 0 <= value <= 1 for value in vector):
+            errors.append("feature_vector values must be numeric and in [0,1]")
+        return errors
 
     def validate_tracks(self) -> List[str]:
         """Return validation errors for loaded tracks; empty list means valid."""
@@ -98,6 +119,9 @@ class TrackCatalog:
         if not self.state.tracks:
             self.load()
         updated = 0
+        generated_at = datetime.now(timezone.utc).isoformat()
+        model_owner = getattr(vector_fn, "__self__", None)
+        model_version = getattr(vector_fn, "model_version", getattr(model_owner, "version", settings.embedding_model_version))
         for index, track in enumerate(self.state.tracks):
             vector = list(vector_fn(track))
             if len(vector) != 4:
@@ -105,11 +129,18 @@ class TrackCatalog:
             if not all(0 <= float(v) <= 1 for v in vector):
                 raise ValueError(f"Generated vector for track {track.get('track_id', index)} contains out-of-range values")
             track["feature_vector"] = [float(v) for v in vector]
+            track["embedding_model_version"] = model_version
+            track["embedding_generated_at"] = generated_at
             updated += 1
 
         self._persist()
         self._refresh_index()
-        return {"updated": updated, "track_count": len(self.state.tracks)}
+        return {
+            "updated": updated,
+            "track_count": len(self.state.tracks),
+            "embedding_model_version": model_version,
+            "embedding_generated_at": generated_at,
+        }
 
     def recommend(
         self,
@@ -149,6 +180,8 @@ class TrackCatalog:
                                 score=float(scores[index]),
                                 environment_tags=track.get("environment_tags", []),
                                 feature_vector=track.get("feature_vector", []),
+                                            embedding_model_version=track.get("embedding_model_version"),
+                                            embedding_generated_at=track.get("embedding_generated_at"),
                             )
                         )
                         seen_track_ids.add(track_id)
@@ -170,6 +203,8 @@ class TrackCatalog:
                             score=float(scores[index]),
                             environment_tags=track.get("environment_tags", []),
                             feature_vector=track.get("feature_vector", []),
+                            embedding_model_version=track.get("embedding_model_version"),
+                            embedding_generated_at=track.get("embedding_generated_at"),
                         )
 
                     )

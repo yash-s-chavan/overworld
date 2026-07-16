@@ -92,3 +92,44 @@ def test_validate_tracks_reports_invalid_vectors(tmp_path):
     errors = catalog.validate_tracks()
     assert len(errors) >= 2
 
+
+def test_add_track_rejects_duplicate_id():
+    catalog = TrackCatalog()
+    catalog.load()
+    existing = catalog.state.tracks[0]
+    duplicate = TrackCreate(
+        track_id=existing["track_id"],
+        title="Duplicate",
+        artist="Test Artist",
+        feature_vector=[0.5, 0.5, 0.5, 0.5],
+    )
+
+    try:
+        catalog.add_track(duplicate)
+    except ValueError as exc:
+        assert "already exists" in str(exc)
+    else:
+        raise AssertionError("duplicate track ID should be rejected")
+
+
+def test_regenerate_embeddings_adds_lifecycle_metadata(tmp_path):
+    catalog = TrackCatalog(
+        catalog_path=tmp_path / "tracks.json",
+        seed_path=tmp_path / "seed.json",
+        index_path=tmp_path / "index.json",
+    )
+    catalog.state.tracks = [{
+        "track_id": "test-001",
+        "title": "Forest Test",
+        "artist": "Test",
+        "environment_tags": ["forest", "serene"],
+        "feature_vector": [0.5, 0.5, 0.5, 0.5],
+    }]
+
+    result = catalog.regenerate_feature_vectors(lambda _track: [0.2, 0.8, 0.8, 0.2])
+    track = catalog.state.tracks[0]
+    assert result["updated"] == 1
+    assert track["embedding_model_version"]
+    assert track["embedding_generated_at"]
+
+

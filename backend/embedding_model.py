@@ -4,9 +4,13 @@ from __future__ import annotations
 
 from typing import Dict, List
 
+from config import settings
+
 
 class SimpleEmbeddingModel:
     """Generate 4D vectors [energy, serenity, acousticness, tempo] from tags."""
+
+    version = settings.embedding_model_version
 
     _SIGNALS = {
         "energy": {"high", "energetic", "adventure", "travel", "urban", "upbeat", "fast", "intense"},
