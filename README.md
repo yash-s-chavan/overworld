@@ -1,6 +1,12 @@
 # Overworld
 
-Overworld is a contextual audio recommendation engine.
+**Overview:** Overworld is a contextual audio recommendation engine that maps real-world GPS coordinates to environmental tags and suggests situationally appropriate music.
+  It translates physical environments into 4D audio embeddings to serve hyper-contextual track recommendations.
+
+**Tech Stack:** Python, FastAPI, Scikit-Learn, Spotify Web API, OpenStreetMap (Nominatim API), Docker.
+
+**Key Focus:** Bridging geospatial data and audio analysis by translating real-world locations into musical feature vectors (Energy, Serenity, Acousticness, Tempo) and
+  efficiently ranking a music catalog using cosine similarity.
 
 ## Current backend scaffold
 
