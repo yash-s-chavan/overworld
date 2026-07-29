@@ -151,6 +151,17 @@ async def regenerate_embeddings():
         raise HTTPException(status_code=500, detail="Embedding regeneration failed") from exc
 
 
+@app.post("/pipeline/generate-spotify-embeddings", response_model=EmbeddingGenerationResponse)
+async def regenerate_spotify_embeddings():
+    try:
+        return pipeline.generate_spotify_embeddings()
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+    except Exception as exc:
+        logger.exception("Spotify embedding regeneration failed")
+        raise HTTPException(status_code=500, detail="Spotify embedding regeneration failed") from exc
+
+
 @app.get("/tasks/status")
 async def tasks_status():
     return task_manager.status()

@@ -45,4 +45,32 @@ class MLPrepPipeline:
             **result,
         }
 
+    def generate_spotify_embeddings(self) -> Dict[str, object]:
+        """Regenerate vectors from Spotify audio features and return a small summary."""
+        from spotify_embedding import SpotifyEmbeddingModel
+        from spotify_client import SpotifyAuthError
+
+        try:
+            spotify_model = SpotifyEmbeddingModel()
+        except SpotifyAuthError as exc:
+            raise ValueError(str(exc))
+
+        simple_model = SimpleEmbeddingModel()
+
+        def fallback_vector_fn(track: Dict[str, object]) -> List[float]:
+            vec = spotify_model.generate_vector(track)
+            if vec is None:
+                # If Spotify fails, fallback to simple model so we don't break the catalog
+                return simple_model.generate_vector(track)
+            return vec
+
+        # Assign version so the catalog persists it correctly
+        fallback_vector_fn.model_version = spotify_model.version
+
+        result = self.catalog.regenerate_feature_vectors(fallback_vector_fn)
+        return {
+            "status": "spotify_embeddings_regenerated",
+            **result,
+        }
+
 

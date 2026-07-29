@@ -14,6 +14,8 @@ class Settings:
     user_agent: str = os.getenv("GEOCODING_USER_AGENT", "Overworld-CARE/1.0")
     default_top_k: int = int(os.getenv("DEFAULT_TOP_K", "10"))
     embedding_model_version: str = os.getenv("EMBEDDING_MODEL_VERSION", "simple-tags-v1")
+    spotify_client_id: str = os.getenv("SPOTIFY_CLIENT_ID", "")
+    spotify_client_secret: str = os.getenv("SPOTIFY_CLIENT_SECRET", "")
 
 
 settings = Settings()

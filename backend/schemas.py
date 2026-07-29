@@ -20,6 +20,9 @@ class TrackBase(BaseModel):
     environment_tags: List[str] = Field(default_factory=list)
     feature_vector: List[float] = Field(..., min_length=4, max_length=4)
     source: Optional[str] = None
+    spotify_id: Optional[str] = None
+    spotify_preview_url: Optional[str] = None
+    spotify_external_url: Optional[str] = None
 
     @field_validator("feature_vector")
     @classmethod
@@ -73,6 +76,9 @@ class RecommendationItem(BaseModel):
     feature_vector: List[float] = Field(default_factory=list)
     embedding_model_version: Optional[str] = None
     embedding_generated_at: Optional[str] = None
+    spotify_id: Optional[str] = None
+    spotify_preview_url: Optional[str] = None
+    spotify_external_url: Optional[str] = None
 
 
 class CatalogSummary(BaseModel):

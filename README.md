@@ -22,7 +22,20 @@
 ## Added API utilities
 
 - `GET /catalog/validate` — validates vectors and reports schema/data issues
+- `POST /catalog/validate-track` — validates a track without inserting it
 - `POST /pipeline/generate-embeddings` — regenerates vectors from metadata tags
+
+## Backend configuration
+
+The backend reads optional environment variables from `backend/config.py`:
+
+- `GEOCODING_TIMEOUT` — reverse-geocoding request timeout in seconds
+- `NOMINATIM_URL` — reverse-geocoding provider URL
+- `GEOCODING_USER_AGENT` — provider request user-agent
+- `DEFAULT_TOP_K` — default result count for coordinate recommendations
+- `EMBEDDING_MODEL_VERSION` — lifecycle label stored with generated vectors
+
+Track IDs must be unique. Use `/catalog/validate-track` to check a payload before insertion; duplicate IDs return HTTP 409.
 
 ## Quick checks
 
