@@ -11,14 +11,15 @@ from config import settings
 NOMINATIM_REVERSE_URL = settings.nominatim_url
 
 
-def _environment_from_address(address: Dict[str, Any], place_type: str) -> str:
+def _environment_from_address(address: Dict[str, Any], place_type: str, place_class: str = "") -> str:
     """Map Nominatim address data to a simple environment tag."""
-    text = " ".join(str(value).lower() for value in address.values())
+    text = " ".join(f"{k} {v}".lower() for k, v in address.items())
     place_type = (place_type or "").lower()
+    place_class = (place_class or "").lower()
 
     if any(keyword in text for keyword in ["beach", "coast", "shore"]):
         return "beach"
-    if any(keyword in text for keyword in ["park", "garden", "green"]):
+    if any(keyword in text for keyword in ["park", "garden", "green", "lawn"]) or place_class in ["leisure", "park"]:
         return "park"
     if any(keyword in text for keyword in ["forest", "wood", "woods"]):
         return "forest"
@@ -61,7 +62,7 @@ def reverse_geocode_environment(latitude: float, longitude: float, timeout: Opti
 
     data = response.json()
     address = data.get("address", {})
-    environment = _environment_from_address(address, data.get("type", ""))
+    environment = _environment_from_address(address, data.get("type", ""), data.get("class", ""))
 
     return {
         "environment": environment,
