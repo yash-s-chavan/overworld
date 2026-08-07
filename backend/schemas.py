@@ -18,18 +18,11 @@ class TrackBase(BaseModel):
     artist: str = Field(..., min_length=1)
     album: Optional[str] = None
     environment_tags: List[str] = Field(default_factory=list)
-    feature_vector: List[float] = Field(..., min_length=4, max_length=4)
+    feature_vector: List[float] = Field(...)
     source: Optional[str] = None
     spotify_id: Optional[str] = None
     spotify_preview_url: Optional[str] = None
     spotify_external_url: Optional[str] = None
-
-    @field_validator("feature_vector")
-    @classmethod
-    def validate_feature_vector(cls, vector: List[float]) -> List[float]:
-        if any(value < 0 or value > 1 for value in vector):
-            raise ValueError("feature_vector values must be in [0,1]")
-        return vector
 
 
 class TrackCreate(TrackBase):
@@ -47,17 +40,9 @@ class TrackValidationRequest(BaseModel):
 
 
 class RecommendationRequest(BaseModel):
-    target_vector: List[float] = Field(..., min_length=4, max_length=4)
+    target_vector: List[float] = Field(...)
     top_k: int = Field(default=10, ge=1, le=50)
     environment: Optional[str] = None
-
-    @field_validator("target_vector")
-    @classmethod
-    def validate_target_vector(cls, vector: List[float]) -> List[float]:
-        if any(value < 0 or value > 1 for value in vector):
-            raise ValueError("target_vector values must be in [0,1]")
-        return vector
-
 
 class LocationRecommendationRequest(BaseModel):
     latitude: float = Field(..., ge=-90, le=90)

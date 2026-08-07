@@ -92,10 +92,10 @@ class TrackCatalog:
             if not str(track.get(field_name, "")).strip():
                 errors.append(f"missing {field_name}")
         vector = track.get("feature_vector", [])
-        if not isinstance(vector, list) or len(vector) != 4:
-            errors.append("feature_vector must have exactly 4 values")
-        elif any(not isinstance(value, (int, float)) or not 0 <= value <= 1 for value in vector):
-            errors.append("feature_vector values must be numeric and in [0,1]")
+        if not isinstance(vector, list) or len(vector) == 0:
+            errors.append("feature_vector must be a non-empty list")
+        elif any(not isinstance(value, (int, float)) for value in vector):
+            errors.append("feature_vector values must be numeric")
         return errors
 
     def validate_tracks(self) -> List[str]:
@@ -104,14 +104,12 @@ class TrackCatalog:
         for index, track in enumerate(self.state.tracks):
             track_id = track.get("track_id", "<missing>")
             vector = track.get("feature_vector", [])
-            if not isinstance(vector, list) or len(vector) != 4:
-                errors.append(f"Track {index} ({track_id}): feature_vector must have exactly 4 values")
+            if not isinstance(vector, list) or len(vector) == 0:
+                errors.append(f"Track {index} ({track_id}): feature_vector must be a non-empty list")
                 continue
             for dimension, value in enumerate(vector):
                 if not isinstance(value, (int, float)):
                     errors.append(f"Track {index} ({track_id}): feature_vector[{dimension}] is not numeric")
-                elif value < 0 or value > 1:
-                    errors.append(f"Track {index} ({track_id}): feature_vector[{dimension}] out of [0,1] range")
         return errors
 
     def regenerate_feature_vectors(self, vector_fn: Callable[[Dict[str, Any]], Sequence[float]]) -> Dict[str, Any]:
@@ -124,10 +122,8 @@ class TrackCatalog:
         model_version = getattr(vector_fn, "model_version", getattr(model_owner, "version", settings.embedding_model_version))
         for index, track in enumerate(self.state.tracks):
             vector = list(vector_fn(track))
-            if len(vector) != 4:
-                raise ValueError(f"Generated vector for track {track.get('track_id', index)} is not 4-dimensional")
-            if not all(0 <= float(v) <= 1 for v in vector):
-                raise ValueError(f"Generated vector for track {track.get('track_id', index)} contains out-of-range values")
+            if len(vector) == 0:
+                raise ValueError(f"Generated vector for track {track.get('track_id', index)} is empty")
             track["feature_vector"] = [float(v) for v in vector]
             track["embedding_model_version"] = model_version
             track["embedding_generated_at"] = generated_at

@@ -1,44 +1,55 @@
-"""Simple metadata-driven embedding generator for tracks."""
+"""SentenceTransformer-driven embedding generator for tracks."""
 
 from __future__ import annotations
 
 from typing import Dict, List
+import logging
+
+try:
+    from sentence_transformers import SentenceTransformer
+except ImportError:
+    SentenceTransformer = None
 
 from config import settings
 
+logger = logging.getLogger(__name__)
 
-class SimpleEmbeddingModel:
-    """Generate 4D vectors [energy, serenity, acousticness, tempo] from tags."""
+class EmbeddingModel:
+    """Generate dense embeddings from track metadata using SentenceTransformers."""
 
-    version = settings.embedding_model_version
+    version = settings.embedding_model_version + "-minilm"
 
-    _SIGNALS = {
-        "energy": {"high", "energetic", "adventure", "travel", "urban", "upbeat", "fast", "intense"},
-        "serenity": {"calm", "serene", "restful", "ambient", "peaceful", "safe", "relax"},
-        "acousticness": {"acoustic", "natural", "forest", "park", "waterfront", "organic", "light"},
-        "tempo": {"fast", "upbeat", "dance", "driving", "travel", "city", "pulse", "rhythm"},
-    }
-
+    def __init__(self, model_name: str = "all-MiniLM-L6-v2"):
+        if SentenceTransformer is None:
+            raise ImportError("sentence-transformers is not installed. Please install it.")
+        logger.info(f"Loading SentenceTransformer model: {model_name}")
+        self.model = SentenceTransformer(model_name)
+    
     def generate_vector(self, track: Dict[str, object]) -> List[float]:
         raw_tags = track.get("environment_tags", [])
         if not isinstance(raw_tags, list):
             raw_tags = []
         tags = [str(tag).lower() for tag in raw_tags]
-        text = " ".join(
-            [
-                str(track.get("title", "")).lower(),
-                str(track.get("artist", "")).lower(),
-                str(track.get("album", "")).lower(),
-                " ".join(tags),
-            ]
-        )
+        
+        # Construct a rich text representation of the track
+        title = str(track.get("title", "")).strip()
+        artist = str(track.get("artist", "")).strip()
+        album = str(track.get("album", "")).strip()
+        
+        parts = []
+        if title: parts.append(f"Title: {title}")
+        if artist: parts.append(f"Artist: {artist}")
+        if album: parts.append(f"Album: {album}")
+        if tags: parts.append(f"Tags: {', '.join(tags)}")
+        
+        text = " | ".join(parts)
+        if not text:
+            text = "unknown track"
+            
+        # The encode method returns a numpy array
+        embedding = self.model.encode(text)
+        # Convert it to a list of Python floats
+        return [float(x) for x in embedding.tolist()]
 
-        scores = []
-        for signal_name in ["energy", "serenity", "acousticness", "tempo"]:
-            signal_words = self._SIGNALS[signal_name]
-            score = sum(1 for word in signal_words if word in text)
-            scores.append(min(1.0, max(0.0, score / 3.0)))
-
-        return scores
-
-
+# Alias for backwards compatibility with pipeline.py and other files
+SimpleEmbeddingModel = EmbeddingModel
