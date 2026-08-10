@@ -4,7 +4,7 @@ from contextlib import asynccontextmanager
 from uuid import uuid4
 
 import requests
-from fastapi import BackgroundTasks, FastAPI, HTTPException
+from fastapi import BackgroundTasks, FastAPI, HTTPException, WebSocket, WebSocketDisconnect
 from starlette.requests import Request
 from starlette.responses import Response
 
@@ -231,3 +231,40 @@ async def recommend_by_location(request: LocationRecommendationRequest):
         "resolved_location": location["display_name"],
         "recommendations": recommendations,
     }
+
+
+@app.websocket("/stream-recommendations")
+async def websocket_recommendations(websocket: WebSocket):
+    await websocket.accept()
+    logger.info("Client connected to recommendation stream")
+    try:
+        while True:
+            data = await websocket.receive_json()
+            lat = data.get("latitude")
+            lon = data.get("longitude")
+            top_k = data.get("top_k", settings.default_top_k)
+
+            if lat is None or lon is None:
+                await websocket.send_json({"error": "Missing latitude or longitude"})
+                continue
+
+            try:
+                location = reverse_geocode_environment(float(lat), float(lon))
+                environment = location["environment"]
+                
+                target_vector = get_environment_vector(environment)
+                recommendations = catalog.recommend(target_vector, top_k=top_k, environment=environment)
+                
+                await websocket.send_json({
+                    "input_coordinates": {"lat": lat, "lon": lon},
+                    "resolved_environment": environment,
+                    "resolved_location": location["display_name"],
+                    "recommendations": [rec.model_dump() for rec in recommendations]
+                })
+            except requests.RequestException:
+                await websocket.send_json({"error": "Geolocation provider unavailable"})
+            except Exception as e:
+                logger.exception("Streaming recommendation failed")
+                await websocket.send_json({"error": "Failed to generate recommendations"})
+    except WebSocketDisconnect:
+        logger.info("Client disconnected from recommendation stream")

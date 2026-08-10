@@ -35,19 +35,20 @@ def _environment_from_address(address: Dict[str, Any], place_type: str, place_cl
     return "unknown"
 
 
+_embedding_model = None
+
 def get_environment_vector(environment: str) -> List[float]:
-    """Map normalized environment labels to 4D recommendation vectors."""
+    """Map normalized environment labels to a recommendation vector using the embedding model."""
+    global _embedding_model
+    if _embedding_model is None:
+        from embedding_model import EmbeddingModel
+        _embedding_model = EmbeddingModel()
+        
     environment = (environment or "unknown").lower()
-    vector_map = {
-        "beach": [0.6, 0.8, 0.9, 0.5],
-        "park": [0.4, 0.7, 0.7, 0.4],
-        "forest": [0.3, 0.9, 1.0, 0.2],
-        "mountain": [0.7, 0.8, 0.9, 0.6],
-        "waterfront": [0.5, 0.6, 0.5, 0.5],
-        "urban": [0.9, 0.1, 0.1, 0.9],
-        "unknown": [0.5, 0.5, 0.5, 0.5],
-    }
-    return vector_map.get(environment, vector_map["unknown"])
+    return _embedding_model.generate_vector({
+        "title": f"{environment.capitalize()} Environment", 
+        "environment_tags": [environment]
+    })
 
 
 def reverse_geocode_environment(latitude: float, longitude: float, timeout: Optional[int] = None) -> Dict[str, Any]:
