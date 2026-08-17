@@ -16,7 +16,8 @@ class Settings:
     embedding_model_version: str = os.getenv("EMBEDDING_MODEL_VERSION", "simple-tags-v1")
     spotify_client_id: str = os.getenv("SPOTIFY_CLIENT_ID", "")
     spotify_client_secret: str = os.getenv("SPOTIFY_CLIENT_SECRET", "")
+    spotify_redirect_uri: str = os.getenv("SPOTIFY_REDIRECT_URI", "http://127.0.0.1:8000/auth/callback")
+    frontend_url: str = os.getenv("FRONTEND_URL", "http://localhost:5173")
 
 
 settings = Settings()
-

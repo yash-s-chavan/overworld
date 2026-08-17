@@ -13,6 +13,7 @@ from catalog import TrackCatalog
 from config import settings
 from geolocation import reverse_geocode_environment, get_environment_vector
 from pipeline import MLPrepPipeline
+from auth import router as auth_router
 from schemas import (
     Coordinates,
     EmbeddingGenerationResponse,
@@ -64,6 +65,7 @@ app = FastAPI(
     lifespan=lifespan,
 )
 
+app.include_router(auth_router)
 
 @app.middleware("http")
 async def request_logging_middleware(request: Request, call_next) -> Response:
