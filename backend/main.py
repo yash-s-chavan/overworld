@@ -5,6 +5,7 @@ from uuid import uuid4
 
 import requests
 from fastapi import BackgroundTasks, FastAPI, HTTPException, WebSocket, WebSocketDisconnect
+from fastapi.middleware.cors import CORSMiddleware
 from starlette.requests import Request
 from starlette.responses import Response
 
@@ -14,6 +15,7 @@ from config import settings
 from geolocation import reverse_geocode_environment, get_environment_vector
 from pipeline import MLPrepPipeline
 from auth import router as auth_router
+from spotify import router as spotify_router
 from schemas import (
     Coordinates,
     EmbeddingGenerationResponse,
@@ -65,7 +67,16 @@ app = FastAPI(
     lifespan=lifespan,
 )
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Allows all origins for local development
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 app.include_router(auth_router)
+app.include_router(spotify_router)
 
 @app.middleware("http")
 async def request_logging_middleware(request: Request, call_next) -> Response:

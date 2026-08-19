@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Pokégear Audio - The Music Dex</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-fixed": "#002118",
+                        "tertiary-container": "#a2d2e2",
+                        "on-background": "#1a1c1a",
+                        "secondary": "#2c6956",
+                        "error-container": "#ffdad6",
+                        "inverse-primary": "#fbb3c1",
+                        "secondary-fixed-dim": "#96d3bd",
+                        "surface-dim": "#dbdad7",
+                        "primary-fixed": "#ffd9df",
+                        "primary-container": "#ffb7c5",
+                        "outline-variant": "#d6c2c4",
+                        "on-tertiary-container": "#2b5b69",
+                        "on-tertiary-fixed": "#001f27",
+                        "tertiary": "#356572",
+                        "surface-bright": "#faf9f6",
+                        "surface-container": "#efeeeb",
+                        "surface-container-high": "#e9e8e5",
+                        "on-secondary-container": "#316d5b",
+                        "on-surface-variant": "#514345",
+                        "on-primary-fixed-variant": "#6b3743",
+                        "primary-fixed-dim": "#fbb3c1",
+                        "on-error": "#ffffff",
+                        "surface-container-low": "#f4f3f1",
+                        "on-primary-fixed": "#360c19",
+                        "tertiary-fixed": "#baeafa",
+                        "on-primary-container": "#7b4551",
+                        "on-error-container": "#93000a",
+                        "error": "#ba1a1a",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-fixed": "#b1efd8",
+                        "on-tertiary": "#ffffff",
+                        "outline": "#837375",
+                        "on-surface": "#1a1c1a",
+                        "inverse-surface": "#2f312f",
+                        "surface-tint": "#864e5a",
+                        "on-tertiary-fixed-variant": "#1a4d5a",
+                        "on-secondary-fixed-variant": "#0d503f",
+                        "tertiary-fixed-dim": "#9ecede",
+                        "primary": "#864e5a",
+                        "on-primary": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "background": "#faf9f6",
+                        "surface": "#faf9f6",
+                        "inverse-on-surface": "#f2f1ee",
+                        "surface-variant": "#e3e2e0",
+                        "secondary-container": "#aeedd5",
+                        "surface-container-highest": "#e3e2e0"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-mobile": "16px",
+                        "margin-desktop": "48px",
+                        "base": "8px",
+                        "gutter": "24px",
+                        "card-padding": "24px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Quicksand"],
+                        "body-lg": ["Quicksand"],
+                        "headline-lg-mobile": ["Quicksand"],
+                        "body-md": ["Quicksand"],
+                        "headline-md": ["Quicksand"],
+                        "label-sm": ["Quicksand"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "500" }],
+                        "headline-lg-mobile": ["26px", { "lineHeight": "32px", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "500" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "label-sm": ["13px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: #faf9f6;
+        }
+        .neu-extruded {
+            box-shadow: 5px 5px 10px #dbdad7, -5px -5px 10px #ffffff;
+        }
+        .neu-pressed {
+            box-shadow: inset 5px 5px 10px #dbdad7, inset -5px -5px 10px #ffffff;
+        }
+        .neu-card {
+            background-color: #faf9f6;
+            box-shadow: 5px 5px 10px #dbdad7, -5px -5px 10px #ffffff;
+            position: relative;
+        }
+        .neu-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: inherit;
+            box-shadow: inset 2px 2px 5px rgba(255, 255, 255, 0.5);
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body class="text-on-surface font-body-md bg-surface antialiased flex min-h-screen">
+<!-- Top App Bar (Mobile Only) -->
+<header class="md:hidden flex justify-between items-center px-margin-mobile py-4 w-full bg-surface dark:bg-surface shadow-[5px_5px_10px_#dbdad7,-5px_-5px_10px_#ffffff] z-40 fixed top-0 h-20">
+<div class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-primary">Pokégear Audio</div>
+<div class="flex gap-4">
+<button class="w-12 h-12 rounded-full neu-extruded flex items-center justify-center text-primary hover:opacity-80 transition-opacity active:shadow-[inset_5px_5px_10px_#dbdad7,inset_-5px_-5px_10px_#ffffff]">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<button class="w-12 h-12 rounded-full neu-extruded flex items-center justify-center text-primary hover:opacity-80 transition-opacity active:shadow-[inset_5px_5px_10px_#dbdad7,inset_-5px_-5px_10px_#ffffff]">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+</div>
+</header>
+<!-- Side Navigation (Web Only) -->
+<nav class="hidden md:flex flex-col h-screen w-64 left-0 top-0 fixed bg-surface shadow-[5px_0_10px_#dbdad7] p-card-padding gap-base z-40 pb-32">
+<div class="font-headline-md text-headline-md text-primary mb-8 px-4">Pokégear Audio</div>
+<div class="flex flex-col items-center gap-2 mb-8 neu-extruded p-4 rounded-xl">
+<div class="w-16 h-16 rounded-full overflow-hidden neu-pressed border-4 border-surface">
+<img class="w-full h-full object-cover" data-alt="A small, circular avatar portrait of Trainer Red, a calm and confident digital collector, painted in a soft, bright, neomorphic style with pastel colors." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDmaC-VD2KgeKGwFvOgrdu0Rf89k3xzriiRh5CCile2ngBtwL-yGmAyJYyFKTItdO7zpwkh8OROL52NJ1GFsj-xNPcJyzJUg8HsSp2jfKxnQKfdlPEIxs0Wq9NhL_usOoVr9zwDPssKErotDfefSjrPXEuZZJLuyGa76jgYlN34BYX2IT_FNOy9nyVqEkaSEWw7zuTl-ZqUMVWO73pXEcp9MJHW2ZalBypE_zoveAjGJqKB8Tx6Qqdx"/>
+</div>
+<div class="text-center">
+<div class="font-headline-md text-headline-md text-on-surface">Trainer Red</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant">Elite Collector</div>
+</div>
+</div>
+<div class="flex flex-col gap-2 flex-grow">
+<a class="flex items-center gap-4 p-4 rounded-xl text-on-surface-variant hover:bg-surface-container-low transition-colors active:scale-95 duration-200" href="#">
+<span class="material-symbols-outlined">radar</span>
+<span class="font-body-lg text-body-lg">Live Radar</span>
+</a>
+<a class="flex items-center gap-4 p-4 rounded-xl text-on-surface-variant hover:bg-surface-container-low transition-colors active:scale-95 duration-200" href="#">
+<span class="material-symbols-outlined">queue_music</span>
+<span class="font-body-lg text-body-lg">Playlists</span>
+</a>
+<a class="flex items-center gap-4 p-4 rounded-xl text-secondary font-bold border-r-4 border-secondary neu-pressed bg-surface-container-low" href="#">
+<span class="material-symbols-outlined">style</span>
+<span class="font-body-lg text-body-lg">The Music Dex</span>
+</a>
+</div>
+<button class="w-full py-4 rounded-full neu-extruded font-headline-md text-headline-md text-secondary hover:bg-surface-container-low transition-colors active:scale-95 duration-200 mt-auto mb-20">
+            Sync Gear
+        </button>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-1 md:ml-64 p-margin-mobile md:p-margin-desktop pt-28 md:pt-margin-desktop pb-40 min-h-screen bg-surface">
+<!-- Header & Filters -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-12 gap-6">
+<h1 class="font-headline-lg text-headline-lg text-on-surface">The Music Dex</h1>
+<div class="flex gap-4">
+<button class="px-6 py-3 rounded-full neu-extruded flex items-center gap-2 text-on-surface-variant hover:opacity-80 active:shadow-[inset_5px_5px_10px_#dbdad7,inset_-5px_-5px_10px_#ffffff] transition-all">
+<span class="font-body-md text-body-md">Region</span>
+<span class="material-symbols-outlined">keyboard_arrow_down</span>
+</button>
+<button class="px-6 py-3 rounded-full neu-extruded flex items-center gap-2 text-on-surface-variant hover:opacity-80 active:shadow-[inset_5px_5px_10px_#dbdad7,inset_-5px_-5px_10px_#ffffff] transition-all">
+<span class="font-body-md text-body-md">Discovered</span>
+<span class="material-symbols-outlined">keyboard_arrow_down</span>
+</button>
+</div>
+</div>
+<!-- Music Dex Grid -->
+<div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-gutter">
+<!-- Discovered Card 1 -->
+<div class="neu-card rounded-xl p-4 flex flex-col gap-4 cursor-pointer hover:opacity-90 transition-opacity group">
+<div class="aspect-square rounded-xl overflow-hidden neu-pressed relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A brightly colored, soft neomorphic digital album cover illustrating Route 101 from Hoenn. Pastel greens and blues, sunny aesthetic, feeling like a cozy miniature diorama." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCRjQs26gKA9vr4nJ2NooRYCiQJMMojmT5-P0aDsVx3SxvLxBXU8QzxuJkkhgsYV9jOy6Bh3-fhcZwayEEsDeueILXbalZqIJ3bHh3YuduCa2ubcnpRKsbuA4whWXVyydY0aaRIZtRZBbhshg8HemGOQLA-pdeEDRk9ZaXXovBphHldgd-sOIOuLRHCs-I6SirMkB65klySYRe8tzP5XFDgI3KgiVCrDTrY-m0BctNeEKN1bThQNL_n"/>
+<div class="absolute bottom-2 right-2 w-8 h-8 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity shadow-md">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</div>
+</div>
+<div>
+<h3 class="font-body-lg text-body-lg text-on-surface truncate">Route 101 (Hoenn)</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant truncate">Trainer Red</p>
+</div>
+</div>
+<!-- Discovered Card 2 -->
+<div class="neu-card rounded-xl p-4 flex flex-col gap-4 cursor-pointer hover:opacity-90 transition-opacity group">
+<div class="aspect-square rounded-xl overflow-hidden neu-pressed relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A soft, vibrant neomorphic album cover depicting a tranquil coastal town with subtle pastel waves and a sandy beach. Bright, calm, high-key lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBsF4t6uk3chtJHQ9CiP3mZb6Ds6sd_Ehtm77bCjr9A49daDjZjMg1M-1K59vahcjEwpn-Tvtybt3tdYfOCMUhdlfifsH5cUfckZNMx7yGYj0UIl1F5MCU0ScF2_vaaiqBzUtE2bS3NAkQChPqkn2y7g4qQ7mQJbT1aPuBexrxGLgjA8TXbUiMFtzCzbXQPM0ALFaGO1ILjIHI9QmOfkGWM4DHbfWkNTX-HoxwZoByYVdFKP4MB8JUl"/>
+<div class="absolute bottom-2 right-2 w-8 h-8 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity shadow-md">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</div>
+</div>
+<div>
+<h3 class="font-body-lg text-body-lg text-on-surface truncate">Slateport City</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant truncate">Trainer Red</p>
+</div>
+</div>
+<!-- Undiscovered Card 1 -->
+<div class="neu-card rounded-xl p-4 flex flex-col gap-4 opacity-70">
+<div class="aspect-square rounded-xl overflow-hidden neu-pressed bg-surface-container flex items-center justify-center relative">
+<img class="w-full h-full object-cover grayscale opacity-50" data-alt="A muted, grayed-out silhouette of a dense forest landscape in a neomorphic style. Very low contrast, feeling like a locked mystery item in a digital collection." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAFS0Ub8HNVI-i9rgCAyRczUuFF3rgZiUVImCeooyITLwlZYFy41UfF4qcZLXWPdTmlcGQGdXmzL2VavkkGgheMg_BKnEtV-0tUwdYkgxiB7036M1lVv96MZsyIvGXn6w5ROusX36GjyzIR08uUCJgdgAro95dBD5K_zJxUaKRAAXeRPB6dSG931WbzXi4EI0u29Mmjds_HBmnADfg0WHb61AssX5zgCABHeyeNnIcG45KGATNeOSTz"/>
+<span class="material-symbols-outlined absolute text-surface-tint text-4xl opacity-50">lock</span>
+</div>
+<div>
+<h3 class="font-body-lg text-body-lg text-on-surface-variant truncate">???</h3>
+<p class="font-label-sm text-label-sm text-surface-tint truncate">???</p>
+</div>
+</div>
+<!-- Undiscovered Card 2 -->
+<div class="neu-card rounded-xl p-4 flex flex-col gap-4 opacity-70">
+<div class="aspect-square rounded-xl overflow-hidden neu-pressed bg-surface-container flex items-center justify-center relative">
+<img class="w-full h-full object-cover grayscale opacity-50" data-alt="A muted, grayed-out silhouette of a snowy mountain peak in a neomorphic style. Very low contrast, soft edges, looking like a hidden collectable." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB5Pvrqycyt-FBDjKp0qQyqnI1vo6FYlSg8s43zdJsh1e2M3IOAJUA3ndbyLk4al_kEJEDpxXOQak-FickjjXKDDjwwUMJ8ETeQketWlUN2l09ii7Id9_ckRurm4ECPrHVc7hACBPnoaJIaCSbuoA-6ZA5I_g9gy9DOZbrGrYxuI438RZEv_6O6RPtsTgYjPEpSLcdLO1Ed1HuFHrFCaXx4J9Jrea71uP70BrEXKXcN_HCLoxn5s2bi"/>
+<span class="material-symbols-outlined absolute text-surface-tint text-4xl opacity-50">lock</span>
+</div>
+<div>
+<h3 class="font-body-lg text-body-lg text-on-surface-variant truncate">???</h3>
+<p class="font-label-sm text-label-sm text-surface-tint truncate">???</p>
+</div>
+</div>
+<!-- Undiscovered Card 3 -->
+<div class="neu-card rounded-xl p-4 flex flex-col gap-4 opacity-70">
+<div class="aspect-square rounded-xl overflow-hidden neu-pressed bg-surface-container flex items-center justify-center relative">
+<span class="material-symbols-outlined absolute text-surface-tint text-4xl opacity-50">lock</span>
+</div>
+<div>
+<h3 class="font-body-lg text-body-lg text-on-surface-variant truncate">???</h3>
+<p class="font-label-sm text-label-sm text-surface-tint truncate">???</p>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Nav Bar (Player Shell) -->
+<nav class="fixed bottom-0 w-full z-50 h-32 rounded-t-xl bg-surface shadow-[0_-5px_10px_#dbdad7] md:w-[calc(100%-16rem)] md:left-64 px-margin-desktop py-4 flex flex-col items-center justify-center gap-4">
+<!-- Progress Bar -->
+<div class="w-full max-w-2xl h-2 bg-surface-container rounded-full neu-pressed overflow-hidden">
+<div class="h-full bg-primary w-1/3 rounded-full relative">
+<div class="absolute top-0 left-0 w-full h-1/2 bg-white opacity-20 rounded-t-full"></div>
+</div>
+</div>
+<div class="flex items-center justify-center gap-8 w-full">
+<button class="w-12 h-12 rounded-full flex items-center justify-center text-on-surface-variant shadow-[5px_5px_10px_#dbdad7,-5px_-5px_10px_#ffffff] hover:shadow-none active:shadow-[inset_5px_5px_10px_#dbdad7,inset_-5px_-5px_10px_#ffffff] transition-all duration-150">
+<span class="material-symbols-outlined">skip_previous</span>
+<span class="sr-only">Previous</span>
+</button>
+<button class="w-16 h-16 rounded-full flex items-center justify-center bg-primary-container text-on-primary-container shadow-[inset_5px_5px_10px_#864e5a33] hover:opacity-90 transition-all duration-150">
+<span class="material-symbols-outlined" style="font-size: 32px;">play_arrow</span>
+<span class="sr-only">Play</span>
+</button>
+<button class="w-12 h-12 rounded-full flex items-center justify-center text-on-surface-variant shadow-[5px_5px_10px_#dbdad7,-5px_-5px_10px_#ffffff] hover:shadow-none active:shadow-[inset_5px_5px_10px_#dbdad7,inset_-5px_-5px_10px_#ffffff] transition-all duration-150">
+<span class="material-symbols-outlined">skip_next</span>
+<span class="sr-only">Next</span>
+</button>
+</div>
+</nav>
+</body></html>

@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Now Playing - Music Dex</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                            "outline-variant": "#d6c2c4",
+                            "on-surface-variant": "#514345",
+                            "inverse-surface": "#2f312f",
+                            "inverse-on-surface": "#f2f1ee",
+                            "on-secondary": "#ffffff",
+                            "tertiary": "#356572",
+                            "on-background": "#1a1c1a",
+                            "surface-tint": "#864e5a",
+                            "primary-fixed-dim": "#fbb3c1",
+                            "surface-dim": "#dbdad7",
+                            "surface-bright": "#faf9f6",
+                            "tertiary-fixed": "#baeafa",
+                            "error": "#ba1a1a",
+                            "outline": "#837375",
+                            "on-tertiary-container": "#2b5b69",
+                            "secondary": "#2c6956",
+                            "on-surface": "#1a1c1a",
+                            "on-primary": "#ffffff",
+                            "secondary-fixed-dim": "#96d3bd",
+                            "inverse-primary": "#fbb3c1",
+                            "primary-fixed": "#ffd9df",
+                            "secondary-fixed": "#b1efd8",
+                            "secondary-container": "#aeedd5",
+                            "tertiary-container": "#a2d2e2",
+                            "surface": "#faf9f6",
+                            "on-primary-fixed": "#360c19",
+                            "on-secondary-fixed": "#002118",
+                            "on-primary-fixed-variant": "#6b3743",
+                            "primary": "#864e5a",
+                            "surface-container": "#efeeeb",
+                            "surface-container-low": "#f4f3f1",
+                            "on-secondary-container": "#316d5b",
+                            "on-error": "#ffffff",
+                            "on-tertiary-fixed-variant": "#1a4d5a",
+                            "on-tertiary": "#ffffff",
+                            "on-primary-container": "#7b4551",
+                            "surface-container-highest": "#e3e2e0",
+                            "on-error-container": "#93000a",
+                            "tertiary-fixed-dim": "#9ecede",
+                            "on-secondary-fixed-variant": "#0d503f",
+                            "primary-container": "#ffb7c5",
+                            "surface-container-lowest": "#ffffff",
+                            "surface-container-high": "#e9e8e5",
+                            "background": "#faf9f6",
+                            "on-tertiary-fixed": "#001f27",
+                            "surface-variant": "#e3e2e0",
+                            "error-container": "#ffdad6"
+                    },
+                    "borderRadius": {
+                            "DEFAULT": "1rem",
+                            "lg": "2rem",
+                            "xl": "3rem",
+                            "full": "9999px"
+                    },
+                    "spacing": {
+                            "card-padding": "24px",
+                            "gutter": "24px",
+                            "base": "8px",
+                            "margin-desktop": "48px",
+                            "margin-mobile": "16px"
+                    },
+                    "fontFamily": {
+                            "headline-lg": [
+                                    "Quicksand"
+                            ],
+                            "headline-lg-mobile": [
+                                    "Quicksand"
+                            ],
+                            "label-sm": [
+                                    "Quicksand"
+                            ],
+                            "headline-md": [
+                                    "Quicksand"
+                            ],
+                            "body-md": [
+                                    "Quicksand"
+                            ],
+                            "body-lg": [
+                                    "Quicksand"
+                            ]
+                    },
+                    "fontSize": {
+                            "headline-lg": [
+                                    "32px",
+                                    {
+                                            "lineHeight": "40px",
+                                            "letterSpacing": "-0.02em",
+                                            "fontWeight": "700"
+                                    }
+                            ],
+                            "headline-lg-mobile": [
+                                    "26px",
+                                    {
+                                            "lineHeight": "32px",
+                                            "fontWeight": "700"
+                                    }
+                            ],
+                            "label-sm": [
+                                    "13px",
+                                    {
+                                            "lineHeight": "16px",
+                                            "letterSpacing": "0.05em",
+                                            "fontWeight": "700"
+                                    }
+                            ],
+                            "headline-md": [
+                                    "24px",
+                                    {
+                                            "lineHeight": "32px",
+                                            "fontWeight": "600"
+                                    }
+                            ],
+                            "body-md": [
+                                    "16px",
+                                    {
+                                            "lineHeight": "24px",
+                                            "fontWeight": "500"
+                                    }
+                            ],
+                            "body-lg": [
+                                    "18px",
+                                    {
+                                            "lineHeight": "28px",
+                                            "fontWeight": "500"
+                                    }
+                            ]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .neumorphic-outer {
+            box-shadow: -5px -5px 10px #ffffff, 5px 5px 10px #d1cfca;
+        }
+        .neumorphic-inner {
+            box-shadow: inset -5px -5px 10px #ffffff, inset 5px 5px 10px #d1cfca;
+        }
+        .neumorphic-button:active {
+            box-shadow: inset -5px -5px 10px #ffffff, inset 5px 5px 10px #d1cfca;
+            transform: scale(0.98);
+        }
+        .health-bar-gloss {
+            background: linear-gradient(to bottom, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.0) 50%, rgba(0,0,0,0.0) 51%, rgba(0,0,0,0.1) 100%);
+        }
+        .cd-case-border {
+            border: 12px solid #efeeeb;
+            box-shadow: 
+                -10px -10px 20px #ffffff, 
+                10px 10px 20px #d1cfca,
+                inset 2px 2px 5px rgba(0,0,0,0.1),
+                inset -2px -2px 5px rgba(255,255,255,0.8);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md h-screen flex overflow-hidden selection:bg-primary-container selection:text-on-primary-container">
+<!-- Side Navigation Shell -->
+<nav class="h-full w-64 fixed left-0 top-0 bg-background shadow-[-5px_-5px_10px_#ffffff,5px_5px_10px_#d1cfca] flex flex-col gap-base p-gutter z-50">
+<!-- Header / Brand -->
+<div class="flex flex-col items-center mb-8 mt-4">
+<div class="w-20 h-20 rounded-full overflow-hidden neumorphic-outer mb-4 p-1">
+<img alt="User profile" class="w-full h-full rounded-full object-cover" data-alt="A stylized, soft-shaded illustration of a user avatar, featuring a young trainer wearing a red cap and a casual jacket. The art style is reminiscent of modern, cozy 2D indie games with smooth vector lines, pastel colors, and a playful expression, set against a solid off-white background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDxBgz559swU-ldx_7jRthJGzbeV7HK9L7XUC8lv-o8HDeM9MMWUuA0VevKZ6hL1DERnniXS88EHosWlyfJpvCAVVwfDj-9uc5CQf7Sua_jMwmSkTOmg3xF7LO-l44wkcBJ9iCE8cWwNESbmdBQlm8thE5UtmojEMFalXuhdvuIQ9QwZZPQp8hdHP1DRvYsRSuGg4TU1PAgHPZZoNgD7V-kueQReRY7O3ZVMNymP0eNcJL1eAGj2a8y"/>
+</div>
+<h1 class="font-headline-lg text-headline-lg font-bold text-primary">Trainer Red</h1>
+<p class="font-body-md text-on-surface-variant">Elite Collector</p>
+</div>
+<!-- Navigation Links -->
+<div class="flex flex-col gap-4 flex-1">
+<a class="flex items-center gap-4 p-3 rounded-lg text-on-surface-variant hover:shadow-[-2px_-2px_5px_#ffffff,2px_2px_5px_#d1cfca] transition-all active:shadow-[inset_-2px_-2px_5px_#ffffff,inset_2px_2px_5px_#d1cfca] transition-transform duration-200" href="#">
+<span class="material-symbols-outlined text-2xl">home</span>
+<span class="font-headline-md text-headline-md text-lg">Home</span>
+</a>
+<a class="flex items-center gap-4 p-3 rounded-lg text-on-surface-variant hover:shadow-[-2px_-2px_5px_#ffffff,2px_2px_5px_#d1cfca] transition-all active:shadow-[inset_-2px_-2px_5px_#ffffff,inset_2px_2px_5px_#d1cfca] transition-transform duration-200" href="#">
+<span class="material-symbols-outlined text-2xl">album</span>
+<span class="font-headline-md text-headline-md text-lg">Dex</span>
+</a>
+<!-- Active State -->
+<a class="flex items-center gap-4 p-3 text-primary font-bold shadow-[inset_-2px_-2px_5px_#ffffff,inset_2px_2px_5px_#d1cfca] rounded-lg active:scale-95 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">queue_music</span>
+<span class="font-headline-md text-headline-md text-lg">Playlists</span>
+</a>
+<a class="flex items-center gap-4 p-3 rounded-lg text-on-surface-variant hover:shadow-[-2px_-2px_5px_#ffffff,2px_2px_5px_#d1cfca] transition-all active:shadow-[inset_-2px_-2px_5px_#ffffff,inset_2px_2px_5px_#d1cfca] transition-transform duration-200" href="#">
+<span class="material-symbols-outlined text-2xl">search</span>
+<span class="font-headline-md text-headline-md text-lg">Search</span>
+</a>
+<a class="flex items-center gap-4 p-3 rounded-lg text-on-surface-variant hover:shadow-[-2px_-2px_5px_#ffffff,2px_2px_5px_#d1cfca] transition-all active:shadow-[inset_-2px_-2px_5px_#ffffff,inset_2px_2px_5px_#d1cfca] transition-transform duration-200" href="#">
+<span class="material-symbols-outlined text-2xl">settings</span>
+<span class="font-headline-md text-headline-md text-lg">Settings</span>
+</a>
+</div>
+<!-- CTA -->
+<button class="mt-auto w-full py-4 rounded-xl bg-primary-container text-on-primary-container font-headline-md text-lg neumorphic-outer neumorphic-button transition-all">
+            New Collection
+        </button>
+</nav>
+<!-- Main Content Canvas -->
+<main class="ml-64 flex-1 h-full overflow-y-auto flex items-center justify-center p-margin-desktop bg-background relative">
+<!-- Subtle Top Nav Actions for Canvas -->
+<div class="absolute top-margin-desktop right-margin-desktop flex gap-4">
+<button class="w-12 h-12 rounded-full neumorphic-outer neumorphic-button flex items-center justify-center text-primary transition-all">
+<span class="material-symbols-outlined">cast</span>
+</button>
+<button class="w-12 h-12 rounded-full neumorphic-outer neumorphic-button flex items-center justify-center text-primary transition-all">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+<!-- Now Playing Container -->
+<div class="max-w-2xl w-full flex flex-col items-center gap-12 mt-12">
+<!-- Album Art -->
+<div class="w-80 h-80 md:w-96 md:h-96 rounded-2xl cd-case-border bg-surface-container-highest relative overflow-hidden flex-shrink-0 group">
+<!-- Inner glow overlay -->
+<div class="absolute inset-0 bg-gradient-to-br from-white/40 to-transparent pointer-events-none z-10"></div>
+<img alt="Album Cover" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A highly detailed illustration of a serene forest landscape at dusk in a 16-bit pixel art style, but rendered with modern, soft lighting. Tall, stylized pine trees surround a small, glowing campfire. The sky is a gradient of deep indigo to soft pink. The aesthetic is nostalgic, cozy, and vibrant, fitting a calming video game soundtrack cover." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCGV5Z2pCW4flap9oVHlbBqeThZhc35jlaguR2PkjUwEnygFLk6tdm19wueD-m3jyFMgb-BRMFuN8jlKfOMDxybu57MUzZD78ZAR7fDkXVP-VF6DHEZOyPJBtZAR2XnjeoCrIhhzJBSiHxKt8izp0zhu3xqpZUCtpub3nfUNIMGdqevPGiYti10zIz4onac3Rvr7KwbRT_QZxAcTFvzthfM3jrNQ3DhMHZPjFyX2AQT8lPBdn0MQenA"/>
+</div>
+<!-- Track Info & Progress -->
+<div class="w-full flex flex-col gap-6">
+<!-- Titles -->
+<div class="text-center flex flex-col gap-2">
+<h2 class="font-headline-lg text-headline-lg text-primary tracking-tight">Route 201 (Night)</h2>
+<p class="font-headline-md text-headline-md text-on-surface-variant font-medium">Sinnoh Soundscapes</p>
+</div>
+<!-- HP Bar Progress -->
+<div class="flex items-center gap-4 w-full">
+<span class="font-label-sm text-label-sm text-on-surface-variant w-10 text-right">1:42</span>
+<!-- The Bar Container -->
+<div class="flex-1 h-6 rounded-full neumorphic-inner bg-surface-container-highest p-1 relative overflow-hidden">
+<!-- The Fill -->
+<div class="h-full rounded-full bg-secondary w-2/3 relative overflow-hidden transition-all duration-1000 ease-in-out">
+<!-- Glossy Highlight -->
+<div class="absolute inset-0 health-bar-gloss"></div>
+</div>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant w-10">3:15</span>
+</div>
+</div>
+<!-- Playback Controls -->
+<div class="flex items-center justify-center gap-8 md:gap-12 w-full mt-4">
+<!-- Previous -->
+<button class="w-16 h-16 rounded-full neumorphic-outer neumorphic-button flex items-center justify-center text-primary transition-all hover:text-primary-container-on hover:scale-105">
+<span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">skip_previous</span>
+</button>
+<!-- Play/Pause (Raised Centerpiece) -->
+<button class="w-24 h-24 rounded-full bg-surface-container shadow-[-8px_-8px_16px_#ffffff,8px_8px_16px_#d1cfca] active:shadow-[inset_-5px_-5px_10px_#ffffff,inset_5px_5px_10px_#d1cfca] flex items-center justify-center text-primary transition-all duration-200 transform active:scale-95 group">
+<div class="w-20 h-20 rounded-full neumorphic-outer flex items-center justify-center group-active:neumorphic-inner transition-all">
+<span class="material-symbols-outlined text-5xl" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</div>
+</button>
+<!-- Next -->
+<button class="w-16 h-16 rounded-full neumorphic-outer neumorphic-button flex items-center justify-center text-primary transition-all hover:text-primary-container-on hover:scale-105">
+<span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">skip_next</span>
+</button>
+</div>
+<!-- Secondary Toggles -->
+<div class="flex items-center justify-center gap-6 mt-4 w-full">
+<!-- Shuffle -->
+<button class="px-6 py-3 rounded-full neumorphic-outer flex items-center gap-2 text-on-surface-variant hover:text-primary transition-all active:shadow-[inset_-2px_-2px_5px_#ffffff,inset_2px_2px_5px_#d1cfca] active:scale-95 group">
+<span class="material-symbols-outlined text-xl group-active:text-primary">shuffle</span>
+</button>
+<!-- 8-Bit Toggle (Special) -->
+<button class="px-6 py-3 rounded-full bg-tertiary-container text-on-tertiary-container font-label-sm text-label-sm uppercase tracking-wider font-bold neumorphic-outer flex items-center gap-2 transition-all active:shadow-[inset_-2px_-2px_5px_rgba(255,255,255,0.5),inset_2px_2px_5px_rgba(0,0,0,0.1)] active:scale-95 hover:bg-tertiary-fixed">
+<span class="material-symbols-outlined text-xl">stadia_controller</span>
+                    8-Bit Mode
+                </button>
+<!-- Repeat -->
+<button class="px-6 py-3 rounded-full neumorphic-outer flex items-center gap-2 text-primary shadow-[inset_-2px_-2px_5px_#ffffff,inset_2px_2px_5px_#d1cfca] transition-all group">
+<span class="material-symbols-outlined text-xl">repeat</span>
+</button>
+</div>
+</div>
+</main>
+</body></html>

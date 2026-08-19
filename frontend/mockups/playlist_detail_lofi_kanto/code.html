@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>OverWorld Music Dex - Playlist Detail</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-fixed-variant": "#6b3743",
+                        "surface": "#faf9f6",
+                        "on-background": "#1a1c1a",
+                        "on-primary": "#ffffff",
+                        "primary-fixed": "#ffd9df",
+                        "on-tertiary-fixed": "#001f27",
+                        "outline": "#837375",
+                        "secondary-fixed-dim": "#96d3bd",
+                        "tertiary-fixed-dim": "#9ecede",
+                        "error-container": "#ffdad6",
+                        "primary-fixed-dim": "#fbb3c1",
+                        "surface-container-highest": "#e3e2e0",
+                        "on-secondary": "#ffffff",
+                        "surface-dim": "#dbdad7",
+                        "on-secondary-fixed-variant": "#0d503f",
+                        "outline-variant": "#d6c2c4",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-tint": "#864e5a",
+                        "tertiary": "#356572",
+                        "surface-container-low": "#f4f3f1",
+                        "background": "#faf9f6",
+                        "on-tertiary-container": "#2b5b69",
+                        "on-secondary-container": "#316d5b",
+                        "on-tertiary": "#ffffff",
+                        "surface-variant": "#e3e2e0",
+                        "surface-container-high": "#e9e8e5",
+                        "surface-bright": "#faf9f6",
+                        "on-surface-variant": "#514345",
+                        "inverse-surface": "#2f312f",
+                        "primary-container": "#ffb7c5",
+                        "surface-container": "#efeeeb",
+                        "inverse-primary": "#fbb3c1",
+                        "on-error-container": "#93000a",
+                        "primary": "#864e5a",
+                        "error": "#ba1a1a",
+                        "on-tertiary-fixed-variant": "#1a4d5a",
+                        "secondary": "#2c6956",
+                        "tertiary-fixed": "#baeafa",
+                        "secondary-fixed": "#b1efd8",
+                        "on-secondary-fixed": "#002118",
+                        "on-surface": "#1a1c1a",
+                        "inverse-on-surface": "#f2f1ee",
+                        "on-error": "#ffffff",
+                        "tertiary-container": "#a2d2e2",
+                        "on-primary-container": "#7b4551",
+                        "secondary-container": "#aeedd5",
+                        "on-primary-fixed": "#360c19"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-mobile": "16px",
+                        "gutter": "24px",
+                        "base": "8px",
+                        "card-padding": "24px",
+                        "margin-desktop": "48px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Quicksand"],
+                        "headline-lg-mobile": ["Quicksand"],
+                        "headline-lg": ["Quicksand"],
+                        "body-lg": ["Quicksand"],
+                        "label-sm": ["Quicksand"],
+                        "body-md": ["Quicksand"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["26px", { "lineHeight": "32px", "fontWeight": "700" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "500" }],
+                        "label-sm": ["13px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "500" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .neumorphic-outer {
+            box-shadow: 5px 5px 10px #dbdad7, -5px -5px 10px #ffffff;
+        }
+        .neumorphic-inner {
+            box-shadow: inset 5px 5px 10px #dbdad7, inset -5px -5px 10px #ffffff;
+        }
+        .neumorphic-button-hover:hover {
+            box-shadow: 2px 2px 5px #dbdad7, -2px -2px 5px #ffffff;
+            transform: scale(0.98);
+        }
+        .neumorphic-button-active:active {
+            box-shadow: inset 5px 5px 10px #dbdad7, inset -5px -5px 10px #ffffff;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md antialiased h-screen overflow-hidden">
+<!-- Desktop SideNavBar -->
+<nav class="hidden md:flex fixed left-0 top-0 bottom-0 flex-col p-6 h-full w-72 rounded-r-lg shadow-[5px_5px_10px_#dbdad7,-5px_-5px_10px_#ffffff] bg-surface z-50">
+<div class="mb-12 text-center">
+<h1 class="font-headline-lg text-headline-lg text-primary mb-2">Collector Dex</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Lvl. 42 Audiophile</p>
+</div>
+<ul class="flex-1 space-y-4">
+<li>
+<a class="flex items-center gap-4 px-6 py-4 rounded-lg text-on-surface-variant font-medium hover:text-primary transition-all duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="radar">radar</span>
+<span>Live Radar</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-4 px-6 py-4 rounded-lg text-primary font-bold shadow-[inset_5px_5px_10px_#dbdad7,inset_-5px_-5px_10px_#ffffff] bg-surface active:shadow-[inset_5px_5px_10px_#dbdad7,inset_-5px_-5px_10px_#ffffff] transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="library_music">library_music</span>
+<span>Playlists</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-4 px-6 py-4 rounded-lg text-on-surface-variant font-medium hover:text-primary transition-all duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="style">style</span>
+<span>The Music Dex</span>
+</a>
+</li>
+</ul>
+<div class="mt-auto pt-6">
+<button class="w-full py-4 rounded-full font-headline-md text-headline-md text-primary neumorphic-outer neumorphic-button-hover neumorphic-button-active transition-all bg-surface">
+                Sync Gear
+            </button>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="md:ml-72 h-full overflow-y-auto pb-32 md:pb-12 scroll-smooth">
+<div class="max-w-4xl mx-auto px-margin-mobile md:px-margin-desktop py-8 md:py-12">
+<!-- Playlist Header Image -->
+<div class="relative w-full aspect-video md:aspect-[21/9] rounded-xl neumorphic-outer bg-surface overflow-hidden group">
+<div class="absolute top-0 left-0 w-full h-full bg-white/30 rounded-xl shadow-[inset_2px_2px_5px_rgba(255,255,255,0.8)] z-10 pointer-events-none mix-blend-overlay"></div>
+<img class="w-full h-full object-cover rounded-xl" data-alt="A serene, pastel landscape featuring soft, rolling hills in light green and cream, with a calm, clear blue sky. The scene is illuminated by gentle, warm sunlight, giving a cozy, nostalgic aesthetic reminiscent of an old-school video game town, rendered in a modern, high-fidelity light-mode style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAifrK_OTVhgVIWtY7eEht9GuVVe511IR22gdYmNn8xEmdjJL_hgCV2KtFS8bidsT3Sx4C-HQlj7KoOZ0I-Gj9nbT7wxPqO9vQRcNJmvlPRsELSVnRJt2_0zWiDOFeHavm8DZM3h3-nzA3thi6zAz8Ai0SUES30sE-GA5n_C4ReR8HyTl5XctHU8F2t1cXV3jdPrqWxspc_TVt_6zDXdFMeGibYtMK2k2jCquAXUhjoDCONHDNQ8BDd"/>
+<!-- Floating Play Button -->
+<button class="absolute -bottom-8 right-8 md:right-16 w-16 h-16 md:w-20 md:h-20 bg-primary-container rounded-full flex items-center justify-center text-on-primary-container neumorphic-outer neumorphic-button-hover neumorphic-button-active transition-all z-20 group-hover:scale-105">
+<span class="material-symbols-outlined text-4xl" data-icon="play_arrow" data-weight="fill" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</button>
+</div>
+<!-- Playlist Title & Info -->
+<div class="mt-16 mb-8 px-4">
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface mb-2">Kanto Classics</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant">A collection of nostalgic breezes and rocky beats.</p>
+</div>
+<!-- Track List -->
+<div class="space-y-4 px-2">
+<!-- Track 1 -->
+<div class="flex items-center p-4 rounded-lg bg-surface neumorphic-outer hover:neumorphic-inner transition-all cursor-pointer group">
+<div class="w-12 h-12 rounded-lg mr-4 bg-surface neumorphic-inner flex items-center justify-center text-primary overflow-hidden">
+<img class="w-full h-full object-cover opacity-80" data-alt="A small, stylized thumbnail image showing a tiny, peaceful coastal village setting with light blue water and small cream-colored houses, rendered in a soft pastel palette suitable for a calming light-mode UI." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBEx6xxJCLE6JCRKdtsdT3eUXmZXmbCyFZu339vCDaC7d7f0f8fdQGh3XYZcDwyrYJt1nHZRcDdEWVauta2IDU9ChqjgXkxIUqNAxoYLrvbomCX86qWwWdy7GbQw1M7GjDmhUkCIPyrwrr9HcWTGrRVcqsYZBv3U_zEUyf84V6gSncl2Ew9yJOFAofJoQxDY-3IXVbIPNs6F6eHT8-lFIUX4MiIAq9ghAeBi_mbxUfkr51nsDmULm55"/>
+</div>
+<div class="flex-1">
+<h3 class="font-headline-md text-headline-md text-on-surface group-hover:text-primary transition-colors text-lg">Pallet Town Breeze</h3>
+</div>
+<div class="text-on-surface-variant font-body-md text-body-md px-4">
+                        2:45
+                    </div>
+</div>
+<!-- Track 2 -->
+<div class="flex items-center p-4 rounded-lg bg-surface neumorphic-outer hover:neumorphic-inner transition-all cursor-pointer group">
+<div class="w-12 h-12 rounded-lg mr-4 bg-surface neumorphic-inner flex items-center justify-center text-primary overflow-hidden">
+<img class="w-full h-full object-cover opacity-80" data-alt="A small, stylized thumbnail image showing a winding grassy path through a bright, sunny field, rendered in a soft pastel palette suitable for a calming light-mode UI." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCjZ1QkBHO3YFjgjnTX0yC34u8sr9OjL8VyCQaQ_YEt5EVr7uURx1cd2vDp17Ff9GTULdYEGSAKiEzugi9USk_NwGKsO5B5y_2U8nLKZFeJeI7jDmK1NxR00NY9p_9lv2gXJM6nzqtWXHnMclrAN2vwOQXWA_3eHtyUl4y07h_DPRxUS4eAxo7OCWUwjb1137DAFm_f1jijecmsmATvCRrgZb_n7bpr2FmRVZaA_48DpYLMZeWFAZvw"/>
+</div>
+<div class="flex-1">
+<h3 class="font-headline-md text-headline-md text-on-surface group-hover:text-primary transition-colors text-lg">Route 1 (Remastered)</h3>
+</div>
+<div class="text-on-surface-variant font-body-md text-body-md px-4">
+                        3:12
+                    </div>
+</div>
+<!-- Track 3 -->
+<div class="flex items-center p-4 rounded-lg bg-surface neumorphic-outer hover:neumorphic-inner transition-all cursor-pointer group">
+<div class="w-12 h-12 rounded-lg mr-4 bg-surface neumorphic-inner flex items-center justify-center text-primary overflow-hidden">
+<img class="w-full h-full object-cover opacity-80" data-alt="A small, stylized thumbnail image showing a lush green forest clearing with dappled sunlight, rendered in a soft pastel palette suitable for a calming light-mode UI." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_zjbHnWVdv39PDpaH5DI75s-VYIW8TBjrIeMsBeB5NvoXv81_lB1In_OowV77E-LM-YRQisycsRQ8XZ5AGzA8bBCZyw_-9_d8bRgOlA1mJJt5kC5jwSVvtY8EhwmUjU__LOnjzfWehzvvqEiELDG8bkT69vokCqtcd6S6htUrXXsVjJ3m13hROxC9fem74lj5irSDoUObJxnQs1U3b2AD5o-Qlc-PDCsiEJB0g6A57-tvcmMM4UJ4"/>
+</div>
+<div class="flex-1">
+<h3 class="font-headline-md text-headline-md text-on-surface group-hover:text-primary transition-colors text-lg">Viridian City Lo-fi</h3>
+</div>
+<div class="text-on-surface-variant font-body-md text-body-md px-4">
+                        4:05
+                    </div>
+</div>
+<!-- Track 4 -->
+<div class="flex items-center p-4 rounded-lg bg-surface neumorphic-outer hover:neumorphic-inner transition-all cursor-pointer group">
+<div class="w-12 h-12 rounded-lg mr-4 bg-surface neumorphic-inner flex items-center justify-center text-primary overflow-hidden">
+<img class="w-full h-full object-cover opacity-80" data-alt="A small, stylized thumbnail image showing a rugged, rocky mountain path with warm, earthy tones, rendered in a soft pastel palette suitable for a calming light-mode UI." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCT6GKXtX9c00Bxva4jZuMyjOzY01pvPg4Z6nddxIgxwAsMTQ_X3CJdjVIJ28sSoauj5UtRhHvXftOwuS1-prXL3D3rn7-1gVvkScfia38kmtzu7M6XkutlQFso63xu_ZLFKOx-X7Q0fCE-CFYN09TnN53hMfw2mWgp6kqECQFJuH5XvGP4XM5vPqI17Kht6YcO5OEErSJnjDUaSfnFrCKDMfUhpcjXt5LimakEst7C7wiIJTtuS59u"/>
+</div>
+<div class="flex-1">
+<h3 class="font-headline-md text-headline-md text-on-surface group-hover:text-primary transition-colors text-lg">Pewter City Rock</h3>
+</div>
+<div class="text-on-surface-variant font-body-md text-body-md px-4">
+                        2:58
+                    </div>
+</div>
+<!-- Track 5 -->
+<div class="flex items-center p-4 rounded-lg bg-surface neumorphic-outer hover:neumorphic-inner transition-all cursor-pointer group">
+<div class="w-12 h-12 rounded-lg mr-4 bg-surface neumorphic-inner flex items-center justify-center text-primary overflow-hidden">
+<img class="w-full h-full object-cover opacity-80" data-alt="A small, stylized thumbnail image showing a high altitude plateau with majestic, soft white clouds against a pale blue sky, rendered in a soft pastel palette suitable for a calming light-mode UI." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBBl5EjuzPE5qP56H2CbA3kL1eh7JJFNdQrdS0GY8k8mIIRSlWnXMjmaOm9asqhO5RAjvApvH9QvSFl9bof-Mnsn40ED68uO_DFByWeyvVuDF60SqGxmF_QCT323AD0HouRer-B1jit212qXlWRLK__UvHcDttdwbQZEq-oeUT6qaJcLA89ky0bTBYgqHTDNHbXk43S9zPV8VtrNaBQ00i9X7cKy6E6APOdlauRP_-6nkCZP9ZrBnBB"/>
+</div>
+<div class="flex-1">
+<h3 class="font-headline-md text-headline-md text-on-surface group-hover:text-primary transition-colors text-lg">Indigo Plateau Chill</h3>
+</div>
+<div class="text-on-surface-variant font-body-md text-body-md px-4">
+                        5:20
+                    </div>
+</div>
+</div>
+</div>
+</main>
+<!-- Mobile BottomNavBar -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-margin-mobile bg-surface docked full-width h-24 rounded-t-lg shadow-[0px_-5px_10px_#dbdad7]">
+<button class="flex flex-col items-center justify-center text-on-surface-variant px-6 py-2 hover:scale-105 transition-transform active:scale-95">
+<span class="material-symbols-outlined" data-icon="play_circle">play_circle</span>
+<span class="font-label-sm text-label-sm mt-1">Now Playing</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant px-6 py-2 hover:scale-105 transition-transform active:scale-95">
+<span class="material-symbols-outlined" data-icon="queue_music">queue_music</span>
+<span class="font-label-sm text-label-sm mt-1">Next Up</span>
+</button>
+<button class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-xl px-6 py-2 shadow-[inset_2px_2px_5px_#96d3bd] hover:scale-105 transition-transform active:scale-95">
+<span class="material-symbols-outlined" data-icon="headphones">headphones</span>
+<span class="font-label-sm text-label-sm mt-1">Sound Gear</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant px-6 py-2 hover:scale-105 transition-transform active:scale-95">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-label-sm text-label-sm mt-1">Settings</span>
+</button>
+</nav>
+</body></html>

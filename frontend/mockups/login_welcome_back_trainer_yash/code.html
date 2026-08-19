@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>OverWorld - Login</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-fixed": "#ffd9df",
+                        "on-background": "#1a1c1a",
+                        "surface-tint": "#864e5a",
+                        "tertiary-fixed": "#baeafa",
+                        "surface-bright": "#faf9f6",
+                        "on-secondary-fixed-variant": "#0d503f",
+                        "inverse-on-surface": "#f2f1ee",
+                        "on-tertiary": "#ffffff",
+                        "inverse-surface": "#2f312f",
+                        "outline-variant": "#d6c2c4",
+                        "on-primary-fixed-variant": "#6b3743",
+                        "on-surface-variant": "#514345",
+                        "surface-container": "#efeeeb",
+                        "secondary-container": "#aeedd5",
+                        "on-primary-container": "#7b4551",
+                        "on-tertiary-container": "#2b5b69",
+                        "secondary": "#2c6956",
+                        "secondary-fixed": "#b1efd8",
+                        "on-primary": "#ffffff",
+                        "surface-dim": "#dbdad7",
+                        "background": "#faf9f6",
+                        "on-secondary-fixed": "#002118",
+                        "surface-container-highest": "#e3e2e0",
+                        "inverse-primary": "#fbb3c1",
+                        "on-tertiary-fixed": "#001f27",
+                        "secondary-fixed-dim": "#96d3bd",
+                        "primary-container": "#ffb7c5",
+                        "tertiary": "#356572",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary-fixed-dim": "#9ecede",
+                        "outline": "#837375",
+                        "primary": "#864e5a",
+                        "primary-fixed-dim": "#fbb3c1",
+                        "surface-container-high": "#e9e8e5",
+                        "surface-variant": "#e3e2e0",
+                        "on-secondary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "on-surface": "#1a1c1a",
+                        "surface": "#faf9f6",
+                        "error-container": "#ffdad6",
+                        "on-error": "#ffffff",
+                        "error": "#ba1a1a",
+                        "on-secondary-container": "#316d5b",
+                        "on-primary-fixed": "#360c19",
+                        "tertiary-container": "#a2d2e2",
+                        "surface-container-low": "#f4f3f1",
+                        "on-tertiary-fixed-variant": "#1a4d5a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-desktop": "48px",
+                        "base": "8px",
+                        "card-padding": "24px",
+                        "gutter": "24px",
+                        "margin-mobile": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Quicksand"],
+                        "body-lg": ["Quicksand"],
+                        "label-sm": ["Quicksand"],
+                        "headline-lg-mobile": ["Quicksand"],
+                        "body-md": ["Quicksand"],
+                        "headline-md": ["Quicksand"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "500" }],
+                        "label-sm": ["13px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "headline-lg-mobile": ["26px", { "lineHeight": "32px", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "500" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: #faf9f6;
+        }
+        
+        .neumorphic-card {
+            background-color: #faf9f6;
+            box-shadow: -10px -10px 20px rgba(255, 255, 255, 0.8), 
+                        10px 10px 20px rgba(131, 115, 117, 0.15);
+        }
+
+        .neumorphic-input {
+            background-color: #faf9f6;
+            box-shadow: inset 5px 5px 10px rgba(131, 115, 117, 0.15), 
+                        inset -5px -5px 10px rgba(255, 255, 255, 0.8);
+            border: none;
+            outline: none;
+        }
+
+        .neumorphic-input:focus {
+            box-shadow: inset 8px 8px 12px rgba(131, 115, 117, 0.2), 
+                        inset -8px -8px 12px rgba(255, 255, 255, 0.9);
+        }
+
+        .neumorphic-btn {
+            background-color: #fbb3c1; /* primary-fixed-dim */
+            box-shadow: -5px -5px 10px rgba(255, 255, 255, 0.8), 
+                        5px 5px 10px rgba(131, 115, 117, 0.2);
+            transition: all 0.2s ease-in-out;
+        }
+
+        .neumorphic-btn:hover {
+            box-shadow: -3px -3px 6px rgba(255, 255, 255, 0.8), 
+                        3px 3px 6px rgba(131, 115, 117, 0.2);
+            transform: translateY(2px);
+        }
+
+        .neumorphic-btn:active {
+            box-shadow: inset 4px 4px 8px rgba(131, 115, 117, 0.2), 
+                        inset -4px -4px 8px rgba(255, 255, 255, 0.5);
+            transform: translateY(4px);
+        }
+        
+        /* Inner glow for card */
+        .card-sheen {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: inherit;
+            background: linear-gradient(135deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0) 40%);
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-margin-mobile md:p-margin-desktop font-body-md text-on-surface">
+<main class="w-full max-w-md relative">
+<!-- Floating Decorative Elements -->
+<div class="absolute -top-12 -left-12 w-24 h-24 rounded-full bg-surface-bright shadow-[inset_5px_5px_10px_rgba(131,115,117,0.1),inset_-5px_-5px_10px_rgba(255,255,255,0.8)] opacity-60 pointer-events-none"></div>
+<div class="absolute -bottom-8 -right-8 w-16 h-16 rounded-full bg-surface-bright shadow-[inset_5px_5px_10px_rgba(131,115,117,0.1),inset_-5px_-5px_10px_rgba(255,255,255,0.8)] opacity-60 pointer-events-none"></div>
+<div class="neumorphic-card rounded-xl p-8 md:p-12 relative overflow-hidden flex flex-col items-center">
+<div class="card-sheen"></div>
+<!-- Logo / Brand Area -->
+<div class="w-20 h-20 mb-6 rounded-full bg-surface shadow-[-5px_-5px_10px_rgba(255,255,255,1),5px_5px_10px_rgba(131,115,117,0.2)] flex items-center justify-center text-primary relative">
+<span class="material-symbols-outlined text-4xl" style="font-variation-settings: 'FILL' 1;">20mp</span>
+</div>
+<!-- Welcome Message -->
+<h1 class="font-headline-md text-headline-md text-primary text-center mb-8">Welcome back, Trainer Yash!</h1>
+<!-- Login Form -->
+<form class="w-full flex flex-col gap-6">
+<!-- Username Field -->
+<div class="flex flex-col gap-2">
+<label class="font-label-sm text-label-sm text-on-surface-variant ml-2" for="username">Username</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant opacity-70">person</span>
+<input class="neumorphic-input w-full h-14 rounded-lg pl-12 pr-4 text-on-surface font-body-md placeholder-on-surface-variant placeholder-opacity-50 focus:ring-0 focus:border-transparent transition-shadow duration-300" id="username" name="username" placeholder="Enter your username" type="text"/>
+</div>
+</div>
+<!-- Password Field -->
+<div class="flex flex-col gap-2">
+<label class="font-label-sm text-label-sm text-on-surface-variant ml-2" for="password">Password</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant opacity-70">lock</span>
+<input class="neumorphic-input w-full h-14 rounded-lg pl-12 pr-4 text-on-surface font-body-md placeholder-on-surface-variant placeholder-opacity-50 focus:ring-0 focus:border-transparent transition-shadow duration-300" id="password" name="password" placeholder="Enter your password" type="password"/>
+<button aria-label="Toggle password visibility" class="absolute right-4 top-1/2 -translate-y-1/2 text-on-surface-variant opacity-70 hover:opacity-100 transition-opacity" type="button">
+<span class="material-symbols-outlined">visibility</span>
+</button>
+</div>
+</div>
+<!-- Extra Actions -->
+<div class="flex justify-between items-center mt-2 px-2">
+<label class="flex items-center gap-2 cursor-pointer">
+<input class="w-4 h-4 rounded text-primary focus:ring-primary border-none neumorphic-input cursor-pointer" type="checkbox"/>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Remember me</span>
+</label>
+<a class="font-label-sm text-label-sm text-primary hover:text-surface-tint transition-colors" href="#">Forgot Password?</a>
+</div>
+<!-- Submit Button -->
+<button class="neumorphic-btn w-full h-14 rounded-lg mt-4 font-headline-md text-[20px] font-bold text-on-primary-fixed flex items-center justify-center gap-2" type="button">
+<span>Login</span>
+<span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</form>
+<!-- Bottom Note -->
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-8 text-center">
+                New to OverWorld? <a class="text-primary font-bold hover:underline" href="#">Create an account</a>
+</p>
+</div>
+</main>
+<script>
+        // Simple micro-interaction for password visibility toggle
+        const togglePasswordBtn = document.querySelector('button[aria-label="Toggle password visibility"]');
+        const passwordInput = document.getElementById('password');
+        const visibilityIcon = togglePasswordBtn.querySelector('.material-symbols-outlined');
+
+        togglePasswordBtn.addEventListener('click', () => {
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                visibilityIcon.textContent = 'visibility_off';
+            } else {
+                passwordInput.type = 'password';
+                visibilityIcon.textContent = 'visibility';
+            }
+        });
+
+        // Add subtle ripple effect to the login button
+        const loginBtn = document.querySelector('.neumorphic-btn');
+        loginBtn.addEventListener('mousedown', function(e) {
+            const rect = this.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            const ripple = document.createElement('div');
+            ripple.style.position = 'absolute';
+            ripple.style.width = '20px';
+            ripple.style.height = '20px';
+            ripple.style.background = 'rgba(255,255,255,0.4)';
+            ripple.style.borderRadius = '50%';
+            ripple.style.left = `${x - 10}px`;
+            ripple.style.top = `${y - 10}px`;
+            ripple.style.transform = 'scale(0)';
+            ripple.style.transition = 'transform 0.5s ease-out, opacity 0.5s ease-out';
+            ripple.style.pointerEvents = 'none';
+            
+            this.style.position = 'relative';
+            this.style.overflow = 'hidden';
+            this.appendChild(ripple);
+            
+            // Force reflow
+            void ripple.offsetWidth;
+            
+            ripple.style.transform = 'scale(20)';
+            ripple.style.opacity = '0';
+            
+            setTimeout(() => {
+                ripple.remove();
+            }, 500);
+        });
+    </script>
+</body></html>

@@ -5,8 +5,9 @@
     "artist": "Game Freak",
     "album": "Pokémon Red/Blue",
     "environment_tags": ["residential", "calm", "nostalgic"],
-    "feature_vector": [0.25, 0.85, 0.65, 0.2],
-    "source": "seed"
+    "feature_vector": [0.25, 0.85, 0.65, 0.20],
+    "source": "seed",
+    "spotify_id": "4SzCODzdwpxNu4BK2E5yGC"
   },
   {
     "track_id": "pkm-002",
@@ -14,17 +15,19 @@
     "artist": "Game Freak",
     "album": "Pokémon Red/Blue",
     "environment_tags": ["forest", "adventure", "serene"],
-    "feature_vector": [0.3, 0.9, 0.8, 0.18],
-    "source": "seed"
+    "feature_vector": [0.30, 0.90, 0.80, 0.18],
+    "source": "seed",
+    "spotify_id": "3bXlODNNzFZImpSHo5pcOZ"
   },
   {
     "track_id": "pkm-003",
-    "title": "Surfing Theme",
+    "title": "Pokémon Gym",
     "artist": "Game Freak",
     "album": "Pokémon Red/Blue",
-    "environment_tags": ["beach", "waterfront", "light"],
-    "feature_vector": [0.42, 0.72, 0.55, 0.35],
-    "source": "seed"
+    "environment_tags": ["urban", "battle", "competitive"],
+    "feature_vector": [0.85, 0.30, 0.40, 0.80],
+    "source": "seed",
+    "spotify_id": "7dOfDWPjJkL2tFB1XFLWGH"
   },
   {
     "track_id": "pkm-004",
@@ -32,8 +35,9 @@
     "artist": "Game Freak",
     "album": "Pokémon Red/Blue",
     "environment_tags": ["urban", "safe", "restful"],
-    "feature_vector": [0.45, 0.78, 0.5, 0.32],
-    "source": "seed"
+    "feature_vector": [0.45, 0.78, 0.50, 0.32],
+    "source": "seed",
+    "spotify_id": "0s4PN5kDyJEjL7AXmYBuKZ"
   },
   {
     "track_id": "pkm-005",
@@ -42,7 +46,8 @@
     "album": "Pokémon Red/Blue",
     "environment_tags": ["travel", "outdoors", "balanced"],
     "feature_vector": [0.55, 0.55, 0.45, 0.55],
-    "source": "seed"
+    "source": "seed",
+    "spotify_id": "1TkWjOiMNQRsPJQzwWVKBD"
   },
   {
     "track_id": "pkm-006",
@@ -50,8 +55,9 @@
     "artist": "Game Freak",
     "album": "Pokémon Red/Blue",
     "environment_tags": ["mountain", "cave", "mysterious"],
-    "feature_vector": [0.65, 0.4, 0.7, 0.45],
-    "source": "seed"
+    "feature_vector": [0.65, 0.40, 0.70, 0.45],
+    "source": "seed",
+    "spotify_id": "55uDKFKJt9MYbq1JKUKiLC"
   },
   {
     "track_id": "pkm-007",
@@ -59,8 +65,9 @@
     "artist": "Game Freak",
     "album": "Pokémon Red/Blue",
     "environment_tags": ["urban", "waterfront", "cheerful"],
-    "feature_vector": [0.6, 0.7, 0.5, 0.5],
-    "source": "seed"
+    "feature_vector": [0.60, 0.70, 0.50, 0.50],
+    "source": "seed",
+    "spotify_id": "5ORnqDGGYHJkKrpDy6tkqO"
   },
   {
     "track_id": "pkm-008",
@@ -68,8 +75,9 @@
     "artist": "Game Freak",
     "album": "Pokémon Red/Blue",
     "environment_tags": ["travel", "fast", "energetic"],
-    "feature_vector": [0.9, 0.3, 0.2, 0.9],
-    "source": "seed"
+    "feature_vector": [0.90, 0.30, 0.20, 0.90],
+    "source": "seed",
+    "spotify_id": "4SHGMHmXFPF0Jl9KfsBcMM"
   },
   {
     "track_id": "pkm-009",
@@ -77,34 +85,68 @@
     "artist": "Game Freak",
     "album": "Pokémon Red/Blue",
     "environment_tags": ["unknown", "creepy", "dark"],
-    "feature_vector": [0.2, 0.1, 0.9, 0.25],
-    "source": "seed"
+    "feature_vector": [0.20, 0.10, 0.90, 0.25],
+    "source": "seed",
+    "spotify_id": "0NRdKSlyXFJoS6cZ8EBkJg"
   },
   {
     "track_id": "pkm-010",
-    "title": "Gym Battle Theme",
+    "title": "Route 26 (Gold/Silver)",
     "artist": "Game Freak",
-    "album": "Pokémon Red/Blue",
-    "environment_tags": ["urban", "energetic", "pulse"],
-    "feature_vector": [0.95, 0.1, 0.1, 0.95],
-    "source": "seed"
+    "album": "Pokémon Gold/Silver",
+    "environment_tags": ["travel", "outdoors", "serene"],
+    "feature_vector": [0.50, 0.65, 0.55, 0.50],
+    "source": "seed",
+    "spotify_id": "4MxYhQk5AJFSfPSgVBjbEd"
   },
   {
     "track_id": "pkm-011",
-    "title": "S.S. Anne",
+    "title": "Ecruteak City",
     "artist": "Game Freak",
-    "album": "Pokémon Red/Blue",
-    "environment_tags": ["beach", "waterfront", "cruise"],
-    "feature_vector": [0.5, 0.8, 0.6, 0.5],
-    "source": "seed"
+    "album": "Pokémon Gold/Silver",
+    "environment_tags": ["urban", "nostalgic", "calm"],
+    "feature_vector": [0.30, 0.80, 0.60, 0.28],
+    "source": "seed",
+    "spotify_id": "3I9TKpiKfMgNfuBqkfN0n3"
   },
   {
     "track_id": "pkm-012",
-    "title": "Vermilion City",
+    "title": "National Park",
     "artist": "Game Freak",
-    "album": "Pokémon Red/Blue",
-    "environment_tags": ["urban", "upbeat", "breeze"],
-    "feature_vector": [0.8, 0.6, 0.3, 0.7],
-    "source": "seed"
+    "album": "Pokémon Gold/Silver",
+    "environment_tags": ["park", "serene", "nature"],
+    "feature_vector": [0.28, 0.88, 0.72, 0.20],
+    "source": "seed",
+    "spotify_id": "4bVlEJFmEPSDElQHB65JzI"
+  },
+  {
+    "track_id": "pkm-013",
+    "title": "Littleroot Town",
+    "artist": "Game Freak",
+    "album": "Pokémon Ruby/Sapphire",
+    "environment_tags": ["residential", "calm", "peaceful"],
+    "feature_vector": [0.22, 0.88, 0.68, 0.18],
+    "source": "seed",
+    "spotify_id": "5w1FyD1QKXJ7yDnBL0Vt2Z"
+  },
+  {
+    "track_id": "pkm-014",
+    "title": "Route 101 (Hoenn)",
+    "artist": "Game Freak",
+    "album": "Pokémon Ruby/Sapphire",
+    "environment_tags": ["travel", "outdoors", "cheerful"],
+    "feature_vector": [0.55, 0.60, 0.48, 0.52],
+    "source": "seed",
+    "spotify_id": "2Bm5Q5f5j4nj5ZLbx9VrI0"
+  },
+  {
+    "track_id": "pkm-015",
+    "title": "Slateport City",
+    "artist": "Game Freak",
+    "album": "Pokémon Ruby/Sapphire",
+    "environment_tags": ["urban", "waterfront", "lively"],
+    "feature_vector": [0.70, 0.60, 0.40, 0.60],
+    "source": "seed",
+    "spotify_id": "1nRRHPLeHD7AJDjmElcFVT"
   }
 ]

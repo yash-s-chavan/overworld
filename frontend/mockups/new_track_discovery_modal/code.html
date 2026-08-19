@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Pokégear Audio - New Track Modal</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-primary-fixed": "#360c19",
+                    "outline": "#837375",
+                    "secondary-fixed-dim": "#96d3bd",
+                    "on-primary-container": "#7b4551",
+                    "inverse-surface": "#2f312f",
+                    "on-primary": "#ffffff",
+                    "tertiary-fixed-dim": "#9ecede",
+                    "primary-fixed": "#ffd9df",
+                    "surface-dim": "#dbdad7",
+                    "on-secondary-fixed-variant": "#0d503f",
+                    "surface-container-highest": "#e3e2e0",
+                    "surface-container-lowest": "#ffffff",
+                    "secondary-fixed": "#b1efd8",
+                    "surface-tint": "#864e5a",
+                    "on-tertiary-container": "#2b5b69",
+                    "surface-container": "#efeeeb",
+                    "inverse-primary": "#fbb3c1",
+                    "surface-container-high": "#e9e8e5",
+                    "on-tertiary-fixed": "#001f27",
+                    "on-surface-variant": "#514345",
+                    "on-background": "#1a1c1a",
+                    "primary-fixed-dim": "#fbb3c1",
+                    "on-secondary": "#ffffff",
+                    "primary-container": "#ffb7c5",
+                    "outline-variant": "#d6c2c4",
+                    "on-tertiary": "#ffffff",
+                    "surface": "#faf9f6",
+                    "inverse-on-surface": "#f2f1ee",
+                    "background": "#faf9f6",
+                    "secondary": "#2c6956",
+                    "on-tertiary-fixed-variant": "#1a4d5a",
+                    "surface-container-low": "#f4f3f1",
+                    "tertiary-fixed": "#baeafa",
+                    "on-secondary-fixed": "#002118",
+                    "primary": "#864e5a",
+                    "on-surface": "#1a1c1a",
+                    "on-error": "#ffffff",
+                    "surface-variant": "#e3e2e0",
+                    "surface-bright": "#faf9f6",
+                    "secondary-container": "#aeedd5",
+                    "on-primary-fixed-variant": "#6b3743",
+                    "on-error-container": "#93000a",
+                    "error": "#ba1a1a",
+                    "tertiary-container": "#a2d2e2",
+                    "on-secondary-container": "#316d5b",
+                    "error-container": "#ffdad6",
+                    "tertiary": "#356572"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "24px",
+                    "margin-mobile": "16px",
+                    "card-padding": "24px",
+                    "margin-desktop": "48px",
+                    "base": "8px"
+            },
+            "fontFamily": {
+                    "label-sm": [
+                            "Quicksand"
+                    ],
+                    "headline-lg": [
+                            "Quicksand"
+                    ],
+                    "body-md": [
+                            "Quicksand"
+                    ],
+                    "headline-lg-mobile": [
+                            "Quicksand"
+                    ],
+                    "body-lg": [
+                            "Quicksand"
+                    ],
+                    "headline-md": [
+                            "Quicksand"
+                    ]
+            },
+            "fontSize": {
+                    "label-sm": [
+                            "13px",
+                            {
+                                    "lineHeight": "16px",
+                                    "letterSpacing": "0.05em",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "headline-lg": [
+                            "32px",
+                            {
+                                    "lineHeight": "40px",
+                                    "letterSpacing": "-0.02em",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "body-md": [
+                            "16px",
+                            {
+                                    "lineHeight": "24px",
+                                    "fontWeight": "500"
+                            }
+                    ],
+                    "headline-lg-mobile": [
+                            "26px",
+                            {
+                                    "lineHeight": "32px",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "body-lg": [
+                            "18px",
+                            {
+                                    "lineHeight": "28px",
+                                    "fontWeight": "500"
+                            }
+                    ],
+                    "headline-md": [
+                            "24px",
+                            {
+                                    "lineHeight": "32px",
+                                    "fontWeight": "600"
+                            }
+                    ]
+            }
+    },
+        },
+      }
+    </script>
+<style>
+        body {
+            /* Ensure the background matches the design system token for surface blending */
+            background-color: #faf9f6; 
+        }
+        
+        /* Subtle entrance animation for the modal */
+        @keyframes popIn {
+            0% { opacity: 0; transform: scale(0.95) translateY(10px); }
+            100% { opacity: 1; transform: scale(1) translateY(0); }
+        }
+        .animate-pop-in {
+            animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+    </style>
+</head>
+<body class="antialiased text-on-surface h-screen w-screen overflow-hidden flex items-center justify-center">
+<!-- Blurred Background Overlay -->
+<div class="absolute inset-0 bg-surface/70 backdrop-blur-md z-40"></div>
+<!-- Modal Container -->
+<div class="relative z-50 flex flex-col items-center max-w-[400px] w-[calc(100%-32px)] mx-margin-mobile">
+<!-- The Modal Card -->
+<div class="w-full bg-surface rounded-xl p-8 md:p-12 shadow-[10px_10px_20px_#dbdad7,-10px_-10px_20px_#ffffff] flex flex-col items-center text-center gap-8 animate-pop-in">
+<!-- Graphic Element: Neumorphic Disc/Album Art Area -->
+<div class="relative w-40 h-40 rounded-full p-3 bg-surface shadow-[inset_5px_5px_10px_#dbdad7,inset_-5px_-5px_10px_#ffffff] flex items-center justify-center">
+<div class="w-full h-full rounded-full overflow-hidden shadow-[5px_5px_10px_#dbdad7,-5px_-5px_10px_#ffffff]">
+<img class="w-full h-full object-cover" data-alt="A stylized, high-fidelity digital illustration of a retro-futuristic vinyl record or music cassette, glowing with soft pastel pink and mint green neon accents. The object sits on a perfectly smooth, light cream surface, casting soft, pillowy neomorphic shadows. The lighting is bright, diffused, and clean, conveying a sense of cozy, low-stress nostalgia typical of a modern, premium music application interface. The overall aesthetic is 'Calm Playfulness', blending tactile 3D elements with a minimalist light-mode color palette." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCfs5GA_VmU3JX1OtFGi-9t0dyU0tJSFb37WmJMUDtMebDYkkPQoghuTjn3th7Od6KS3Hgjoy8EH4ldlunEHAQBGhgbZEDOsCLDlOlinFkWE2Dot-StBPgbZkvJnX88dL3z76ok5s6XEQadiklARrIxMhsD0EE733aB9-kMqQSfOPUMjmGEgu6Q1bZIgFZV0UDpF457p1qWlP6hkfnvtYm1xnnxol-lARjUqjdLiNcTc2j7G8W3aWkW"/>
+</div>
+<!-- Small Floating Icon Badge -->
+<div class="absolute -bottom-2 -right-2 w-12 h-12 rounded-full bg-secondary-container flex items-center justify-center shadow-[3px_3px_6px_#dbdad7,-3px_-3px_6px_#ffffff]">
+<span class="material-symbols-outlined text-on-secondary-container" style="font-variation-settings: 'FILL' 1;">music_note</span>
+</div>
+</div>
+<!-- Text Content -->
+<div class="flex flex-col gap-3 items-center">
+<h1 class="font-headline-lg text-headline-lg text-primary md:hidden">Wild Track Appeared!</h1>
+<h1 class="font-headline-lg text-headline-lg text-primary hidden md:block">Wild Track Appeared!</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Added to your Music Dex</p>
+</div>
+<!-- Action Button -->
+<button class="w-full max-w-[200px] py-4 bg-primary-container text-on-primary-container rounded-full font-label-sm text-label-sm shadow-[5px_5px_10px_#dbdad7,-5px_-5px_10px_#ffffff] hover:opacity-90 hover:shadow-[3px_3px_6px_#dbdad7,-3px_-3px_6px_#ffffff] active:shadow-[inset_5px_5px_10px_#dbdad7,inset_-5px_-5px_10px_#ffffff] transition-all duration-200 flex items-center justify-center gap-2">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+                Listen Now
+            </button>
+<!-- Dismiss action (subtle) -->
+<button class="font-body-md text-body-md text-outline hover:text-on-surface transition-colors duration-200 mt-2">
+                Dismiss
+            </button>
+</div>
+</div>
+</body></html>

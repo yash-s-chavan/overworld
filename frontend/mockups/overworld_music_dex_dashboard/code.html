@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>OverWorld Music Dex - Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-fixed": "#b1efd8",
+                        "on-surface-variant": "#514345",
+                        "surface-container-highest": "#e3e2e0",
+                        "surface-variant": "#e3e2e0",
+                        "tertiary-fixed-dim": "#9ecede",
+                        "inverse-on-surface": "#f2f1ee",
+                        "outline-variant": "#d6c2c4",
+                        "surface-container-high": "#e9e8e5",
+                        "secondary-container": "#aeedd5",
+                        "on-error": "#ffffff",
+                        "on-tertiary-container": "#2b5b69",
+                        "tertiary-container": "#a2d2e2",
+                        "tertiary-fixed": "#baeafa",
+                        "tertiary": "#356572",
+                        "primary": "#864e5a",
+                        "on-tertiary-fixed": "#001f27",
+                        "outline": "#837375",
+                        "surface-dim": "#dbdad7",
+                        "error-container": "#ffdad6",
+                        "primary-fixed": "#ffd9df",
+                        "primary-container": "#ffb7c5",
+                        "on-background": "#1a1c1a",
+                        "on-primary-fixed-variant": "#6b3743",
+                        "secondary": "#2c6956",
+                        "on-secondary-container": "#316d5b",
+                        "primary-fixed-dim": "#fbb3c1",
+                        "on-secondary-fixed": "#002118",
+                        "on-tertiary-fixed-variant": "#1a4d5a",
+                        "error": "#ba1a1a",
+                        "surface-container-lowest": "#ffffff",
+                        "background": "#faf9f6",
+                        "surface-container-low": "#f4f3f1",
+                        "surface": "#faf9f6",
+                        "on-secondary-fixed-variant": "#0d503f",
+                        "surface-container": "#efeeeb",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-container": "#7b4551",
+                        "inverse-surface": "#2f312f",
+                        "on-surface": "#1a1c1a",
+                        "surface-tint": "#864e5a",
+                        "on-primary-fixed": "#360c19",
+                        "inverse-primary": "#fbb3c1",
+                        "surface-bright": "#faf9f6",
+                        "on-primary": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "secondary-fixed-dim": "#96d3bd"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "base": "8px",
+                        "margin-mobile": "16px",
+                        "card-padding": "24px",
+                        "gutter": "24px",
+                        "margin-desktop": "48px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Quicksand"],
+                        "label-sm": ["Quicksand"],
+                        "headline-md": ["Quicksand"],
+                        "body-lg": ["Quicksand"],
+                        "body-md": ["Quicksand"],
+                        "headline-lg-mobile": ["Quicksand"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-sm": ["13px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "500" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "500" }],
+                        "headline-lg-mobile": ["26px", { "lineHeight": "32px", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .neu-outer {
+            box-shadow: 5px 5px 10px #dbdad7, -5px -5px 10px #ffffff;
+        }
+        .neu-inner {
+            box-shadow: inset 5px 5px 10px #dbdad7, inset -5px -5px 10px #ffffff;
+        }
+        .neu-btn:active {
+            box-shadow: inset 5px 5px 10px #dbdad7, inset -5px -5px 10px #ffffff;
+        }
+        .glass-highlight {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 50%;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.05) 100%);
+            border-radius: inherit;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md overflow-x-hidden">
+<!-- Top App Bar (Mobile) -->
+<header class="md:hidden bg-surface dark:bg-surface w-full top-0 px-margin-mobile py-4 flex justify-between items-center shadow-[5px_5px_10px_#dbdad7,-5px_-5px_10px_#ffffff] z-40 fixed">
+<div class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-primary dark:text-primary-fixed-dim">
+            Pokégear Audio
+        </div>
+<div class="flex gap-4">
+<button class="w-10 h-10 rounded-full flex items-center justify-center text-primary neu-outer active:neu-inner transition-all">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<button class="w-10 h-10 rounded-full flex items-center justify-center text-primary neu-outer active:neu-inner transition-all">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+</div>
+</header>
+<!-- Top App Bar (Desktop) -->
+<header class="hidden md:flex bg-surface dark:bg-surface w-full top-0 px-margin-desktop py-4 justify-between items-center z-40 fixed shadow-[5px_5px_10px_#dbdad7,-5px_-5px_10px_#ffffff]">
+<div class="font-headline-lg text-headline-lg font-bold text-primary dark:text-primary-fixed-dim">
+            Pokégear Audio
+        </div>
+<div class="flex gap-4">
+<button class="w-12 h-12 rounded-full flex items-center justify-center text-primary neu-outer hover:opacity-80 transition-opacity active:shadow-[inset_5px_5px_10px_#dbdad7,inset_-5px_-5px_10px_#ffffff]">
+<span class="material-symbols-outlined text-2xl">settings</span>
+</button>
+<button class="w-12 h-12 rounded-full flex items-center justify-center text-primary neu-outer hover:opacity-80 transition-opacity active:shadow-[inset_5px_5px_10px_#dbdad7,inset_-5px_-5px_10px_#ffffff]">
+<span class="material-symbols-outlined text-2xl">account_circle</span>
+</button>
+</div>
+</header>
+<div class="flex h-screen pt-20 md:pt-24 pb-32">
+<!-- Side Navigation (Desktop) -->
+<aside class="hidden md:flex flex-col h-full w-64 left-0 top-0 bg-surface dark:bg-surface p-card-padding gap-base shadow-[5px_0_10px_#dbdad7] z-30 fixed mt-24">
+<div class="flex flex-col items-center mb-8 gap-4">
+<div class="w-24 h-24 rounded-full neu-outer p-1 flex items-center justify-center bg-surface">
+<img class="w-full h-full rounded-full object-cover" data-alt="A stylized 3D avatar of Trainer Red from Pokemon, rendered in a soft, clay-like tactile neomorphism style. The lighting is bright and cheerful, evoking a calm, playful mood against a light pastel background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCmsy0Q-VWETGxQL8hXqUyB2kJJi9JxU5fM_yOIF8IjfJRqAfLnd5Lbnujh8BCeO89-HfXQpwztctJu4cMhEYyLjQ25n7mo3_e8DYBQoks5dsyc_RjWEd_tVdpXiPGrl0Ogxi_bFqtBHSywNrwlgxOYu2vD4EFVRC3Yu_ecYXdyPepfIvrjPdboGtJ0okrwkfoUHxwGF-UtlzjC_0DK4_eKGPkqLU5FkglNxpKQikuz61fjNjkpltUW"/>
+</div>
+<div class="text-center">
+<h2 class="font-headline-md text-headline-md text-primary">Trainer Red</h2>
+<p class="font-body-md text-on-surface-variant">Elite Collector</p>
+</div>
+<button class="mt-4 px-6 py-2 rounded-full font-label-sm text-label-sm bg-primary text-on-primary shadow-[5px_5px_10px_#dbdad7,-5px_-5px_10px_#ffffff] hover:opacity-80 transition-all active:shadow-[inset_5px_5px_10px_#864e5a33]">
+                    Sync Gear
+                </button>
+</div>
+<nav class="flex flex-col gap-2 flex-grow relative">
+<!-- Decorative carving line -->
+<div class="absolute left-6 top-4 bottom-4 w-1 bg-surface-dim rounded-full neu-inner opacity-50 z-0"></div>
+<button class="relative z-10 flex items-center gap-4 p-4 rounded-xl text-on-surface-variant font-body-lg text-body-lg hover:bg-surface-container-low transition-colors active:scale-95 duration-200 w-full text-left bg-surface">
+<span class="material-symbols-outlined bg-surface rounded-full p-2 neu-outer">radar</span>
+<span>Live Radar</span>
+</button>
+<button class="relative z-10 flex items-center gap-4 p-4 rounded-xl text-on-surface-variant font-body-lg text-body-lg hover:bg-surface-container-low transition-colors active:scale-95 duration-200 w-full text-left bg-surface">
+<span class="material-symbols-outlined bg-surface rounded-full p-2 neu-outer">queue_music</span>
+<span>Playlists</span>
+</button>
+<button class="relative z-10 flex items-center gap-4 p-4 rounded-xl text-secondary font-bold border-r-4 border-secondary bg-surface font-body-lg text-body-lg hover:bg-surface-container-low transition-colors active:scale-95 duration-200 w-full text-left">
+<span class="material-symbols-outlined bg-surface rounded-full p-2 shadow-[inset_5px_5px_10px_#dbdad7,inset_-5px_-5px_10px_#ffffff] text-secondary">style</span>
+<span>The Music Dex</span>
+</button>
+</nav>
+</aside>
+<!-- Main Content Canvas -->
+<main class="flex-1 px-margin-mobile md:px-margin-desktop md:ml-64 overflow-y-auto">
+<div class="max-w-4xl mx-auto flex flex-col gap-8 pb-12">
+<!-- 3D Diorama Container -->
+<div class="w-full rounded-xl neu-outer bg-surface p-4 flex flex-col items-center overflow-hidden relative mt-4">
+<div class="glass-highlight"></div>
+<div class="w-full aspect-[16/9] rounded-lg overflow-hidden neu-inner relative">
+<img alt="Route 101 Diorama" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtBI2HEg9XHXgY5-7r1X36NdH5YCTT6HhOnl-gIY8glSEStnEtercrZPQ0dsuwFsCVrgyZQopfEeELuQS_MScPXHmSPpTVjT0yCGcDyq9xm1C8Gbz-2DWov4n0i0ixZwlOf0cMUWTv5sUhKssyov9-59cmD_ZXwdU24lakZYocdSSPCLRH7OBZ9GBPy0m8akWEJjaD4fKELAUxxUNt3JIuAyhMTVeB-JkGG6j4vPB-qbXN-cE8v_eE"/>
+</div>
+<div class="mt-6 mb-2 text-center w-full px-4">
+<h1 class="font-headline-md text-headline-md text-primary flex items-center justify-center gap-2">
+                            Now Playing: Route 101 (Hoenn) 
+                            <span class="material-symbols-outlined text-secondary">music_note</span>
+</h1>
+</div>
+</div>
+<!-- Collection Progress Chart -->
+<div class="w-full rounded-xl neu-outer bg-surface p-card-padding flex flex-col gap-6 relative overflow-hidden">
+<div class="glass-highlight"></div>
+<h2 class="font-headline-md text-headline-md text-on-surface">Collection Progress</h2>
+<div class="flex flex-col gap-4 relative z-10">
+<div class="flex items-center justify-between">
+<span class="font-body-lg text-body-lg text-on-surface-variant flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-secondary"></span> Caught
+                            </span>
+<span class="font-headline-md text-headline-md text-secondary">142</span>
+</div>
+<!-- Health Bar Style Progress -->
+<div class="w-full h-8 rounded-full bg-surface neu-inner relative overflow-hidden">
+<div class="absolute top-0 left-0 h-full bg-secondary rounded-full flex items-center justify-end pr-2" style="width: 65%;">
+<div class="glass-highlight h-full"></div>
+</div>
+</div>
+<div class="flex items-center justify-between mt-4">
+<span class="font-body-lg text-body-lg text-on-surface-variant flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-primary-container"></span> Seen
+                            </span>
+<span class="font-headline-md text-headline-md text-primary-container text-opacity-80">210</span>
+</div>
+<div class="w-full h-8 rounded-full bg-surface neu-inner relative overflow-hidden">
+<div class="absolute top-0 left-0 h-full bg-primary-container rounded-full flex items-center justify-end pr-2 opacity-80" style="width: 85%;">
+<div class="glass-highlight h-full"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+<!-- Bottom Nav Bar (Player Shell) -->
+<nav class="fixed bottom-0 w-full z-50 h-32 rounded-t-lg bg-surface dark:bg-surface shadow-[0_-5px_10px_#dbdad7] md:hidden">
+<div class="flex items-center justify-center h-full px-margin-mobile gap-8 pb-4 pt-2">
+<button class="flex flex-col items-center justify-center gap-1 w-16 h-16 rounded-full text-on-surface-variant shadow-[5px_5px_10px_#dbdad7,-5px_-5px_10px_#ffffff] hover:shadow-none transition-all active:shadow-[inset_5px_5px_10px_#dbdad7,inset_-5px_-5px_10px_#ffffff] duration-150">
+<span class="material-symbols-outlined text-3xl">skip_previous</span>
+</button>
+<button class="flex flex-col items-center justify-center gap-1 w-20 h-20 rounded-full bg-primary-container text-on-primary-container shadow-[inset_5px_5px_10px_#864e5a33] transition-all hover:shadow-none active:shadow-[inset_5px_5px_10px_#dbdad7,inset_-5px_-5px_10px_#ffffff] duration-150">
+<span class="material-symbols-outlined text-4xl" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</button>
+<button class="flex flex-col items-center justify-center gap-1 w-16 h-16 rounded-full text-on-surface-variant shadow-[5px_5px_10px_#dbdad7,-5px_-5px_10px_#ffffff] hover:shadow-none transition-all active:shadow-[inset_5px_5px_10px_#dbdad7,inset_-5px_-5px_10px_#ffffff] duration-150">
+<span class="material-symbols-outlined text-3xl">skip_next</span>
+</button>
+</div>
+</nav>
+<!-- Desktop bottom player -->
+<nav class="hidden md:flex fixed bottom-0 left-0 w-full px-margin-desktop py-4 flex-col items-center justify-center gap-4 bg-surface dark:bg-surface shadow-[0_-5px_10px_#dbdad7] z-50 h-32 rounded-t-lg">
+<div class="flex items-center justify-center gap-8 w-full max-w-2xl mx-auto">
+<button class="flex items-center justify-center w-16 h-16 rounded-full text-on-surface-variant shadow-[5px_5px_10px_#dbdad7,-5px_-5px_10px_#ffffff] hover:shadow-none transition-all active:shadow-[inset_5px_5px_10px_#dbdad7,inset_-5px_-5px_10px_#ffffff] duration-150">
+<span class="material-symbols-outlined text-3xl">skip_previous</span>
+</button>
+<button class="flex items-center justify-center w-20 h-20 rounded-full bg-primary-container text-on-primary-container shadow-[inset_5px_5px_10px_#864e5a33] transition-all hover:shadow-none active:shadow-[inset_5px_5px_10px_#dbdad7,inset_-5px_-5px_10px_#ffffff] duration-150">
+<span class="material-symbols-outlined text-5xl" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</button>
+<button class="flex items-center justify-center w-16 h-16 rounded-full text-on-surface-variant shadow-[5px_5px_10px_#dbdad7,-5px_-5px_10px_#ffffff] hover:shadow-none transition-all active:shadow-[inset_5px_5px_10px_#dbdad7,inset_-5px_-5px_10px_#ffffff] duration-150">
+<span class="material-symbols-outlined text-3xl">skip_next</span>
+</button>
+</div>
+<!-- thick health bar style progress for desktop -->
+<div class="w-full max-w-3xl h-4 rounded-full bg-surface neu-inner relative overflow-hidden mt-2">
+<div class="absolute top-0 left-0 h-full bg-secondary rounded-full flex items-center justify-end pr-2" style="width: 45%;">
+<div class="glass-highlight h-full"></div>
+</div>
+</div>
+</nav>
+</body></html>

@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Pokégear Audio - Trainer Profile</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "primary-fixed": "#ffd9df",
+                      "secondary-container": "#aeedd5",
+                      "on-secondary-container": "#316d5b",
+                      "background": "#faf9f6",
+                      "on-primary": "#ffffff",
+                      "tertiary-fixed-dim": "#9ecede",
+                      "secondary-fixed": "#b1efd8",
+                      "outline-variant": "#d6c2c4",
+                      "surface-tint": "#864e5a",
+                      "surface-bright": "#faf9f6",
+                      "on-secondary": "#ffffff",
+                      "on-surface-variant": "#514345",
+                      "surface-container-lowest": "#ffffff",
+                      "secondary-fixed-dim": "#96d3bd",
+                      "on-tertiary-fixed": "#001f27",
+                      "tertiary-container": "#a2d2e2",
+                      "outline": "#837375",
+                      "surface-variant": "#e3e2e0",
+                      "on-secondary-fixed": "#002118",
+                      "on-surface": "#1a1c1a",
+                      "primary": "#864e5a",
+                      "surface-container-low": "#f4f3f1",
+                      "error-container": "#ffdad6",
+                      "primary-fixed-dim": "#fbb3c1",
+                      "surface-container": "#efeeeb",
+                      "secondary": "#2c6956",
+                      "on-tertiary-container": "#2b5b69",
+                      "inverse-on-surface": "#f2f1ee",
+                      "surface-dim": "#dbdad7",
+                      "on-tertiary-fixed-variant": "#1a4d5a",
+                      "on-primary-container": "#7b4551",
+                      "inverse-surface": "#2f312f",
+                      "tertiary": "#356572",
+                      "on-primary-fixed": "#360c19",
+                      "on-primary-fixed-variant": "#6b3743",
+                      "surface-container-high": "#e9e8e5",
+                      "on-secondary-fixed-variant": "#0d503f",
+                      "surface": "#faf9f6",
+                      "inverse-primary": "#fbb3c1",
+                      "on-error": "#ffffff",
+                      "on-error-container": "#93000a",
+                      "on-tertiary": "#ffffff",
+                      "on-background": "#1a1c1a",
+                      "primary-container": "#ffb7c5",
+                      "tertiary-fixed": "#baeafa",
+                      "surface-container-highest": "#e3e2e0",
+                      "error": "#ba1a1a"
+              },
+              "borderRadius": {
+                      "DEFAULT": "1rem",
+                      "lg": "2rem",
+                      "xl": "3rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "card-padding": "24px",
+                      "gutter": "24px",
+                      "margin-desktop": "48px",
+                      "base": "8px",
+                      "margin-mobile": "16px"
+              },
+              "fontFamily": {
+                      "label-sm": [
+                              "Quicksand"
+                      ],
+                      "headline-lg": [
+                              "Quicksand"
+                      ],
+                      "headline-lg-mobile": [
+                              "Quicksand"
+                      ],
+                      "body-lg": [
+                              "Quicksand"
+                      ],
+                      "body-md": [
+                              "Quicksand"
+                      ],
+                      "headline-md": [
+                              "Quicksand"
+                      ]
+              },
+              "fontSize": {
+                      "label-sm": [
+                              "13px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "26px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "600"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+    </script>
+<style type="text/tailwindcss">
+        @layer utilities {
+            .neu-flat {
+                @apply bg-surface shadow-[5px_5px_10px_#dbdad7,-5px_-5px_10px_#ffffff];
+            }
+            .neu-pressed {
+                @apply bg-surface shadow-[inset_5px_5px_10px_#dbdad7,inset_-5px_-5px_10px_#ffffff];
+            }
+            .neu-hover {
+                @apply hover:shadow-[3px_3px_6px_#dbdad7,-3px_-3px_6px_#ffffff] transition-shadow duration-300;
+            }
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen overflow-x-hidden flex selection:bg-primary-container selection:text-on-primary-container">
+<!-- Navigation Shell: Hidden on Mobile, Visible on Desktop -->
+<nav class="hidden md:flex flex-col h-screen w-64 left-0 top-0 bg-surface dark:bg-surface shadow-[5px_0_10px_#dbdad7] p-card-padding gap-base shrink-0 sticky top-0 z-40">
+<!-- Header / Identity -->
+<div class="flex flex-col items-center mb-8 gap-4">
+<div class="w-24 h-24 rounded-full overflow-hidden neu-flat border-4 border-surface p-1">
+<img class="w-full h-full rounded-full object-cover" data-alt="A detailed, vibrant 2D illustration in a soft neomorphic style of a young trainer character avatar, viewed from the shoulders up, set against a calming pastel mint green background. The lighting is soft and diffused, emphasizing the 'calm playfulness' aesthetic. The character has an approachable, relaxed expression." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB81WbTqehhriDEP1ViLRNYUD1TuaptRBdEjIaEu7ObZQQ-ZiRIi6usiBjdm9099mfmTbAqe_sOWqGkrD5pDeTnQiDWAFZhHgf2tIrtbyCVPdDcSVY95VxXNV-93Pe19mLDx8HhDM9dxDXASyaa5QGz1Yo4kln1c5ea9Ar10pX0oyRixiKgVEHzgqo05dMa5da21QUkoIKLUYsz9hTEpIB2c8zQZGMebRW5qMavQ2x94a6bclRmX9zN"/>
+</div>
+<div class="text-center">
+<h1 class="font-headline-md text-headline-md text-primary">Pokégear Audio</h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Trainer Profile</p>
+</div>
+</div>
+<!-- Navigation Links -->
+<ul class="flex flex-col gap-2 w-full mt-4">
+<li>
+<a class="flex items-center gap-3 p-3 rounded-xl neu-flat hover:opacity-80 transition-opacity text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">radar</span>
+<span class="font-body-lg text-body-lg">Live Radar</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 p-3 rounded-xl neu-flat hover:opacity-80 transition-opacity text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">queue_music</span>
+<span class="font-body-lg text-body-lg">Playlists</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 p-3 rounded-xl neu-flat hover:opacity-80 transition-opacity text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">style</span>
+<span class="font-body-lg text-body-lg">The Music Dex</span>
+</a>
+</li>
+</ul>
+<!-- Bottom Action -->
+<div class="mt-auto w-full pt-6">
+<button class="w-full py-4 rounded-xl neu-flat text-secondary dark:text-secondary-fixed-dim font-headline-md text-headline-md hover:bg-surface-container-low transition-colors active:scale-95 duration-200 flex items-center justify-center gap-2">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">sync</span>
+                Sync Gear
+            </button>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-1 flex flex-col min-h-screen relative w-full pb-40 md:pb-8">
+<!-- Top App Bar (Mobile Only for Nav, Desktop for Actions) -->
+<header class="w-full top-0 bg-surface dark:bg-surface shadow-[5px_5px_10px_#dbdad7,-5px_-5px_10px_#ffffff] flex justify-between items-center px-margin-mobile md:px-margin-desktop py-4 sticky z-30">
+<div class="md:hidden">
+<span class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-primary dark:text-primary-fixed-dim">Pokégear Audio</span>
+</div>
+<!-- Empty div to push actions to right on desktop if needed, or handle back buttons -->
+<div class="hidden md:block"></div>
+<div class="flex items-center gap-4">
+<button class="w-12 h-12 rounded-full neu-flat flex items-center justify-center text-on-surface-variant hover:opacity-80 transition-opacity active:shadow-[inset_5px_5px_10px_#dbdad7,inset_-5px_-5px_10px_#ffffff]">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<button class="w-12 h-12 rounded-full neu-pressed flex items-center justify-center text-primary font-bold hover:opacity-80 transition-opacity">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">account_circle</span>
+</button>
+</div>
+</header>
+<div class="px-margin-mobile md:px-margin-desktop py-8 md:py-12 max-w-4xl mx-auto w-full">
+<!-- Trainer ID Section -->
+<section class="mb-12 flex flex-col items-center text-center">
+<div class="relative mb-6">
+<!-- Outer Glow Effect -->
+<div class="absolute inset-0 bg-primary-container rounded-full blur-xl opacity-50 scale-110"></div>
+<div class="w-40 h-40 rounded-full neu-flat border-8 border-surface p-2 relative z-10 flex items-center justify-center">
+<img class="w-full h-full rounded-full object-cover" data-alt="A highly detailed close-up portrait of 'Trainer Yash', a calm and modern music enthusiast character. Rendered in a 3D neomorphic style with soft, pillowy lighting and pastel colors. The character is wearing futuristic, sleek headphones. The background is a clean, minimal off-white surface that perfectly matches the light-mode UI. Mood is relaxed and focused." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCEs6BltqJwj_mIBS4tW32YYnJqpcM6J9_gXZvlpaDpRgTgJ1QsfUdZKbaPYoiEjU4p1D5EZz7pP3h9O6x1RkJtLWPbzYOHtgUMlIpgmjFmKghEoTLIHzfcdtRQDgIQ1hQINVEa51FZ8JhJva9VmW_PqyI2qLs2CZ0JYJD3CXxSuJVNof4f6L7jAFdiMFgqRjy717bdw5i7XAe5qzojz6CmGF8lgVAr2KdfHNDXF8gW3L0uFDwDlVTq"/>
+</div>
+</div>
+<h2 class="font-headline-lg text-headline-lg md:font-headline-lg md:text-headline-lg text-on-surface mb-2">Trainer Yash</h2>
+<p class="font-body-lg text-body-lg text-secondary">Audio Explorer</p>
+</section>
+<!-- Stats Widgets -->
+<section class="grid grid-cols-2 gap-4 md:gap-8 mb-12">
+<!-- Listening Hours -->
+<div class="neu-flat rounded-xl p-card-padding flex flex-col items-center justify-center text-center relative overflow-hidden group">
+<div class="absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b from-white/40 to-transparent pointer-events-none"></div>
+<div class="w-16 h-16 rounded-full neu-pressed mb-4 flex items-center justify-center text-primary-container">
+<span class="material-symbols-outlined text-4xl" style="font-variation-settings: 'FILL' 1;">headphones</span>
+</div>
+<span class="font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-on-surface mb-1">142<span class="font-body-md text-body-md text-on-surface-variant ml-1">hrs</span></span>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest">Listening Time</span>
+</div>
+<!-- Regions Explored -->
+<div class="neu-flat rounded-xl p-card-padding flex flex-col items-center justify-center text-center relative overflow-hidden group">
+<div class="absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b from-white/40 to-transparent pointer-events-none"></div>
+<div class="w-16 h-16 rounded-full neu-pressed mb-4 flex items-center justify-center text-secondary-container">
+<span class="material-symbols-outlined text-4xl" style="font-variation-settings: 'FILL' 1;">map</span>
+</div>
+<span class="font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-on-surface mb-1">6<span class="font-body-md text-body-md text-on-surface-variant mx-1">/</span>8</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest">Regions Explored</span>
+</div>
+</section>
+<!-- Settings Toggles -->
+<section class="flex flex-col gap-6">
+<!-- Audio Streaming Quality -->
+<div class="neu-flat rounded-xl p-card-padding flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full neu-pressed flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">graphic_eq</span>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Hi-Res Audio</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Stream in lossless quality</p>
+</div>
+</div>
+<!-- Toggle Switch Active (Pink) -->
+<button aria-pressed="true" class="w-16 h-8 rounded-full bg-primary-fixed-dim shadow-[inset_3px_3px_6px_#d598a4,inset_-3px_-3px_6px_#ffced6] relative flex items-center px-1 transition-all duration-300">
+<div class="w-6 h-6 rounded-full bg-white shadow-md transform translate-x-8 transition-transform duration-300"></div>
+</button>
+</div>
+<!-- Location Tracking -->
+<div class="neu-flat rounded-xl p-card-padding flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full neu-pressed flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined">location_on</span>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Location Sync</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Match music to current region</p>
+</div>
+</div>
+<!-- Toggle Switch Active (Mint) -->
+<button aria-pressed="true" class="w-16 h-8 rounded-full bg-secondary-fixed shadow-[inset_3px_3px_6px_#96cba8,inset_-3px_-3px_6px_#ccffe8] relative flex items-center px-1 transition-all duration-300">
+<div class="w-6 h-6 rounded-full bg-white shadow-md transform translate-x-8 transition-transform duration-300"></div>
+</button>
+</div>
+<!-- Offline Mode (Inactive Example) -->
+<div class="neu-flat rounded-xl p-card-padding flex items-center justify-between opacity-75">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full neu-pressed flex items-center justify-center text-outline">
+<span class="material-symbols-outlined">cloud_off</span>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Offline Mode</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Only play downloaded tracks</p>
+</div>
+</div>
+<!-- Toggle Switch Inactive -->
+<button aria-pressed="false" class="w-16 h-8 rounded-full neu-pressed relative flex items-center px-1 transition-all duration-300">
+<div class="w-6 h-6 rounded-full bg-surface-variant shadow-sm transform translate-x-0 transition-transform duration-300"></div>
+</button>
+</div>
+</section>
+</div>
+</main>
+<!-- Bottom Nav Bar: Mobile Only -->
+<nav class="md:hidden fixed bottom-0 w-full z-50 h-32 rounded-t-[2rem] bg-surface dark:bg-surface shadow-[0_-5px_10px_#dbdad7]">
+<div class="fixed bottom-0 left-0 w-full px-margin-desktop py-4 flex flex-col items-center justify-center gap-4">
+<!-- Simplified Player controls for mobile shell as per JSON constraints -->
+<div class="flex justify-center items-center gap-8 w-full">
+<button class="w-12 h-12 rounded-full neu-flat flex items-center justify-center text-on-surface-variant hover:shadow-none transition-all active:shadow-[inset_5px_5px_10px_#dbdad7,inset_-5px_-5px_10px_#ffffff] duration-150">
+<span class="material-symbols-outlined text-2xl">skip_previous</span>
+</button>
+<button class="w-16 h-16 rounded-full bg-primary-container text-on-primary-container shadow-[inset_5px_5px_10px_#864e5a33] flex items-center justify-center hover:shadow-none transition-all active:shadow-[inset_5px_5px_10px_#dbdad7,inset_-5px_-5px_10px_#ffffff] duration-150">
+<span class="material-symbols-outlined text-4xl" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</button>
+<button class="w-12 h-12 rounded-full neu-flat flex items-center justify-center text-on-surface-variant hover:shadow-none transition-all active:shadow-[inset_5px_5px_10px_#dbdad7,inset_-5px_-5px_10px_#ffffff] duration-150">
+<span class="material-symbols-outlined text-2xl">skip_next</span>
+</button>
+</div>
+<!-- The active state logic indicates we shouldn't highlight nav items if we are in profile, so they remain default player controls -->
+</div>
+</nav>
+<!-- Desktop Floating Player (Optional enhancement to match the "BottomNavBar type: player_shell" intent on desktop without breaking layout) -->
+<div class="hidden md:flex fixed bottom-8 right-margin-desktop w-96 rounded-xl neu-flat p-4 z-50 items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-full bg-tertiary-container neu-pressed"></div>
+<div>
+<p class="font-label-sm text-label-sm text-on-surface">Route 1 (Spring)</p>
+<p class="font-body-md text-body-md text-on-surface-variant text-sm">Kanto Region</p>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button class="w-10 h-10 rounded-full neu-flat flex items-center justify-center text-on-surface-variant hover:shadow-none transition-all active:shadow-[inset_5px_5px_10px_#dbdad7,inset_-5px_-5px_10px_#ffffff]">
+<span class="material-symbols-outlined text-xl">skip_previous</span>
+</button>
+<button class="w-12 h-12 rounded-full bg-primary-container text-on-primary-container shadow-[inset_5px_5px_10px_#864e5a33] flex items-center justify-center hover:shadow-none transition-all active:shadow-[inset_5px_5px_10px_#dbdad7,inset_-5px_-5px_10px_#ffffff]">
+<span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</button>
+<button class="w-10 h-10 rounded-full neu-flat flex items-center justify-center text-on-surface-variant hover:shadow-none transition-all active:shadow-[inset_5px_5px_10px_#dbdad7,inset_-5px_-5px_10px_#ffffff]">
+<span class="material-symbols-outlined text-xl">skip_next</span>
+</button>
+</div>
+</div>
+</body></html>

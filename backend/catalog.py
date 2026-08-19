@@ -176,14 +176,17 @@ class TrackCatalog:
                                 score=float(scores[index]),
                                 environment_tags=track.get("environment_tags", []),
                                 feature_vector=track.get("feature_vector", []),
-                                            embedding_model_version=track.get("embedding_model_version"),
-                                            embedding_generated_at=track.get("embedding_generated_at"),
+                                embedding_model_version=track.get("embedding_model_version"),
+                                embedding_generated_at=track.get("embedding_generated_at"),
+                                spotify_id=track.get("spotify_id"),
+                                spotify_preview_url=track.get("spotify_preview_url"),
+                                spotify_external_url=track.get("spotify_external_url"),
                             )
                         )
                         seen_track_ids.add(track_id)
                         if len(items) >= top_k:
                             break
-        while(len(items) <top_k):
+        while(len(items) < top_k):
             added = False
             for index in ranked:
                 track = self.state.tracks[index]
@@ -201,8 +204,10 @@ class TrackCatalog:
                             feature_vector=track.get("feature_vector", []),
                             embedding_model_version=track.get("embedding_model_version"),
                             embedding_generated_at=track.get("embedding_generated_at"),
+                            spotify_id=track.get("spotify_id"),
+                            spotify_preview_url=track.get("spotify_preview_url"),
+                            spotify_external_url=track.get("spotify_external_url"),
                         )
-
                     )
                     added = True
                     seen_track_ids.add(track_id)
@@ -213,6 +218,7 @@ class TrackCatalog:
         for i, item in enumerate(items, start=1):
             item.rank = i
         return items
+
 
     def upsert_seed_file(self) -> None:
         """Write a seed file if one does not already exist."""
