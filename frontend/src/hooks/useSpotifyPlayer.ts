@@ -11,13 +11,16 @@ export function useSpotifyPlayer(token: string | null) {
   useEffect(() => {
     if (!token || hasInitialized.current) return;
     
-    // Add the Spotify Web Playback SDK script to the document
-    const script = document.createElement('script');
-    script.src = 'https://sdk.scdn.co/spotify-player.js';
-    script.async = true;
-    document.body.appendChild(script);
+    // Add the Spotify Web Playback SDK script to the document if not present
+    if (!document.getElementById('spotify-player-sdk')) {
+      const script = document.createElement('script');
+      script.id = 'spotify-player-sdk';
+      script.src = 'https://sdk.scdn.co/spotify-player.js';
+      script.async = true;
+      document.body.appendChild(script);
+    }
 
-    window.onSpotifyWebPlaybackSDKReady = () => {
+    const initializePlayer = () => {
       const playerInstance = new window.Spotify.Player({
         name: 'Overworld Contextual Engine',
         getOAuthToken: (cb) => { cb(token); },
@@ -46,10 +49,14 @@ export function useSpotifyPlayer(token: string | null) {
 
       playerInstance.addListener('authentication_error', ({ message }) => {
         console.error('Authentication Error:', message);
+        // Clear invalid token
+        localStorage.removeItem('spotify_access_token');
+        window.location.reload();
       });
       
       playerInstance.addListener('account_error', ({ message }) => {
         console.error('Account Error:', message);
+        alert('Spotify Premium is required for Web Playback SDK.');
       });
 
       playerInstance.connect().then(success => {
@@ -61,6 +68,12 @@ export function useSpotifyPlayer(token: string | null) {
       setPlayer(playerInstance);
       hasInitialized.current = true;
     };
+
+    if (window.Spotify) {
+      initializePlayer();
+    } else {
+      window.onSpotifyWebPlaybackSDKReady = initializePlayer;
+    }
 
     return () => {
       if (player) {
