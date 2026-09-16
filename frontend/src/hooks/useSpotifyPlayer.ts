@@ -1,4 +1,12 @@
+/// <reference types="spotify-web-playback-sdk" />
 import { useState, useEffect, useRef } from 'react';
+
+declare global {
+  interface Window {
+    Spotify: typeof Spotify;
+    onSpotifyWebPlaybackSDKReady: () => void;
+  }
+}
 
 export function useSpotifyPlayer(token: string | null) {
   const [player, setPlayer] = useState<Spotify.Player | null>(null);
@@ -23,43 +31,43 @@ export function useSpotifyPlayer(token: string | null) {
     const initializePlayer = () => {
       const playerInstance = new window.Spotify.Player({
         name: 'Overworld Contextual Engine',
-        getOAuthToken: (cb) => { cb(token); },
+        getOAuthToken: (cb: (token: string) => void) => { cb(token); },
         volume: 0.5
       });
 
-      playerInstance.addListener('ready', ({ device_id }) => {
+      playerInstance.addListener('ready', ({ device_id }: { device_id: string }) => {
         console.log('Ready with Device ID', device_id);
         setIsReady(true);
         setDeviceId(device_id);
       });
 
-      playerInstance.addListener('not_ready', ({ device_id }) => {
+      playerInstance.addListener('not_ready', ({ device_id }: { device_id: string }) => {
         console.log('Device ID has gone offline', device_id);
         setIsReady(false);
       });
 
-      playerInstance.addListener('player_state_changed', (state) => {
+      playerInstance.addListener('player_state_changed', (state: Spotify.PlaybackState | null) => {
         if (!state) return;
         setPlaybackState(state);
       });
       
-      playerInstance.addListener('initialization_error', ({ message }) => {
+      playerInstance.addListener('initialization_error', ({ message }: { message: string }) => {
         console.error('Initialization Error:', message);
       });
 
-      playerInstance.addListener('authentication_error', ({ message }) => {
+      playerInstance.addListener('authentication_error', ({ message }: { message: string }) => {
         console.error('Authentication Error:', message);
         // Clear invalid token
         localStorage.removeItem('spotify_access_token');
         window.location.reload();
       });
       
-      playerInstance.addListener('account_error', ({ message }) => {
+      playerInstance.addListener('account_error', ({ message }: { message: string }) => {
         console.error('Account Error:', message);
         alert('Spotify Premium is required for Web Playback SDK.');
       });
 
-      playerInstance.connect().then(success => {
+      playerInstance.connect().then((success: boolean) => {
         if (success) {
           console.log('The Web Playback SDK successfully connected to Spotify!');
         }
@@ -80,7 +88,9 @@ export function useSpotifyPlayer(token: string | null) {
         player.disconnect();
       }
     };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [token]);
 
   return { player, isReady, deviceId, playbackState };
 }
+
