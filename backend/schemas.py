@@ -105,3 +105,42 @@ class RecommendationResponse(BaseModel):
     resolved_location: Optional[str] = None
     recommendations: List[RecommendationItem]
 
+
+from datetime import datetime
+
+class DiscoveryBase(BaseModel):
+    track_id: str
+    environment_tag: Optional[str] = None
+
+class DiscoveryCreate(DiscoveryBase):
+    pass
+
+class DiscoveryResponse(DiscoveryBase):
+    id: int
+    user_id: int
+    discovered_at: datetime
+
+    class Config:
+        orm_mode = True
+        from_attributes = True
+
+class UserBase(BaseModel):
+    spotify_id: str
+    display_name: Optional[str] = None
+    email: Optional[str] = None
+    avatar_url: Optional[str] = None
+
+class UserCreate(UserBase):
+    pass
+
+class UserResponse(UserBase):
+    id: int
+    created_at: datetime
+    last_login: datetime
+
+    class Config:
+        orm_mode = True
+        from_attributes = True
+
+class UserProfileResponse(UserResponse):
+    discoveries: List[DiscoveryResponse] = []

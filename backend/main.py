@@ -47,9 +47,13 @@ def bootstrap_catalog() -> None:
     logger.info("Catalog bootstrap complete: %s", catalog.summary())
 
 
+from database import engine, Base
+from users import router as users_router
+
 @asynccontextmanager
 async def lifespan(_app: FastAPI):
     """Start the catalog bootstrap job and allow the app to serve."""
+    Base.metadata.create_all(bind=engine)
     def _bootstrap() -> None:
         try:
             bootstrap_catalog()
@@ -77,6 +81,7 @@ app.add_middleware(
 
 app.include_router(auth_router)
 app.include_router(spotify_router)
+app.include_router(users_router)
 
 @app.middleware("http")
 async def request_logging_middleware(request: Request, call_next) -> Response:
