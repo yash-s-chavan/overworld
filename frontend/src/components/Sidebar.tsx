@@ -1,4 +1,5 @@
 import { LogIn, Link, Map, Library } from 'lucide-react';
+import type { UserProfile } from '../types';
 
 interface SidebarProps {
   page: 'dashboard' | 'musicdex';
@@ -6,9 +7,10 @@ interface SidebarProps {
   token: string | null;
   loadCatalog: () => void;
   API: string;
+  userProfile: UserProfile | null;
 }
 
-export function Sidebar({ page, setPage, token, loadCatalog, API }: SidebarProps) {
+export function Sidebar({ page, setPage, token, loadCatalog, API, userProfile }: SidebarProps) {
   return (
     <aside className="hidden md:flex flex-col h-full w-72 bg-white border-r border-[#dfe4ea] fixed left-0 top-0 z-40 p-6 shadow-sm">
       <div className="flex items-center gap-3 mb-10 mt-2">
@@ -21,12 +23,16 @@ export function Sidebar({ page, setPage, token, loadCatalog, API }: SidebarProps
       <div className="flex items-center gap-4 mb-10 bg-[#f8f9fa] p-4 rounded-xl border border-[#dfe4ea]">
         <img
           alt="Trainer"
-          src="https://lh3.googleusercontent.com/aida-public/AB6AXuDmaC-VD2KgeKGwFvOgrdu0Rf89k3xzriiRh5CCile2ngBtwL-yGmAyJYyFKTItdO7zpwkh8OROL52NJ1GFsj-xNPcJyzJUg8HsSp2jfKxnQKfdlPEIxs0Wq9NhL_usOoVr9zwDPssKErotDfefSjrPXEuZZJLuyGa76jgYlN34BYX2IT_FNOy9nyVqEkaSEWw7zuTl-ZqUMVWO73pXEcp9MJHW2ZalBypE_zoveAjGJqKB8Tx6Qqdx"
+          src={userProfile?.avatar_url || "https://lh3.googleusercontent.com/aida-public/AB6AXuDmaC-VD2KgeKGwFvOgrdu0Rf89k3xzriiRh5CCile2ngBtwL-yGmAyJYyFKTItdO7zpwkh8OROL52NJ1GFsj-xNPcJyzJUg8HsSp2jfKxnQKfdlPEIxs0Wq9NhL_usOoVr9zwDPssKErotDfefSjrPXEuZZJLuyGa76jgYlN34BYX2IT_FNOy9nyVqEkaSEWw7zuTl-ZqUMVWO73pXEcp9MJHW2ZalBypE_zoveAjGJqKB8Tx6Qqdx"}
           className="w-12 h-12 rounded-full object-cover shadow-sm"
         />
-        <div>
-          <h2 className="font-display font-semibold text-[#2f3542]">Trainer Red</h2>
-          <p className="text-sm text-[#747d8c]">Level 42 Explorer</p>
+        <div className="overflow-hidden">
+          <h2 className="font-display font-semibold text-[#2f3542] truncate">
+            {userProfile?.display_name || 'Guest Trainer'}
+          </h2>
+          <p className="text-sm text-[#747d8c] truncate">
+            {userProfile ? `Level ${Math.max(1, Math.floor((userProfile.discoveries?.length || 0) / 10))} Explorer` : 'Not Connected'}
+          </p>
         </div>
       </div>
 

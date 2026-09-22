@@ -1,5 +1,5 @@
 import { Library, Lock, Play } from 'lucide-react';
-import type { CatalogTrack, SpotifyTrackMeta } from '../types';
+import type { CatalogTrack, SpotifyTrackMeta, UserProfile } from '../types';
 
 interface MusicDexProps {
   catalog: CatalogTrack[];
@@ -9,14 +9,18 @@ interface MusicDexProps {
   playTrack: (id: string) => void;
   caughtCount: number;
   seenCount: number;
+  userProfile: UserProfile | null;
 }
 
 const FALLBACK_COLORS = ['bg-[#ffb7c5]', 'bg-[#aeedd5]', 'bg-[#a2d2e2]', 'bg-[#ffd9df]', 'bg-[#b1efd8]'];
 
 export function MusicDex({
-  catalog, spotifyMeta, catalogLoading, isReady, playTrack, caughtCount, seenCount
+  catalog, spotifyMeta, catalogLoading, isReady, playTrack, caughtCount, seenCount, userProfile
 }: MusicDexProps) {
   
+  // Create a set of discovered track IDs for fast lookup
+  const discoveredTrackIds = new Set(userProfile?.discoveries?.map(d => d.track_id) || []);
+
   return (
     <div className="flex flex-col gap-8">
       {/* Header */}
@@ -47,8 +51,10 @@ export function MusicDex({
             const meta = track.spotify_id ? spotifyMeta[track.spotify_id] : null;
             const artUrl = meta?.album_art;
             const fallbackColor = FALLBACK_COLORS[i % FALLBACK_COLORS.length];
-            const discovered = !!track.spotify_id;
-            const canPlay = discovered && isReady;
+            // Discovered if it's in the backend DB discoveries list
+            const discovered = discoveredTrackIds.has(track.track_id);
+            // It can only be played if we know its Spotify ID and the player is ready
+            const canPlay = discovered && !!track.spotify_id && isReady;
 
             return (
               <div 

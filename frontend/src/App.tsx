@@ -5,7 +5,7 @@ import { Header } from './components/Header';
 import { Player } from './components/Player';
 import { LiveRadar } from './pages/LiveRadar';
 import { MusicDex } from './pages/MusicDex';
-import type { CatalogTrack, RecommendationItem, SpotifyTrackMeta } from './types';
+import type { CatalogTrack, RecommendationItem, SpotifyTrackMeta, UserProfile } from './types';
 import './index.css';
 
 const API = 'http://127.0.0.1:8000';
@@ -16,6 +16,7 @@ export default function App() {
   const [token, setToken] = useState<string | null>(null);
   const { player, isReady, deviceId, playbackState } = useSpotifyPlayer(token);
   const [page, setPage] = useState<Page>('dashboard');
+  const [userProfile, setUserProfile] = useState<UserProfile | null>(null);
 
   // Catalog State
   const [catalog, setCatalog] = useState<CatalogTrack[]>([]);
@@ -44,6 +45,21 @@ export default function App() {
     const stored = localStorage.getItem('spotify_access_token');
     if (stored) setToken(stored);
   }, []);
+
+  useEffect(() => {
+    if (token) {
+      fetch(`${API}/users/me`, {
+        headers: { Authorization: `Bearer ${token}` }
+      })
+        .then(res => res.json())
+        .then(data => {
+          if (!data.detail) {
+            setUserProfile(data);
+          }
+        })
+        .catch(err => console.error("Failed to fetch user profile", err));
+    }
+  }, [token]);
 
   // Load Catalog
   const loadCatalog = useCallback(async () => {
@@ -100,10 +116,38 @@ export default function App() {
         body: JSON.stringify({ latitude: lat, longitude: lon }),
       });
       const data = await res.json();
-      setResolvedEnv(data.resolved_environment || '');
+      const env = data.resolved_environment || '';
+      setResolvedEnv(env);
       setResolvedLocation(data.resolved_location || '');
       const recs: RecommendationItem[] = data.recommendations || [];
       setRecommendations(recs);
+
+      // Register discoveries on the backend
+      if (token && recs.length > 0) {
+        for (const rec of recs) {
+          fetch(`${API}/users/me/discoveries`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({ track_id: rec.track_id, environment_tag: env })
+          })
+          .then(res => res.json())
+          .then(newDiscovery => {
+            if (!newDiscovery.detail) {
+              setUserProfile(prev => {
+                if (!prev) return prev;
+                // Only add if not already in discoveries
+                const exists = prev.discoveries.some(d => d.track_id === newDiscovery.track_id);
+                if (exists) return prev;
+                return { ...prev, discoveries: [...prev.discoveries, newDiscovery] };
+              });
+            }
+          })
+          .catch(err => console.error("Failed to save discovery", err));
+        }
+      }
 
       const missingIds = recs
         .map((r: RecommendationItem) => r.spotify_id)
@@ -131,10 +175,10 @@ export default function App() {
       }
     } catch (e) { console.error('Recommendation failed', e); }
     finally { setIsFetching(false); }
-  }, [spotifyMeta, isReady, playTrack]);
+  }, [spotifyMeta, isReady, playTrack, token]);
 
   // Derived State
-  const caughtCount = catalog.filter(t => t.spotify_id).length;
+  const caughtCount = userProfile?.discoveries.length || 0;
   const seenCount = catalog.length;
 
   return (
@@ -148,6 +192,7 @@ export default function App() {
           token={token} 
           loadCatalog={loadCatalog}
           API={API}
+          userProfile={userProfile}
         />
         
         <main className="flex-1 px-4 md:px-8 md:ml-72 w-full pt-8 pb-12 overflow-y-auto">
@@ -174,6 +219,7 @@ export default function App() {
                 playTrack={playTrack}
                 caughtCount={caughtCount}
                 seenCount={seenCount}
+                userProfile={userProfile}
               />
             )}
           </div>

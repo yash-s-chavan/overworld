@@ -29,3 +29,22 @@ export interface RecommendationItem {
   environment_tags: string[];
   spotify_id: string | null;
 }
+
+export interface Discovery {
+  id: number;
+  user_id: number;
+  track_id: string;
+  environment_tag: string | null;
+  discovered_at: string;
+}
+
+export interface UserProfile {
+  id: number;
+  spotify_id: string;
+  display_name: string | null;
+  email: string | null;
+  avatar_url: string | null;
+  created_at: string;
+  last_login: string;
+  discoveries: Discovery[];
+}
