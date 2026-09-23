@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, DateTime, ForeignKey, UniqueConstraint
+from sqlalchemy import Column, Integer, String, DateTime, ForeignKey, UniqueConstraint, Boolean
 from sqlalchemy.orm import relationship
 from datetime import datetime
 
@@ -8,10 +8,23 @@ class User(Base):
     __tablename__ = "users"
 
     id = Column(Integer, primary_key=True, index=True)
-    spotify_id = Column(String, unique=True, index=True, nullable=False)
+    username = Column(String, unique=True, index=True, nullable=False)
+    password = Column(String, nullable=False)
+    session_token = Column(String, unique=True, index=True, nullable=True)
+    spotify_id = Column(String, unique=True, index=True, nullable=True)
+    spotify_access_token = Column(String, nullable=True)
+    spotify_refresh_token = Column(String, nullable=True)
+    
     display_name = Column(String, nullable=True)
     email = Column(String, nullable=True)
     avatar_url = Column(String, nullable=True)
+    
+    favorite_region = Column(String, nullable=True)
+    timezone = Column(String, nullable=True)
+    favorite_pokemon = Column(String, nullable=True)
+    theme_color = Column(String, default="#ff4757")
+    onboarded = Column(Boolean, default=False)
+    
     created_at = Column(DateTime, default=datetime.utcnow)
     last_login = Column(DateTime, default=datetime.utcnow)
 

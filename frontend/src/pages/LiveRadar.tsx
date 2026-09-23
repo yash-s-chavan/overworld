@@ -30,7 +30,7 @@ export function LiveRadar({
         <div>
           <h2 className="font-display text-3xl font-bold text-[#2f3542]">Live Radar</h2>
           <div className="flex items-center gap-2 mt-2 text-[#747d8c] font-medium">
-            <Compass size={18} className={isFetching ? 'animate-spin text-[#ff4757]' : ''} />
+            <Compass size={18} className={isFetching ? 'animate-spin text-[var(--primary-color)]' : ''} />
             <span>{resolvedLocation || 'Awaiting location signal...'}</span>
           </div>
         </div>
@@ -38,7 +38,7 @@ export function LiveRadar({
           <button 
             onClick={() => simulateLocation(40.7588, -73.9851)}
             disabled={isFetching}
-            className="px-4 py-2 bg-white rounded-lg shadow-sm border border-[#dfe4ea] text-[#2f3542] hover:bg-[#f8f9fa] hover:border-[#ff4757] transition-all font-medium text-sm disabled:opacity-50 flex items-center gap-2"
+            className="px-4 py-2 bg-white rounded-lg shadow-sm border border-[#dfe4ea] text-[#2f3542] hover:bg-[#f8f9fa] hover:border-[var(--primary-color)] transition-all font-medium text-sm disabled:opacity-50 flex items-center gap-2"
           >
             <MapPin size={16} /> Times Sq.
           </button>
@@ -71,13 +71,13 @@ export function LiveRadar({
             />
             {isFetching && (
               <div className="absolute inset-0 flex flex-col items-center justify-center text-white z-10">
-                <Target size={48} className="animate-ping text-[#ff4757] mb-4" />
+                <Target size={48} className="animate-ping text-[var(--primary-color)] mb-4" />
                 <span className="font-display font-bold text-xl tracking-wider">SCANNING AREA</span>
               </div>
             )}
             {!isFetching && resolvedEnv && (
               <div className="absolute bottom-4 left-4 bg-white/90 backdrop-blur-md px-4 py-2 rounded-lg shadow-lg">
-                <span className="font-display font-bold text-[#ff4757] uppercase tracking-wider text-sm flex items-center gap-2">
+                <span className="font-display font-bold text-[var(--primary-color)] uppercase tracking-wider text-sm flex items-center gap-2">
                   <Target size={16} /> {resolvedEnv} Zone
                 </span>
               </div>
@@ -131,7 +131,7 @@ export function LiveRadar({
                 <div 
                   key={rec.track_id}
                   onClick={() => canPlay && playTrack(rec.spotify_id!)}
-                  className={`bg-white rounded-2xl p-4 shadow-sm border border-[#dfe4ea] transition-all group ${canPlay ? 'cursor-pointer hover:shadow-md hover:border-[#ff4757] hover:-translate-y-1' : 'opacity-70 cursor-not-allowed'}`}
+                  className={`bg-white rounded-2xl p-4 shadow-sm border border-[#dfe4ea] transition-all group ${canPlay ? 'cursor-pointer hover:shadow-md hover:border-[var(--primary-color)] hover:-translate-y-1' : 'opacity-70 cursor-not-allowed'}`}
                 >
                   <div className={`aspect-square rounded-xl mb-4 overflow-hidden relative ${!artUrl ? fallbackColor : ''} flex items-center justify-center`}>
                     {artUrl ? (
@@ -140,13 +140,13 @@ export function LiveRadar({
                       <Play size={32} className="text-white/50" />
                     )}
                     
-                    <div className="absolute top-2 left-2 bg-[#ff4757] text-white text-xs font-bold px-2 py-1 rounded-md shadow-sm">
+                    <div className="absolute top-2 left-2 bg-[var(--primary-color)] text-white text-xs font-bold px-2 py-1 rounded-md shadow-sm">
                       #{rec.rank}
                     </div>
 
                     {canPlay && (
                       <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center backdrop-blur-[2px]">
-                        <div className="w-12 h-12 bg-[#ff4757] rounded-full flex items-center justify-center text-white shadow-lg transform scale-90 group-hover:scale-100 transition-transform">
+                        <div className="w-12 h-12 bg-[var(--primary-color)] rounded-full flex items-center justify-center text-white shadow-lg transform scale-90 group-hover:scale-100 transition-transform">
                           <Play size={24} className="fill-current ml-1" />
                         </div>
                       </div>

@@ -23,7 +23,7 @@ export function Player({ player, playbackState, isReady, token }: PlayerProps) {
     <div className="fixed bottom-0 right-0 w-full md:w-[calc(100%-18rem)] z-50 bg-white/90 backdrop-blur-xl border-t border-[#dfe4ea] shadow-lg">
       <div className="absolute top-0 left-0 w-full h-1 bg-[#f1f2f6]">
         <div 
-          className="h-full bg-[#ff4757] transition-all duration-300 ease-out"
+          className="h-full bg-[var(--primary-color)] transition-all duration-300 ease-out"
           style={{ width: `${progressPct}%` }}
         />
       </div>
@@ -72,7 +72,7 @@ export function Player({ player, playbackState, isReady, token }: PlayerProps) {
             </button>
             <button 
               onClick={() => player?.togglePlay()}
-              className="w-12 h-12 rounded-full bg-[#2f3542] text-white flex items-center justify-center shadow-md hover:bg-[#ff4757] hover:scale-105 transition-all"
+              className="w-12 h-12 rounded-full bg-[#2f3542] text-white flex items-center justify-center shadow-md hover:bg-[var(--primary-color)] hover:scale-105 transition-all"
             >
               {isPlaying ? <Pause size={24} className="fill-current" /> : <Play size={24} className="fill-current ml-1" />}
             </button>

@@ -14,7 +14,7 @@ export function Sidebar({ page, setPage, token, loadCatalog, API, userProfile }:
   return (
     <aside className="hidden md:flex flex-col h-full w-72 bg-white border-r border-[#dfe4ea] fixed left-0 top-0 z-40 p-6 shadow-sm">
       <div className="flex items-center gap-3 mb-10 mt-2">
-        <div className="w-10 h-10 bg-[#ff4757] rounded-lg flex items-center justify-center text-white shadow-md">
+        <div className="w-10 h-10 bg-[var(--primary-color)] rounded-lg flex items-center justify-center text-white shadow-md">
           <Map size={24} />
         </div>
         <h1 className="font-display font-bold text-xl text-[#2f3542]">Overworld</h1>
@@ -41,7 +41,7 @@ export function Sidebar({ page, setPage, token, loadCatalog, API, userProfile }:
           onClick={() => setPage('dashboard')}
           className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all font-medium ${
             page === 'dashboard' 
-              ? 'bg-[#ff4757] text-white shadow-md' 
+              ? 'bg-[var(--primary-color)] text-white shadow-md' 
               : 'text-[#747d8c] hover:bg-[#f1f2f6] hover:text-[#2f3542]'
           }`}
         >
@@ -52,7 +52,7 @@ export function Sidebar({ page, setPage, token, loadCatalog, API, userProfile }:
           onClick={() => setPage('musicdex')}
           className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all font-medium ${
             page === 'musicdex' 
-              ? 'bg-[#ff4757] text-white shadow-md' 
+              ? 'bg-[var(--primary-color)] text-white shadow-md' 
               : 'text-[#747d8c] hover:bg-[#f1f2f6] hover:text-[#2f3542]'
           }`}
         >

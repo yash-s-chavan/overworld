@@ -27,14 +27,14 @@ export function MusicDex({
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-[#dfe4ea] pb-6">
         <div>
           <h2 className="font-display text-3xl font-bold text-[#2f3542] flex items-center gap-3">
-            <Library className="text-[#ff4757]" size={32} />
+            <Library className="text-[var(--primary-color)]" size={32} />
             The Music Dex
           </h2>
           <p className="text-[#747d8c] mt-2 font-medium">Your collection of discovered contextual tracks.</p>
         </div>
         <div className="bg-white px-5 py-3 rounded-xl shadow-sm border border-[#dfe4ea] flex items-center gap-4">
           <div className="text-sm font-medium text-[#747d8c]">Completion</div>
-          <div className="font-display font-bold text-[#ff4757] text-xl bg-[#ff4757]/10 px-3 py-1 rounded-lg">
+          <div className="font-display font-bold text-[var(--primary-color)] text-xl bg-[var(--primary-color)]/10 px-3 py-1 rounded-lg">
             {caughtCount} / {seenCount}
           </div>
         </div>

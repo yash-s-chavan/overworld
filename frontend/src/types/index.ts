@@ -40,10 +40,17 @@ export interface Discovery {
 
 export interface UserProfile {
   id: number;
-  spotify_id: string;
+  username: string;
+  spotify_id: string | null;
+  spotify_linked: boolean;
   display_name: string | null;
   email: string | null;
   avatar_url: string | null;
+  favorite_region: string | null;
+  timezone: string | null;
+  favorite_pokemon: string | null;
+  theme_color: string;
+  onboarded: boolean;
   created_at: string;
   last_login: string;
   discoveries: Discovery[];

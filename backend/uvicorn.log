@@ -1,0 +1,477 @@
+INFO:     Will watch for changes in these directories: ['/Users/yashchavan/PycharmProjects/overworld/backend']
+INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+INFO:     Started reloader process [94685] using StatReload
+/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/pydantic/_internal/_config.py:321: UserWarning: Valid config keys have changed in V2:
+* 'orm_mode' has been renamed to 'from_attributes'
+  warnings.warn(message, UserWarning)
+INFO:     Started server process [94687]
+INFO:     Waiting for application startup.
+2026-09-22 14:35:37,899 INFO main - Bootstrapping catalog on startup
+INFO:     Application startup complete.
+2026-09-22 14:35:37,904 INFO main - Catalog bootstrap complete: {'track_count': 15, 'catalog_path': '/Users/yashchavan/PycharmProjects/overworld/backend/data/tracks.json', 'seed_path': '/Users/yashchavan/PycharmProjects/overworld/backend/data/tracks_seed.json', 'index_ready': True, 'loaded_from': '/Users/yashchavan/PycharmProjects/overworld/backend/data/tracks.json'}
+2026-09-22 14:35:46,787 INFO main - request_id=ab122db4-4a96-435d-93f7-5c90ab755346 method=POST path=/auth/register status=200 duration_ms=8.55
+INFO:     127.0.0.1:51422 - "POST /auth/register HTTP/1.1" 200 OK
+2026-09-22 14:36:29,219 INFO main - request_id=849ced2c-476c-40fb-855c-96df256ab832 method=GET path=/catalog/tracks status=200 duration_ms=7.56
+INFO:     127.0.0.1:51438 - "GET /catalog/tracks HTTP/1.1" 200 OK
+2026-09-22 14:36:29,225 INFO main - request_id=eeda51f8-c12c-4884-ad79-7fae0bd83b33 method=GET path=/catalog/tracks status=200 duration_ms=6.10
+INFO:     127.0.0.1:51439 - "GET /catalog/tracks HTTP/1.1" 200 OK
+2026-09-22 14:36:29,371 INFO main - request_id=f81e3027-49d8-4e1d-89ea-d12fec20d09d method=POST path=/spotify/track-info status=502 duration_ms=144.96
+INFO:     127.0.0.1:51438 - "POST /spotify/track-info HTTP/1.1" 502 Bad Gateway
+2026-09-22 14:36:29,503 INFO main - request_id=50f27519-697a-4686-914b-57f919969626 method=POST path=/spotify/track-info status=502 duration_ms=132.63
+INFO:     127.0.0.1:51439 - "POST /spotify/track-info HTTP/1.1" 502 Bad Gateway
+2026-09-22 14:36:43,698 INFO main - request_id=a47064b6-97f7-4a49-906e-e708fe36a20b method=OPTIONS path=/auth/register status=200 duration_ms=0.44
+INFO:     127.0.0.1:51446 - "OPTIONS /auth/register HTTP/1.1" 200 OK
+2026-09-22 14:36:43,707 INFO main - request_id=39b17a05-e270-432b-9333-e38104ef27ca method=POST path=/auth/register status=200 duration_ms=6.70
+INFO:     127.0.0.1:51446 - "POST /auth/register HTTP/1.1" 200 OK
+2026-09-22 14:36:43,734 INFO main - request_id=aa6fb657-6a42-4714-a14b-e775d3ed9e12 method=GET path=/users/me status=200 duration_ms=7.33
+INFO:     127.0.0.1:51446 - "GET /users/me HTTP/1.1" 200 OK
+2026-09-22 14:36:44,841 INFO main - request_id=9514cc13-3749-4933-8b92-a81b5f93d98f method=GET path=/auth/login status=307 duration_ms=0.57
+INFO:     127.0.0.1:51447 - "GET /auth/login?session_token=5fd184f8-b4da-4078-815b-fabf310fa125 HTTP/1.1" 307 Temporary Redirect
+2026-09-22 14:36:50,100 INFO main - request_id=00569b14-bafb-43e1-a86d-f4e756d84aff method=GET path=/auth/callback status=307 duration_ms=228.31
+INFO:     127.0.0.1:51448 - "GET /auth/callback?code=AQDda8q178WiSpTMPiacSipu4q_THShX6bjg_rQR2L4geYXNgc36CxKpv2F0CJBsZXCSt5JQhBu9r_dkhYz30LhAq2XWQgukXZcPp1ubHzbIPQQqine9gG-s0HJxnXlkSL79v9vQGe4xx4_6emkLhDwNSdWtX3VVuLFKD59Rcg_fLftuT1JYlyOHIZ5qBmDkZ-bO9PzXxzXBiCudL8YrAjcma9sz7mm4yfA8QsMBOkoDeqGEwMoJAexu9aKHO2CTp36lTdszghjfgnt66Wyn3IwBhQ37rIQLnGVJ7K1c02W6Ju_L4jH0x0XASsFKgo4eAMkIf_wEY4a4KzrrCTYiCeAJPmC8AtvNOq3dB8BQ68bON2g&state=5fd184f8-b4da-4078-815b-fabf310fa125&ubi=CAIQ296y1Yw0GiQwN2I5MDRkZC0yNTJjLTRlMmQtYTk3My04OTU1N2I3MTliMGQiJDFhMTI3YjAxLTg3NWQtNDRjNy1iMjA2LTU1YjFiNmZhMTY0YTokMWExMjdiMDEtODc1ZC00NGM3LWIyMDYtNTViMWI2ZmExNjRhQhB1c2VyX2ludGVyYWN0aW9uSiQwY2RkYTg3Zi1mNTUwLTRiMzUtOWI4Zi1hZWQwNzE0OWY0NjNQAA%3D%3D HTTP/1.1" 307 Temporary Redirect
+2026-09-22 14:36:50,190 INFO main - request_id=b1fdf657-b67d-4d64-8ad8-bae12d554a35 method=GET path=/catalog/tracks status=200 duration_ms=13.69
+INFO:     127.0.0.1:51458 - "GET /catalog/tracks HTTP/1.1" 200 OK
+2026-09-22 14:36:50,202 INFO main - request_id=5655ae81-7c15-4e63-8c35-4673f9787bfe method=GET path=/catalog/tracks status=200 duration_ms=9.72
+INFO:     127.0.0.1:51459 - "GET /catalog/tracks HTTP/1.1" 200 OK
+2026-09-22 14:36:50,347 INFO main - request_id=75c25e8f-c173-4caa-9d9f-d8a2cbcc0f5e method=POST path=/spotify/track-info status=502 duration_ms=144.77
+INFO:     127.0.0.1:51458 - "POST /spotify/track-info HTTP/1.1" 502 Bad Gateway
+2026-09-22 14:36:50,512 INFO main - request_id=51d76055-f5a1-4667-9989-95da17732ea6 method=POST path=/spotify/track-info status=502 duration_ms=164.81
+INFO:     127.0.0.1:51459 - "POST /spotify/track-info HTTP/1.1" 502 Bad Gateway
+2026-09-22 14:36:50,513 INFO main - request_id=4b964767-d511-4a13-a21a-24f6556a6f0b method=GET path=/users/me status=200 duration_ms=320.99
+INFO:     127.0.0.1:51460 - "GET /users/me HTTP/1.1" 200 OK
+2026-09-22 14:36:50,522 INFO main - request_id=b2d0bb7b-929e-4802-a40d-cf3662b4deb8 method=OPTIONS path=/auth/spotify/token status=200 duration_ms=0.46
+INFO:     127.0.0.1:51458 - "OPTIONS /auth/spotify/token HTTP/1.1" 200 OK
+2026-09-22 14:36:50,666 INFO main - request_id=f67c7e63-6a6a-43a9-ad22-e4bb80411a31 method=GET path=/auth/spotify/token status=200 duration_ms=138.51
+INFO:     127.0.0.1:51459 - "GET /auth/spotify/token HTTP/1.1" 200 OK
+WARNING:  StatReload detected changes in 'models.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [94687]
+/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/pydantic/_internal/_config.py:321: UserWarning: Valid config keys have changed in V2:
+* 'orm_mode' has been renamed to 'from_attributes'
+  warnings.warn(message, UserWarning)
+INFO:     Started server process [94885]
+INFO:     Waiting for application startup.
+2026-09-22 14:40:02,991 INFO main - Bootstrapping catalog on startup
+INFO:     Application startup complete.
+2026-09-22 14:40:02,996 INFO main - Catalog bootstrap complete: {'track_count': 15, 'catalog_path': '/Users/yashchavan/PycharmProjects/overworld/backend/data/tracks.json', 'seed_path': '/Users/yashchavan/PycharmProjects/overworld/backend/data/tracks_seed.json', 'index_ready': True, 'loaded_from': '/Users/yashchavan/PycharmProjects/overworld/backend/data/tracks.json'}
+WARNING:  StatReload detected changes in 'schemas.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [94885]
+/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/pydantic/_internal/_config.py:321: UserWarning: Valid config keys have changed in V2:
+* 'orm_mode' has been renamed to 'from_attributes'
+  warnings.warn(message, UserWarning)
+INFO:     Started server process [94888]
+INFO:     Waiting for application startup.
+2026-09-22 14:40:07,179 INFO main - Bootstrapping catalog on startup
+INFO:     Application startup complete.
+2026-09-22 14:40:07,185 INFO main - Catalog bootstrap complete: {'track_count': 15, 'catalog_path': '/Users/yashchavan/PycharmProjects/overworld/backend/data/tracks.json', 'seed_path': '/Users/yashchavan/PycharmProjects/overworld/backend/data/tracks_seed.json', 'index_ready': True, 'loaded_from': '/Users/yashchavan/PycharmProjects/overworld/backend/data/tracks.json'}
+WARNING:  StatReload detected changes in 'crud.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [94888]
+/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/pydantic/_internal/_config.py:321: UserWarning: Valid config keys have changed in V2:
+* 'orm_mode' has been renamed to 'from_attributes'
+  warnings.warn(message, UserWarning)
+Process SpawnProcess-4:
+Traceback (most recent call last):
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/uvicorn/_subprocess.py", line 76, in subprocess_started
+    target(sockets=sockets)
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/uvicorn/server.py", line 61, in run
+    return asyncio.run(self.serve(sockets=sockets))
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/asyncio/runners.py", line 44, in run
+    return loop.run_until_complete(main)
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/asyncio/base_events.py", line 642, in run_until_complete
+    return future.result()
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/uvicorn/server.py", line 68, in serve
+    config.load()
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/uvicorn/config.py", line 467, in load
+    self.loaded_app = import_from_string(self.app)
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/uvicorn/importer.py", line 21, in import_from_string
+    module = importlib.import_module(module_str)
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/importlib/__init__.py", line 127, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1030, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1007, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 986, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 680, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 850, in exec_module
+  File "<frozen importlib._bootstrap>", line 228, in _call_with_frames_removed
+  File "/Users/yashchavan/PycharmProjects/overworld/backend/main.py", line 17, in <module>
+    from auth import router as auth_router
+  File "/Users/yashchavan/PycharmProjects/overworld/backend/auth.py", line 10, in <module>
+    import crud
+  File "/Users/yashchavan/PycharmProjects/overworld/backend/crud.py", line 62, in <module>
+    def update_user_onboarding(db: Session, user: models.User, onboarding_data: schemas.UserOnboarding):
+NameError: name 'schemas' is not defined
+WARNING:  StatReload detected changes in 'crud.py'. Reloading...
+/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/pydantic/_internal/_config.py:321: UserWarning: Valid config keys have changed in V2:
+* 'orm_mode' has been renamed to 'from_attributes'
+  warnings.warn(message, UserWarning)
+INFO:     Started server process [94898]
+INFO:     Waiting for application startup.
+2026-09-22 14:40:15,053 INFO main - Bootstrapping catalog on startup
+INFO:     Application startup complete.
+2026-09-22 14:40:15,057 INFO main - Catalog bootstrap complete: {'track_count': 15, 'catalog_path': '/Users/yashchavan/PycharmProjects/overworld/backend/data/tracks.json', 'seed_path': '/Users/yashchavan/PycharmProjects/overworld/backend/data/tracks_seed.json', 'index_ready': True, 'loaded_from': '/Users/yashchavan/PycharmProjects/overworld/backend/data/tracks.json'}
+WARNING:  StatReload detected changes in 'users.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [94898]
+/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/pydantic/_internal/_config.py:321: UserWarning: Valid config keys have changed in V2:
+* 'orm_mode' has been renamed to 'from_attributes'
+  warnings.warn(message, UserWarning)
+INFO:     Started server process [94899]
+INFO:     Waiting for application startup.
+2026-09-22 14:40:21,663 INFO main - Bootstrapping catalog on startup
+INFO:     Application startup complete.
+2026-09-22 14:40:21,668 INFO main - Catalog bootstrap complete: {'track_count': 15, 'catalog_path': '/Users/yashchavan/PycharmProjects/overworld/backend/data/tracks.json', 'seed_path': '/Users/yashchavan/PycharmProjects/overworld/backend/data/tracks_seed.json', 'index_ready': True, 'loaded_from': '/Users/yashchavan/PycharmProjects/overworld/backend/data/tracks.json'}
+2026-09-22 14:45:44,584 INFO main - request_id=aba2333b-8722-4db8-9182-a28df0fd6f6c method=GET path=/catalog/tracks status=200 duration_ms=17.74
+2026-09-22 14:45:44,585 INFO main - request_id=49c1f00e-289a-43c7-9370-82dc1f8f7f39 method=GET path=/catalog/tracks status=200 duration_ms=6.47
+2026-09-22 14:45:44,615 INFO main - request_id=4cb4b269-9f93-4b44-a49e-1a6d9337ee96 method=GET path=/catalog/tracks status=200 duration_ms=6.25
+INFO:     127.0.0.1:51729 - "GET /catalog/tracks HTTP/1.1" 200 OK
+2026-09-22 14:45:44,622 INFO main - request_id=033bd30e-c480-4bc7-9402-c4188f64b037 method=GET path=/catalog/tracks status=200 duration_ms=7.53
+INFO:     127.0.0.1:51730 - "GET /catalog/tracks HTTP/1.1" 200 OK
+2026-09-22 14:45:44,624 INFO main - request_id=14b07fe6-de3c-47ad-bcd0-4afa0a61b5b4 method=OPTIONS path=/users/me status=200 duration_ms=0.44
+INFO:     127.0.0.1:51731 - "OPTIONS /users/me HTTP/1.1" 200 OK
+2026-09-22 14:45:44,626 INFO main - request_id=0f26f8b5-1f1b-4747-929b-4ab3167fdb88 method=OPTIONS path=/spotify/track-info status=200 duration_ms=1.35
+INFO:     127.0.0.1:51729 - "OPTIONS /spotify/track-info HTTP/1.1" 200 OK
+2026-09-22 14:45:44,630 INFO main - request_id=0249b9b8-526e-4eff-bf81-f169eb418e93 method=OPTIONS path=/spotify/track-info status=200 duration_ms=1.03
+INFO:     127.0.0.1:51731 - "OPTIONS /spotify/track-info HTTP/1.1" 200 OK
+2026-09-22 14:45:44,807 INFO main - request_id=81b65a00-7f09-4382-aeb5-05df7da2453c method=POST path=/spotify/track-info status=502 duration_ms=162.88
+INFO:     127.0.0.1:51729 - "POST /spotify/track-info HTTP/1.1" 502 Bad Gateway
+INFO:     127.0.0.1:51730 - "GET /users/me HTTP/1.1" 500 Internal Server Error
+ERROR:    Exception in ASGI application
+Traceback (most recent call last):
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1969, in _exec_single_context
+    self.dialect.do_execute(
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/sqlalchemy/engine/default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such column: users.favorite_region
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/uvicorn/protocols/http/h11_impl.py", line 408, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/uvicorn/middleware/proxy_headers.py", line 84, in __call__
+    return await self.app(scope, receive, send)
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/fastapi/applications.py", line 1106, in __call__
+    await super().__call__(scope, receive, send)
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/starlette/applications.py", line 122, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/starlette/middleware/errors.py", line 184, in __call__
+    raise exc
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/starlette/middleware/errors.py", line 162, in __call__
+    await self.app(scope, receive, _send)
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/starlette/middleware/base.py", line 108, in __call__
+    response = await self.dispatch_func(request, call_next)
+  File "/Users/yashchavan/PycharmProjects/overworld/backend/main.py", line 90, in request_logging_middleware
+    response = await call_next(request)
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/starlette/middleware/base.py", line 84, in call_next
+    raise app_exc
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/starlette/middleware/base.py", line 70, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/starlette/middleware/cors.py", line 91, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/starlette/middleware/cors.py", line 146, in simple_response
+    await self.app(scope, receive, send)
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/starlette/middleware/exceptions.py", line 79, in __call__
+    raise exc
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/starlette/middleware/exceptions.py", line 68, in __call__
+    await self.app(scope, receive, sender)
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/fastapi/middleware/asyncexitstack.py", line 20, in __call__
+    raise e
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/fastapi/middleware/asyncexitstack.py", line 17, in __call__
+    await self.app(scope, receive, send)
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/starlette/routing.py", line 718, in __call__
+    await route.handle(scope, receive, send)
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/starlette/routing.py", line 276, in handle
+    await self.app(scope, receive, send)
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/starlette/routing.py", line 66, in app
+    response = await func(request)
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/fastapi/routing.py", line 264, in app
+    solved_result = await solve_dependencies(
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/fastapi/dependencies/utils.py", line 594, in solve_dependencies
+    solved = await run_in_threadpool(call, **sub_values)
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/starlette/concurrency.py", line 41, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func, *args)
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/anyio/to_thread.py", line 33, in run_sync
+    return await get_asynclib().run_sync_in_worker_thread(
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/anyio/_backends/_asyncio.py", line 877, in run_sync_in_worker_thread
+    return await future
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/anyio/_backends/_asyncio.py", line 807, in run
+    result = context.run(func, *args)
+  File "/Users/yashchavan/PycharmProjects/overworld/backend/users.py", line 16, in get_current_user
+    user = crud.get_user_by_session(db, token)
+  File "/Users/yashchavan/PycharmProjects/overworld/backend/crud.py", line 15, in get_user_by_session
+    return db.query(models.User).filter(models.User.session_token == session_token).first()
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/sqlalchemy/orm/query.py", line 2766, in first
+    return self.limit(1)._iter().first()  # type: ignore
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/sqlalchemy/orm/query.py", line 2864, in _iter
+    result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 2373, in execute
+    return self._execute_internal(
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 2271, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/sqlalchemy/orm/context.py", line 306, in orm_execute_statement
+    result = conn.execute(
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1421, in execute
+    return meth(
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/sqlalchemy/sql/elements.py", line 526, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1643, in _execute_clauseelement
+    ret = self._execute_context(
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1848, in _execute_context
+    return self._exec_single_context(
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1988, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 2365, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1969, in _exec_single_context
+    self.dialect.do_execute(
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/sqlalchemy/engine/default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such column: users.favorite_region
+[SQL: SELECT users.id AS users_id, users.username AS users_username, users.password AS users_password, users.session_token AS users_session_token, users.spotify_id AS users_spotify_id, users.spotify_access_token AS users_spotify_access_token, users.spotify_refresh_token AS users_spotify_refresh_token, users.display_name AS users_display_name, users.email AS users_email, users.avatar_url AS users_avatar_url, users.favorite_region AS users_favorite_region, users.timezone AS users_timezone, users.favorite_pokemon AS users_favorite_pokemon, users.theme_color AS users_theme_color, users.onboarded AS users_onboarded, users.created_at AS users_created_at, users.last_login AS users_last_login 
+FROM users 
+WHERE users.session_token = ?
+ LIMIT ? OFFSET ?]
+[parameters: ('5fd184f8-b4da-4078-815b-fabf310fa125', 1, 0)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2026-09-22 14:45:45,020 INFO main - request_id=db047b5c-504b-4b4c-8c19-91dd77c64f41 method=POST path=/spotify/track-info status=502 duration_ms=212.74
+INFO:     127.0.0.1:51731 - "POST /spotify/track-info HTTP/1.1" 502 Bad Gateway
+2026-09-22 14:45:50,307 INFO main - request_id=b9bc3e3e-401f-4ae5-a699-8f3b6bd49604 method=GET path=/catalog/tracks status=200 duration_ms=14.82
+INFO:     127.0.0.1:51737 - "GET /catalog/tracks HTTP/1.1" 200 OK
+2026-09-22 14:45:50,320 INFO main - request_id=5d8b0b85-5016-4bf8-97c1-0b07e8a0039c method=GET path=/catalog/tracks status=200 duration_ms=12.67
+INFO:     127.0.0.1:51738 - "GET /catalog/tracks HTTP/1.1" 200 OK
+2026-09-22 14:45:50,472 INFO main - request_id=a43dbb04-f45a-4cdf-8c43-16f2de459e12 method=POST path=/spotify/track-info status=502 duration_ms=149.99
+INFO:     127.0.0.1:51737 - "POST /spotify/track-info HTTP/1.1" 502 Bad Gateway
+INFO:     127.0.0.1:51739 - "GET /users/me HTTP/1.1" 500 Internal Server Error
+ERROR:    Exception in ASGI application
+Traceback (most recent call last):
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1969, in _exec_single_context
+    self.dialect.do_execute(
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/sqlalchemy/engine/default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such column: users.favorite_region
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/uvicorn/protocols/http/h11_impl.py", line 408, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/uvicorn/middleware/proxy_headers.py", line 84, in __call__
+    return await self.app(scope, receive, send)
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/fastapi/applications.py", line 1106, in __call__
+    await super().__call__(scope, receive, send)
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/starlette/applications.py", line 122, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/starlette/middleware/errors.py", line 184, in __call__
+    raise exc
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/starlette/middleware/errors.py", line 162, in __call__
+    await self.app(scope, receive, _send)
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/starlette/middleware/base.py", line 108, in __call__
+    response = await self.dispatch_func(request, call_next)
+  File "/Users/yashchavan/PycharmProjects/overworld/backend/main.py", line 90, in request_logging_middleware
+    response = await call_next(request)
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/starlette/middleware/base.py", line 84, in call_next
+    raise app_exc
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/starlette/middleware/base.py", line 70, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/starlette/middleware/cors.py", line 91, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/starlette/middleware/cors.py", line 146, in simple_response
+    await self.app(scope, receive, send)
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/starlette/middleware/exceptions.py", line 79, in __call__
+    raise exc
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/starlette/middleware/exceptions.py", line 68, in __call__
+    await self.app(scope, receive, sender)
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/fastapi/middleware/asyncexitstack.py", line 20, in __call__
+    raise e
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/fastapi/middleware/asyncexitstack.py", line 17, in __call__
+    await self.app(scope, receive, send)
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/starlette/routing.py", line 718, in __call__
+    await route.handle(scope, receive, send)
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/starlette/routing.py", line 276, in handle
+    await self.app(scope, receive, send)
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/starlette/routing.py", line 66, in app
+    response = await func(request)
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/fastapi/routing.py", line 264, in app
+    solved_result = await solve_dependencies(
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/fastapi/dependencies/utils.py", line 594, in solve_dependencies
+    solved = await run_in_threadpool(call, **sub_values)
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/starlette/concurrency.py", line 41, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func, *args)
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/anyio/to_thread.py", line 33, in run_sync
+    return await get_asynclib().run_sync_in_worker_thread(
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/anyio/_backends/_asyncio.py", line 877, in run_sync_in_worker_thread
+    return await future
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/anyio/_backends/_asyncio.py", line 807, in run
+    result = context.run(func, *args)
+  File "/Users/yashchavan/PycharmProjects/overworld/backend/users.py", line 16, in get_current_user
+    user = crud.get_user_by_session(db, token)
+  File "/Users/yashchavan/PycharmProjects/overworld/backend/crud.py", line 15, in get_user_by_session
+    return db.query(models.User).filter(models.User.session_token == session_token).first()
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/sqlalchemy/orm/query.py", line 2766, in first
+    return self.limit(1)._iter().first()  # type: ignore
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/sqlalchemy/orm/query.py", line 2864, in _iter
+    result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 2373, in execute
+    return self._execute_internal(
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 2271, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/sqlalchemy/orm/context.py", line 306, in orm_execute_statement
+    result = conn.execute(
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1421, in execute
+    return meth(
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/sqlalchemy/sql/elements.py", line 526, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1643, in _execute_clauseelement
+    ret = self._execute_context(
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1848, in _execute_context
+    return self._exec_single_context(
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1988, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 2365, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1969, in _exec_single_context
+    self.dialect.do_execute(
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/sqlalchemy/engine/default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such column: users.favorite_region
+[SQL: SELECT users.id AS users_id, users.username AS users_username, users.password AS users_password, users.session_token AS users_session_token, users.spotify_id AS users_spotify_id, users.spotify_access_token AS users_spotify_access_token, users.spotify_refresh_token AS users_spotify_refresh_token, users.display_name AS users_display_name, users.email AS users_email, users.avatar_url AS users_avatar_url, users.favorite_region AS users_favorite_region, users.timezone AS users_timezone, users.favorite_pokemon AS users_favorite_pokemon, users.theme_color AS users_theme_color, users.onboarded AS users_onboarded, users.created_at AS users_created_at, users.last_login AS users_last_login 
+FROM users 
+WHERE users.session_token = ?
+ LIMIT ? OFFSET ?]
+[parameters: ('5fd184f8-b4da-4078-815b-fabf310fa125', 1, 0)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2026-09-22 14:45:50,608 INFO main - request_id=c0a8cfc3-4299-481d-96e9-976785842577 method=POST path=/spotify/track-info status=502 duration_ms=136.72
+INFO:     127.0.0.1:51738 - "POST /spotify/track-info HTTP/1.1" 502 Bad Gateway
+2026-09-22 14:45:55,692 INFO main - request_id=bd7cf493-1940-447b-99fb-2b9fc058cde2 method=GET path=/catalog/tracks status=200 duration_ms=13.87
+INFO:     127.0.0.1:51746 - "GET /catalog/tracks HTTP/1.1" 200 OK
+2026-09-22 14:45:55,702 INFO main - request_id=997c4e6d-6690-4921-868e-85ffc90fa8be method=GET path=/catalog/tracks status=200 duration_ms=10.14
+INFO:     127.0.0.1:51747 - "GET /catalog/tracks HTTP/1.1" 200 OK
+2026-09-22 14:45:55,976 INFO main - request_id=235416e4-c89e-4edc-afe5-76f8ccefb7ba method=POST path=/spotify/track-info status=502 duration_ms=272.90
+INFO:     127.0.0.1:51746 - "POST /spotify/track-info HTTP/1.1" 502 Bad Gateway
+INFO:     127.0.0.1:51748 - "GET /users/me HTTP/1.1" 500 Internal Server Error
+ERROR:    Exception in ASGI application
+Traceback (most recent call last):
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1969, in _exec_single_context
+    self.dialect.do_execute(
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/sqlalchemy/engine/default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such column: users.favorite_region
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/uvicorn/protocols/http/h11_impl.py", line 408, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/uvicorn/middleware/proxy_headers.py", line 84, in __call__
+    return await self.app(scope, receive, send)
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/fastapi/applications.py", line 1106, in __call__
+    await super().__call__(scope, receive, send)
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/starlette/applications.py", line 122, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/starlette/middleware/errors.py", line 184, in __call__
+    raise exc
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/starlette/middleware/errors.py", line 162, in __call__
+    await self.app(scope, receive, _send)
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/starlette/middleware/base.py", line 108, in __call__
+    response = await self.dispatch_func(request, call_next)
+  File "/Users/yashchavan/PycharmProjects/overworld/backend/main.py", line 90, in request_logging_middleware
+    response = await call_next(request)
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/starlette/middleware/base.py", line 84, in call_next
+    raise app_exc
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/starlette/middleware/base.py", line 70, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/starlette/middleware/cors.py", line 91, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/starlette/middleware/cors.py", line 146, in simple_response
+    await self.app(scope, receive, send)
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/starlette/middleware/exceptions.py", line 79, in __call__
+    raise exc
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/starlette/middleware/exceptions.py", line 68, in __call__
+    await self.app(scope, receive, sender)
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/fastapi/middleware/asyncexitstack.py", line 20, in __call__
+    raise e
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/fastapi/middleware/asyncexitstack.py", line 17, in __call__
+    await self.app(scope, receive, send)
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/starlette/routing.py", line 718, in __call__
+    await route.handle(scope, receive, send)
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/starlette/routing.py", line 276, in handle
+    await self.app(scope, receive, send)
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/starlette/routing.py", line 66, in app
+    response = await func(request)
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/fastapi/routing.py", line 264, in app
+    solved_result = await solve_dependencies(
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/fastapi/dependencies/utils.py", line 594, in solve_dependencies
+    solved = await run_in_threadpool(call, **sub_values)
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/starlette/concurrency.py", line 41, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func, *args)
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/anyio/to_thread.py", line 33, in run_sync
+    return await get_asynclib().run_sync_in_worker_thread(
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/anyio/_backends/_asyncio.py", line 877, in run_sync_in_worker_thread
+    return await future
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/anyio/_backends/_asyncio.py", line 807, in run
+    result = context.run(func, *args)
+  File "/Users/yashchavan/PycharmProjects/overworld/backend/users.py", line 16, in get_current_user
+    user = crud.get_user_by_session(db, token)
+  File "/Users/yashchavan/PycharmProjects/overworld/backend/crud.py", line 15, in get_user_by_session
+    return db.query(models.User).filter(models.User.session_token == session_token).first()
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/sqlalchemy/orm/query.py", line 2766, in first
+    return self.limit(1)._iter().first()  # type: ignore
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/sqlalchemy/orm/query.py", line 2864, in _iter
+    result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 2373, in execute
+    return self._execute_internal(
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 2271, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/sqlalchemy/orm/context.py", line 306, in orm_execute_statement
+    result = conn.execute(
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1421, in execute
+    return meth(
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/sqlalchemy/sql/elements.py", line 526, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1643, in _execute_clauseelement
+    ret = self._execute_context(
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1848, in _execute_context
+    return self._exec_single_context(
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1988, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 2365, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1969, in _exec_single_context
+    self.dialect.do_execute(
+  File "/Users/yashchavan/PycharmProjects/overworld/.venv/lib/python3.9/site-packages/sqlalchemy/engine/default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such column: users.favorite_region
+[SQL: SELECT users.id AS users_id, users.username AS users_username, users.password AS users_password, users.session_token AS users_session_token, users.spotify_id AS users_spotify_id, users.spotify_access_token AS users_spotify_access_token, users.spotify_refresh_token AS users_spotify_refresh_token, users.display_name AS users_display_name, users.email AS users_email, users.avatar_url AS users_avatar_url, users.favorite_region AS users_favorite_region, users.timezone AS users_timezone, users.favorite_pokemon AS users_favorite_pokemon, users.theme_color AS users_theme_color, users.onboarded AS users_onboarded, users.created_at AS users_created_at, users.last_login AS users_last_login 
+FROM users 
+WHERE users.session_token = ?
+ LIMIT ? OFFSET ?]
+[parameters: ('5fd184f8-b4da-4078-815b-fabf310fa125', 1, 0)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2026-09-22 14:45:56,300 INFO main - request_id=9049c17b-f0fd-4131-85d7-7e195cf6bf1d method=POST path=/spotify/track-info status=502 duration_ms=323.64
+INFO:     127.0.0.1:51747 - "POST /spotify/track-info HTTP/1.1" 502 Bad Gateway

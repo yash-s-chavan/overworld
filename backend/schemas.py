@@ -125,13 +125,16 @@ class DiscoveryResponse(DiscoveryBase):
         from_attributes = True
 
 class UserBase(BaseModel):
-    spotify_id: str
-    display_name: Optional[str] = None
-    email: Optional[str] = None
-    avatar_url: Optional[str] = None
+    username: str
 
 class UserCreate(UserBase):
-    pass
+    password: str
+
+class UserRegister(UserBase):
+    password: str
+
+class UserLogin(UserBase):
+    password: str
 
 class UserResponse(UserBase):
     id: int
@@ -143,4 +146,21 @@ class UserResponse(UserBase):
         from_attributes = True
 
 class UserProfileResponse(UserResponse):
+    username: str
+    spotify_linked: bool
+    display_name: Optional[str] = None
+    avatar_url: Optional[str] = None
+    favorite_region: Optional[str] = None
+    timezone: Optional[str] = None
+    favorite_pokemon: Optional[str] = None
+    theme_color: str = "#ff4757"
+    onboarded: bool = False
     discoveries: List[DiscoveryResponse] = []
+
+class UserOnboarding(BaseModel):
+    display_name: Optional[str] = None
+    avatar_url: Optional[str] = None
+    favorite_region: Optional[str] = None
+    timezone: Optional[str] = None
+    favorite_pokemon: Optional[str] = None
+    theme_color: str = "#ff4757"
